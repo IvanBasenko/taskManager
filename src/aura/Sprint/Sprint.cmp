@@ -2,5 +2,27 @@
  - Created by Ivan Basenko on 23.10.2018.
  -->
 
-<aura:component description="Sprint">
+<aura:component description="Sprint" controller="TaskCardController">
+    <aura:attribute access="private" name="taskCardList" type="TaskCard__c[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium slds-scrollable">
+        <div class="slds-media__body ">
+            <lightning:layout class="slds-p-around--medium" horizontalAlign="spread" verticalAlign="center">
+                <lightning:layoutItem >
+                    <h1 class="slds-page-header__title">Sprint</h1>
+                </lightning:layoutItem>
+            </lightning:layout>
+            <aura:if isTrue="{!not(empty(v.taskCardList))}">
+                <aura:iteration items="{!v.taskCardList}" var="task">
+                    <div class="slds-p-around--large">
+                        <c:SprintCard taskCard="{!task}"/>
+                    </div>
+                </aura:iteration>
+                <aura:set attribute="else">
+                    <div class="slds-align_absolute-center">No tasks found</div>
+                </aura:set>
+            </aura:if>
+        </div>
+    </article>
 </aura:component>

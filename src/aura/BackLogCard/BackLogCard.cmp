@@ -2,5 +2,55 @@
  - Created by Ivan Basenko on 23.10.2018.
  -->
 
-<aura:component description="BackLogCard">
+<aura:component description="BackLogCard" controller="TaskCardController">
+    <aura:attribute name="taskCard" type="TaskCard__c"/>
+    <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
+        <lightning:card>
+            <aura:set attribute="title">
+                <lightning:layout horizontalAlign="spread" verticalAlign="center">
+                    <lightning:layoutItem>
+                        <h3 class="slds-page-header__title">   {!v.taskCard.Name}</h3>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="Edit" onclick="{!c.editRecord}"/>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:set>
+
+            <p class="slds-p-horizontal_small">
+                <lightning:layout horizontalAlign="spread" verticalAlign="center">
+                    <lightning:layoutItem>
+                        <div class="slds-p-horizontal--small">
+                            <span class="boatproperty"><lightning:outputField fieldName="Name"/></span>
+                            <span class="boatproperty"><lightning:outputField fieldName="Description__c"/></span>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="Add to sprint" onclick="{!c.addToSprint}"/>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </p>
+        </lightning:card>
+
+    </lightning:recordViewForm>
+    <lightning:recordEditForm aura:id="editForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c"
+                              class="slds-hide" onsuccess="{!c.handleSuccess}">
+        <div class="slds-media">
+            <div class="slds-media__body">
+                <lightning:layout multipleRows="true">
+                    <lightning:layoutItem size="6">
+                        <lightning:inputField fieldName="Name"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6">
+                        <lightning:inputField fieldName="Description__c"/>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout horizontalAlign="center" class="slds-m-top_large">
+                    <lightning:button variant="neutral" label="Cancel" title="Cancel" type="text"
+                                      onclick="{!c.handleCancel}"/>
+                    <lightning:button variant="brand" label="Submit" title="Submit" type="submit"/>
+                </lightning:layout>
+            </div>
+        </div>
+    </lightning:recordEditForm>
 </aura:component>

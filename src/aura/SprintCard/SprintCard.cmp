@@ -1,0 +1,36 @@
+<!--
+ - Created by Ivan Basenko on 23.10.2018.
+ -->
+
+<aura:component description="SprintCard">
+    <aura:attribute name="taskCard" type="TaskCard__c"/>
+    <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
+        <lightning:card>
+            <aura:set attribute="title">
+                <lightning:layout horizontalAlign="spread" verticalAlign="center">
+                    <lightning:layoutItem>
+                        <h3 class="slds-page-header__title">   {!v.taskCard.Name}</h3>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:set>
+
+            <p class="slds-p-horizontal_small">
+                <lightning:layout horizontalAlign="spread" verticalAlign="center">
+                    <lightning:layoutItem>
+                        <div class="slds-p-horizontal--small">
+                            <span class="boatproperty"><lightning:outputField fieldName="Name"/></span>
+                            <span class="boatproperty"><lightning:outputField fieldName="Description__c"/></span>
+                            <span class="boatproperty"><lightning:outputField fieldName="Assignee__c"/></span>
+                            <span class="boatproperty"><lightning:outputField fieldName="Estimate__c"/></span>
+                            <span class="boatproperty"><lightning:outputField fieldName="Total__c"/></span>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="View Details" variant="brand" onclick="{!c.addToSprint}"/>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </p>
+        </lightning:card>
+
+    </lightning:recordViewForm>
+</aura:component>
