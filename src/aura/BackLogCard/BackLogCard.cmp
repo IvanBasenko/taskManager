@@ -5,6 +5,8 @@
 <aura:component description="BackLogCard" controller="TaskCardController">
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:handler name="changeRecordType" event="c:ChangeRecordTypeEvent" action="{!c.changeType}"/>
     <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
         <lightning:card>
             <aura:set attribute="title">
@@ -55,4 +57,5 @@
             </div>
         </lightning:card>
     </lightning:recordEditForm>
+    <c:AddToSprintModalWindow isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>
 </aura:component>

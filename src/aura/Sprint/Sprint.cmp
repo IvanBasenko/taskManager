@@ -6,24 +6,26 @@
     <aura:attribute access="private" name="taskCardList" type="TaskCard__c[]"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
-    <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium slds-scrollable">
+    <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium ">
         <div>
             <lightning:layout class="slds-p-around--medium" horizontalAlign="spread" verticalAlign="center">
-                <lightning:layoutItem >
+                <lightning:layoutItem>
                     <h1 class="slds-page-header__title">Sprint</h1>
                 </lightning:layoutItem>
             </lightning:layout>
             <div class="slds-border_top"></div>
-            <aura:if isTrue="{!not(empty(v.taskCardList))}">
-                <aura:iteration items="{!v.taskCardList}" var="task">
-                    <div class="slds-p-around--large">
-                        <c:SprintCard taskCard="{!task}"/>
-                    </div>
-                </aura:iteration>
-                <aura:set attribute="else">
-                    <div class="slds-align_absolute-center">No tasks found</div>
-                </aura:set>
-            </aura:if>
+            <div class="slds-scrollable">
+                <aura:if isTrue="{!not(empty(v.taskCardList))}">
+                    <aura:iteration items="{!v.taskCardList}" var="task">
+                        <div class="slds-p-around--large">
+                            <c:SprintCard taskCard="{!task}"/>
+                        </div>
+                    </aura:iteration>
+                    <aura:set attribute="else">
+                        <div class="slds-align_absolute-center">No tasks found</div>
+                    </aura:set>
+                </aura:if>
+            </div>
         </div>
     </article>
 </aura:component>

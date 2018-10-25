@@ -3,3 +3,7 @@
  */
 .THIS {
 }
+
+.THIS .slds-scrollable {
+    height: 100vh;
+}

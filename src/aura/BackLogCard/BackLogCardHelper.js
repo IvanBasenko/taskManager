@@ -4,23 +4,19 @@
 ({
     toSprint: function (component) {
         let recordId = component.get('v.taskCard.Id');
-        let action = component.get('c.setRecordType');
+        let action = component.get('c.setRecordTypeSprint');
         action.setParams({
             "id": recordId
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-               this.editRecord(component,recordId)
+                this.editRecord(component)
             }
         });
         $A.enqueueAction(action);
     },
-    editRecord: function (component,recordId) {
-        let editRecordEvent = $A.get("e.force:editRecord");
-        editRecordEvent.setParams({
-            "recordId": recordId// using account standard object for this sample
-        });
-        editRecordEvent.fire();
+    editRecord: function (component) {
+        component.set('v.isOpen', true);
     },
     showHide: function (component) {
         let editForm = component.find("editForm");

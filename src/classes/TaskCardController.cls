@@ -26,14 +26,17 @@ public with sharing class TaskCardController {
         ];
     }
     @AuraEnabled
-    public static void setRecordType(String id) {
-        System.debug(id);
+    public static void setRecordTypeSprint(String id) {
         List<TaskCard__c> sds = [SELECT Id,Name,Task_Name__c, Description__c,RecordTypeId FROM TaskCard__c WHERE Id = :id];
-        System.debug(sds);
-        sds.get(0).RecordTypeId = '0121t000000DREgAAO';
+        sds.get(0).RecordTypeId = getSprintTypeId();
         update sds;
     }
-
+    @AuraEnabled
+    public static void setRecordTypeBackLog(String id) {
+        List<TaskCard__c> sds = [SELECT Id,Name,Task_Name__c, Description__c,RecordTypeId FROM TaskCard__c WHERE Id = :id];
+        sds.get(0).RecordTypeId = getBacklogTypeId();
+        update sds;
+    }
     @AuraEnabled
     public static void deleteTask(Id id) {
         Database.delete(id);

@@ -1,6 +1,9 @@
 /**
  * Created by Ivan Basenko on 23.10.2018.
  */
-.THIS {
-
+/*.THIS {*/
+/*height: 100vh;*/
+/*}*/
+.THIS .slds-scrollable {
+    height: 100vh;
 }
