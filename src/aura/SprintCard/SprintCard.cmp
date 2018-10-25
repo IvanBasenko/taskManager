@@ -14,11 +14,11 @@
                 </lightning:layout>
             </aura:set>
 
-            <p class="slds-p-horizontal_small">
-                <lightning:layout horizontalAlign="spread" verticalAlign="center">
+            <p class="slds-p-around--medium">
+                <lightning:layout horizontalAlign="spread" verticalAlign="end">
                     <lightning:layoutItem>
                         <div class="slds-p-horizontal--small">
-                            <span class="boatproperty"><lightning:outputField fieldName="Name"/></span>
+                            <span class="boatproperty"><lightning:outputField fieldName="Task_Name__c"/></span>
                             <span class="boatproperty"><lightning:outputField fieldName="Description__c"/></span>
                             <span class="boatproperty"><lightning:outputField fieldName="Assignee__c"/></span>
                             <span class="boatproperty"><lightning:outputField fieldName="Estimate__c"/></span>

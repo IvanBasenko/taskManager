@@ -5,6 +5,19 @@
     addToSprint: function (component, event, helper) {
         helper.toSprint(component);
     },
+    deleteRecord: function (component, event, helper) {
+        let recordId = component.get('v.taskCard.Id');
+        let action = component.get('c.deleteTask');
+        action.setParams({
+            "id": recordId
+        });
+        action.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                component.getEvent("RefreshBackLog").fire();
+            }
+        });
+        $A.enqueueAction(action);
+    },
 
     editRecord : function(component, event, helper) {
         helper.showHide(component);

@@ -1,18 +1,22 @@
-/**
- * Created by Ivan Basenko on 23.10.2018.
- */
-.THIS.slds-card {
-    position:relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: 1px !important;
+.THIS .slds-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px 0 rgba(12, 2, 23, 0.32);
 
 }
+
+/*.THIS .slds-text-heading--medium {*/
+/*color: #1ed760;*/
+/*font-family: "Lato", sans-serif ;*/
+/*}*/
+.THIS .slds-text__title {
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+}
 .THIS .boatproperty {
-    margin-bottom: 3px;
     font-weight: lighter;
 }
 .THIS .slds-form-element__static{
-    font-size: 16px;
+    font-size: 20px;
+    font-family: "Lato", sans-serif;
+    color: #449ed7;
 }

@@ -5,29 +5,33 @@
 <aura:component description="BackLog" controller="TaskCardController"
                 implements="flexipage:availableForAllPageTypes">
     <aura:attribute access="private" name="taskCardList" type="TaskCard__c[]"/>
+    <aura:attribute access="private" name="newTaskCard" type="TaskCard__c"/>
     <aura:attribute access="private" name="backlogId" type="Id"/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
+    <aura:handler name="RefreshBackLog" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
     <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium slds-scrollable">
         <div class="slds-media__body ">
             <lightning:layout class="slds-p-around--medium" horizontalAlign="spread" verticalAlign="center">
-                <lightning:layoutItem >
+                <lightning:layoutItem>
                     <h1 class="slds-page-header__title">BackLog</h1>
                 </lightning:layoutItem>
-                <lightning:layoutItem >
+                <lightning:layoutItem>
                     <lightning:button label="Add task" variant="success" onclick="{!c.onCreateRecord}"/>
                 </lightning:layoutItem>
             </lightning:layout>
+            <div class="slds-border_top"></div>
             <aura:if isTrue="{!not(empty(v.taskCardList))}">
-                    <aura:iteration items="{!v.taskCardList}" var="task">
-                        <div class="slds-p-around--large">
-                            <c:BackLogCard taskCard="{!task}"/>
-                        </div>
-                    </aura:iteration>
+                <aura:iteration items="{!v.taskCardList}" var="task">
+                    <div class="slds-p-around--large">
+                        <c:BackLogCard taskCard="{!task}"/>
+                    </div>
+                </aura:iteration>
                 <aura:set attribute="else">
                     <div class="slds-align_absolute-center">No tasks found</div>
                 </aura:set>
             </aura:if>
         </div>
     </article>
+    <c:CreateTaskModal isOpen="{!v.isOpen}"/>
 </aura:component>
