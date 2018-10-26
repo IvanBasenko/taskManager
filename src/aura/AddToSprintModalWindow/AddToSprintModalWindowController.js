@@ -2,6 +2,11 @@
  * Created by Ivan Basenko on 25.10.2018.
  */
 ({
+    doInit: function (component, event, helper) {
+        window.onbeforeunload = function () {
+            component.getEvent("changeRecordType").fire();
+        }
+    },
     closeModel: function (component, event, helper) {
         component.set("v.isOpen", false);
         component.getEvent("changeRecordType").fire();

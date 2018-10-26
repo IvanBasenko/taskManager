@@ -2,18 +2,16 @@
  - Created by Ivan Basenko on 25.10.2018.
  -->
 
-<aura:component description="AddToSprintModalWindow">
+<aura:component description="ViewDetailsModal">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
     <aura:attribute name="taskCard" type="TaskCard__c"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:registerEvent name="changeRecordType" type="c:ChangeRecordTypeEvent"/>
     <aura:if isTrue="{!v.isOpen}">
-        <aura:if isTrue="{!v.showSpinner}">
-            <lightning:spinner class="slds-spinner_brand slds-align_absolute-center"/>
-        </aura:if>
+        <!--<aura:if isTrue="{!v.showSpinner}">-->
+        <!--<lightning:spinner/>-->
+        <!--</aura:if>-->
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
-                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal--large">
             <div class="slds-modal__container">
                 <header class="slds-modal__header">
                     <lightning:buttonIcon iconName="utility:close"
@@ -21,7 +19,7 @@
                                           alternativeText="close"
                                           variant="bare-inverse"
                                           class="slds-modal__close"/>
-                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Move to sprint</h2>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create new task</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning:recordEditForm aura:id="editForm" objectApiName="TaskCard__c"
@@ -29,16 +27,13 @@
                                               onsuccess="{!c.handleSuccess}">
                         <lightning:inputField fieldName="Task_Name__c" value="{!v.taskCard.Task_Name__c}"/>
                         <lightning:inputField fieldName="Description__c" value="{!v.taskCard.Description__c}"/>
-                        <lightning:inputField fieldName="Assignee__c"/>
-                        <div class="slds-m-top_medium slds-align_absolute-center">
+                        <lightning:inputField fieldName="Assignee__c" value="{!v.taskCard.Assignee__c}"/>
+                        <div class="slds-m-top_medium">
                             <lightning:button variant="brand" label="Submit" title="Submit"
                                               type="submit"/>
-                            <lightning:button variant="neutral"
-                                              label="Cancel"
-                                              title="Cancel"
-                                              onclick="{! c.closeModel }"/>
                         </div>
                     </lightning:recordEditForm>
+                    <c:SubtaskList taskId="{!v.taskCard.Id}"/>
                 </div>
             </div>
         </section>

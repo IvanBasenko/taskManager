@@ -1,0 +1,29 @@
+<!--
+ - Created by Ivan Basenko on 25.10.2018.
+ -->
+
+<aura:component description="TrackTimeCard">
+    <aura:attribute name="trackTime" type="TrackTime__c"/>
+    <!--<aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>-->
+    <!--<aura:attribute name="isOpen" type="boolean" default="false"/>-->
+    <!--<aura:handler name="changeRecordType" event="c:ChangeRecordTypeEvent" action="{!c.changeType}"/>-->
+    <lightning:recordViewForm recordId="{!v.trackTime.Id}" class="slds-border--bottom" objectApiName="TrackTime__c">
+        <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
+            <lightning:layoutItem>
+                <h3 class="slds-page-header__title">{!v.trackTime.Name}</h3>
+            </lightning:layoutItem>
+            <lightning:layoutItem>
+                <lightning:button label="Edit" onclick="{!c.editRecord}"/>
+                <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <p class="slds-p-around--medium">
+            <lightning:layout horizontalAlign="spread" verticalAlign="end">
+                <lightning:layoutItem>
+                    <span><lightning:outputField fieldName="Time__c"/></span>
+                    <span><lightning:outputField fieldName="Description__c"/></span>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </p>
+    </lightning:recordViewForm>
+</aura:component>

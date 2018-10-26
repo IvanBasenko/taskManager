@@ -24,8 +24,8 @@
             <p class="slds-p-around--medium">
                 <lightning:layout horizontalAlign="spread" verticalAlign="end">
                     <lightning:layoutItem>
-                        <span class="boatproperty"><lightning:outputField fieldName="Task_Name__c"/></span>
-                        <span class="boatproperty"><lightning:outputField fieldName="Description__c"/></span>
+                        <span class="outputStyle"><lightning:outputField fieldName="Task_Name__c"/></span>
+                        <span class="outputStyle"><lightning:outputField fieldName="Description__c"/></span>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
                         <lightning:button label="Add to sprint" variant="brand" onclick="{!c.addToSprint}"/>
@@ -38,18 +38,19 @@
     <lightning:recordEditForm aura:id="editForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c"
                               class="slds-hide" onsuccess="{!c.handleSuccess}">
         <lightning:card>
+            <aura:set attribute="title">
+                <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
+                    <lightning:layoutItem>
+                        <h3 class="slds-page-header__title">{!v.taskCard.Name}</h3>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:set>
             <div class="slds-media">
-                <div class="slds-media__body">
-                    <lightning:layout multipleRows="true">
-                        <lightning:layoutItem size="6">
-                            <lightning:inputField fieldName="Task_Name__c"/>
-                        </lightning:layoutItem>
-                        <lightning:layoutItem size="6">
-                            <lightning:inputField fieldName="Description__c"/>
-                        </lightning:layoutItem>
-                    </lightning:layout>
+                <div class="slds-media__body slds-p-around--medium">
+                    <lightning:inputField fieldName="Task_Name__c"/>
+                    <lightning:inputField fieldName="Description__c"/>
                     <lightning:layout horizontalAlign="center" class="slds-m-top_large">
-                        <lightning:button variant="neutral" label="Cancel" title="Cancel" type="text"
+                        <lightning:button variant="neutral" label="Cancel" title="Cancel"
                                           onclick="{!c.handleCancel}"/>
                         <lightning:button variant="brand" label="Submit" title="Submit" type="submit"/>
                     </lightning:layout>

@@ -4,6 +4,7 @@
 
 <aura:component description="SprintCard">
     <aura:attribute name="taskCard" type="TaskCard__c"/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
     <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
         <lightning:card>
             <aura:set attribute="title">
@@ -18,19 +19,21 @@
                 <lightning:layout horizontalAlign="spread" verticalAlign="end">
                     <lightning:layoutItem>
                         <div class="slds-p-horizontal--small">
-                            <span class="boatproperty"><lightning:outputField fieldName="Task_Name__c"/></span>
-                            <span class="boatproperty"><lightning:outputField fieldName="Description__c"/></span>
-                            <span class="boatproperty"><lightning:outputField fieldName="Assignee__c"/></span>
-                            <span class="boatproperty"><lightning:outputField fieldName="Estimate__c"/></span>
-                            <span class="boatproperty"><lightning:outputField fieldName="Total__c"/></span>
+                            <span class="outputStyle"><lightning:outputField fieldName="Task_Name__c"/></span>
+                            <span class="outputStyle"><lightning:outputField fieldName="Description__c"/></span>
+                            <span class="outputStyle"><lightning:outputField fieldName="Assignee__c"/></span>
                         </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
-                        <lightning:button label="View Details" variant="brand" onclick="{!c.addToSprint}"/>
+                        <div class="slds-p-horizontal--small">
+                            <span class="outputStyle"><lightning:outputField fieldName="Estimate__c"/></span>
+                            <span class="outputStyle"><lightning:outputField fieldName="Total__c"/></span>
+                            <lightning:button label="View Details" variant="brand" onclick="{!c.viewDetails}"/>
+                        </div>
                     </lightning:layoutItem>
                 </lightning:layout>
             </p>
         </lightning:card>
-
+        <c:ViewDetailsModal isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>
     </lightning:recordViewForm>
 </aura:component>

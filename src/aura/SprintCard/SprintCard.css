@@ -12,11 +12,10 @@
     font-weight: bold;
     font-family: "Lato", sans-serif;
 }
-.THIS .boatproperty {
-    font-weight: lighter;
-}
-.THIS .slds-form-element__static{
+
+.THIS .outputStyle .slds-form-element__static {
     font-size: 20px;
     font-family: "Lato", sans-serif;
     color: #449ed7;
+    font-weight: lighter;
 }
