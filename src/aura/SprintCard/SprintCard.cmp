@@ -32,6 +32,19 @@
                     <lightning:layoutItem>
                         <div class="slds-p-horizontal--small">
                             <div class="recordView">
+                                <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small"
+                                     id="progress-bar-label-id-1">
+                                    <span class="label">8.69% Complete</span>
+                                </div>
+                                <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0"
+                                     aria-valuemax="100" aria-valuenow="25"
+                                     aria-labelledby="progress-bar-label-id-1" role="progressbar">
+                                    <span class="slds-progress-bar__value" style="width: 8.69%;">
+                                      <span class="slds-assistive-text">Progress: 8.69%</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="recordView">
                                 <span class="label">Estimate</span>
                                 <span class="outputStyle"><lightning:formattedNumber value="{!v.taskCard.Estimate__c}"/> </span>
                             </div>

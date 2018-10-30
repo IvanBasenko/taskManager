@@ -20,7 +20,8 @@
                                           alternativeText="close"
                                           variant="bare-inverse"
                                           class="slds-modal__close"/>
-                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create new task</h2>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">View
+                        Details: {!v.taskCard.Name}</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning:recordEditForm aura:id="editForm" objectApiName="TaskCard__c"

@@ -10,5 +10,8 @@
         let subTasks = component.get("v.subTaskList");
         let subTask = subTasks[index];
         helper.deleteRecord(component, subTask.Id);
-    }
+    },
+    onCreateRecord: function (component, event, helper) {
+        component.set('v.createSubTaskOpen', true);
+    },
 });
