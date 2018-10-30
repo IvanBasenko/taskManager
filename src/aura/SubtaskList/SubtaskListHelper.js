@@ -14,5 +14,17 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+    deleteRecord: function (component, recordId) {
+        let action = component.get('c.deleteById');
+        action.setParams({
+            "id": recordId
+        });
+        action.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                this.onInit(component);
+            }
+        });
+        $A.enqueueAction(action);
+    },
 });

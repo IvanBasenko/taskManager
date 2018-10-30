@@ -3,7 +3,7 @@
  */
 ({
     onInit: function (component) {
-        let action = component.get('c.getSpringTaskCard');
+        let action = component.get('c.getSprintTaskCard');
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
                 component.set('v.taskCardList', response.getReturnValue());
@@ -11,4 +11,4 @@
         });
         $A.enqueueAction(action);
     }
-})
+});

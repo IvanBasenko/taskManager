@@ -17,7 +17,7 @@ public with sharing class TaskCardController {
         return Schema.SObjectType.TaskCard__c.getRecordTypeInfosByName().get('Sprint').getRecordTypeId();
     }
     @AuraEnabled
-    public static List<TaskCard__c> getSpringTaskCard() {
+    public static List<TaskCard__c> getSprintTaskCard() {
         Id sprintId = getSprintTypeId();
         return [
                 SELECT Id,Name,Task_Name__c, Description__c,Assignee__c,Estimate__c,Total__c

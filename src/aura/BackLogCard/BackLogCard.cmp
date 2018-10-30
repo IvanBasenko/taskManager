@@ -15,8 +15,10 @@
                         <h3 class="slds-page-header__title">{!v.taskCard.Name}</h3>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
-                        <lightning:button label="Edit" onclick="{!c.editRecord}"/>
-                        <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+                        <lightning:buttonGroup>
+                            <lightning:button label="Edit" onclick="{!c.editRecord}"/>
+                            <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+                        </lightning:buttonGroup>
                     </lightning:layoutItem>
                 </lightning:layout>
             </aura:set>

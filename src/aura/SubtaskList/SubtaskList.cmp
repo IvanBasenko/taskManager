@@ -6,7 +6,6 @@
     <aura:attribute access="private" name="subTaskList" type="SubTask__c[]"/>
     <aura:attribute access="public" name="taskId" type="Id"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <!--<aura:handler name="RefreshBackLog" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>-->
     <article class="slds-m-bottom_medium slds-p-bottom--medium">
         <lightning:layout class="slds-p-around--medium" horizontalAlign="spread" verticalAlign="center">
             <lightning:layoutItem>
@@ -20,11 +19,11 @@
             <aura:if isTrue="{!not(empty(v.subTaskList))}">
                 <lightning:accordion
                         allowMultipleSectionsOpen="true">
-                    <aura:iteration items="{!v.subTaskList}" var="subTask">
+                    <aura:iteration items="{!v.subTaskList}" var="subTask" indexVar="i">
                         <lightning:accordionSection name="{!subTask.Name}" label="{!subTask.Name}">
                             <aura:set attribute="actions">
-                                <lightning:buttonIcon iconName="utility:delete"
-                                                      onclick="{! c.deleteR }"
+                                <lightning:buttonIcon iconName="utility:delete" name="{!i}"
+                                                      onclick="{! c.deleteSubTask }"
                                                       alternativeText="Delete"/>
                             </aura:set>
                             <aura:set attribute="body">

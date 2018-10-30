@@ -1,0 +1,7 @@
+/**
+ * Created by Ivan Basenko on 29.10.2018.
+**/
+
+.THIS .slds-modal__container {
+    width: min-content;
+}

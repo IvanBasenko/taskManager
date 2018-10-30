@@ -3,7 +3,9 @@
  */
 ({
     closeModel: function (component, event, helper) {
+        component.getEvent("RefreshSprint").fire();
         component.set("v.isOpen", false);
+
     },
     handleSuccess: function (component, event, helper) {
         let toastEvent = $A.get("e.force:showToast");

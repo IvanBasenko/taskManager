@@ -1,9 +1,10 @@
 /**
  * Created by Ivan Basenko on 23.10.2018.
  */
-/*.THIS {*/
-/*height: 100vh;*/
-/*}*/
+.THIS {
+    background-color: #f3f3f3;
+}
+
 .THIS .slds-scrollable {
     height: 100vh;
 }

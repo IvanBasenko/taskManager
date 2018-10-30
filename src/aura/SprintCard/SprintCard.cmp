@@ -2,15 +2,20 @@
  - Created by Ivan Basenko on 23.10.2018.
  -->
 
-<aura:component description="SprintCard">
+<aura:component description="SprintCard" controller="TaskCardController">
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
+
+    <aura:registerEvent name="RefreshSprint" type="c:RefreshBackLogEvent"/>
     <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
         <lightning:card>
             <aura:set attribute="title">
                 <lightning:layout horizontalAlign="spread" verticalAlign="center">
                     <lightning:layoutItem>
                         <h3 class="slds-page-header__title">   {!v.taskCard.Name}</h3>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
                     </lightning:layoutItem>
                 </lightning:layout>
             </aura:set>
@@ -26,8 +31,15 @@
                     </lightning:layoutItem>
                     <lightning:layoutItem>
                         <div class="slds-p-horizontal--small">
-                            <span class="outputStyle"><lightning:outputField fieldName="Estimate__c"/></span>
-                            <span class="outputStyle"><lightning:outputField fieldName="Total__c"/></span>
+                            <div class="recordView">
+                                <span class="label">Estimate</span>
+                                <span class="outputStyle"><lightning:formattedNumber value="{!v.taskCard.Estimate__c}"/> </span>
+                            </div>
+                            <div class="recordView">
+                                <span class="label">Total</span>
+                                <span class="outputStyle"><lightning:formattedNumber
+                                        value="{!v.taskCard.Total__c}"/></span>
+                            </div>
                             <lightning:button label="View Details" variant="brand" onclick="{!c.viewDetails}"/>
                         </div>
                     </lightning:layoutItem>

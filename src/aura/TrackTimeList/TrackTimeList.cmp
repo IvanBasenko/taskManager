@@ -17,7 +17,7 @@
                 <lightning:button label="Track Time" variant="brand" onclick="{!c.createTrackTime}"/>
             </lightning:layoutItem>
         </lightning:layout>
-        <div class="slds-scrollable">
+        <div class="slds-scrollable slds-border_top">
             <aura:if isTrue="{!not(empty(v.trackTimeList))}">
                 <aura:iteration items="{!v.trackTimeList}" var="trackTime">
                     <div class="slds-p-around--x-small ">

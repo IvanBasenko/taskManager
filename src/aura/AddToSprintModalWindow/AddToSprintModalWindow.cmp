@@ -31,12 +31,14 @@
                         <lightning:inputField fieldName="Description__c" value="{!v.taskCard.Description__c}"/>
                         <lightning:inputField fieldName="Assignee__c"/>
                         <div class="slds-m-top_medium slds-align_absolute-center">
-                            <lightning:button variant="brand" label="Submit" title="Submit"
-                                              type="submit"/>
-                            <lightning:button variant="neutral"
-                                              label="Cancel"
-                                              title="Cancel"
-                                              onclick="{! c.closeModel }"/>
+                            <lightning:buttonGroup>
+                                <lightning:button variant="brand" label="Submit" title="Submit"
+                                                  type="submit"/>
+                                <lightning:button variant="neutral"
+                                                  label="Cancel"
+                                                  title="Cancel"
+                                                  onclick="{! c.closeModel }"/>
+                            </lightning:buttonGroup>
                         </div>
                     </lightning:recordEditForm>
                 </div>

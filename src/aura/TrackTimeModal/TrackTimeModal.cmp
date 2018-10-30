@@ -8,7 +8,7 @@
     <aura:registerEvent name="refreshSubTask" type="c:RefreshBackLogEvent"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
-                 aria-describedby="modal-content-id-1" class="slds-modal slds-modal__header--empty slds-fade-in-open">
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
                 <header class="slds-modal__header">
                     <lightning:buttonIcon iconName="utility:close"
@@ -21,16 +21,18 @@
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning:recordEditForm objectApiName="TrackTime__c"
                                               onsuccess="{!c.handleSuccess}">
-                        <lightning:inputField fieldName="Time__c" value=""/>
-                        <lightning:inputField fieldName="Description__c" value=""/>
+                        <lightning:inputField fieldName="Time__c"/>
+                        <lightning:inputField fieldName="Description__c"/>
                         <lightning:inputField fieldName="SubTask__c" value="{!v.subTaskId}"/>
                         <div class="slds-m-top_medium slds-align_absolute-center">
-                            <lightning:button variant="brand" label="Submit" title="Submit"
-                                              type="submit"/>
-                            <lightning:button variant="neutral"
-                                              label="Cancel"
-                                              title="Cancel"
-                                              onclick="{! c.closeModel }"/>
+                            <lightning:buttonGroup>
+                                <lightning:button variant="brand" label="Submit" title="Submit"
+                                                  type="submit"/>
+                                <lightning:button variant="neutral"
+                                                  label="Cancel"
+                                                  title="Cancel"
+                                                  onclick="{! c.closeModel }"/>
+                            </lightning:buttonGroup>
                         </div>
                     </lightning:recordEditForm>
                 </div>

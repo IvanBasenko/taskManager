@@ -27,4 +27,8 @@ public with sharing class SubTaskController {
                 WHERE SubTask__c = :id
         ];
     }
+    @AuraEnabled
+    public static void deleteById(Id id) {
+        Database.delete(id);
+    }
 }
