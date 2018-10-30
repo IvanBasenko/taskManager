@@ -17,7 +17,7 @@
                 <lightning:button label="Add sub task" variant="success" onclick="{!c.onCreateRecord}"/>
             </lightning:layoutItem>
         </lightning:layout>
-        <div class="slds-scrollable">
+        <div class="slds-scrollable slds-border_top">
             <aura:if isTrue="{!not(empty(v.subTaskList))}">
                 <lightning:accordion
                         allowMultipleSectionsOpen="true">
@@ -29,6 +29,7 @@
                                                       alternativeText="Delete"/>
                             </aura:set>
                             <aura:set attribute="body">
+                                <c:SubTaskViewDetail subTask="{!subTask}"/>
                                 <c:TrackTimeList subTaskId="{!subTask.Id}"/>
                             </aura:set>
                         </lightning:accordionSection>

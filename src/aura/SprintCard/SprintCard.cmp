@@ -36,7 +36,8 @@
                                      id="progress-bar-label-id-1">
                                     <span class="label">8.69% Complete</span>
                                 </div>
-                                <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0"
+                                <div class="slds-progress-bar slds-progress-bar--small slds-progress-bar_circular"
+                                     aria-valuemin="0"
                                      aria-valuemax="100" aria-valuenow="25"
                                      aria-labelledby="progress-bar-label-id-1" role="progressbar">
                                     <span class="slds-progress-bar__value" style="width: 8.69%;">
