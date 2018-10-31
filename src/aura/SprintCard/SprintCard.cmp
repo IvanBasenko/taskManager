@@ -5,8 +5,9 @@
 <aura:component description="SprintCard" controller="TaskCardController">
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-
+    <aura:attribute name="progress" type="Decimal" default="0"/>
     <aura:registerEvent name="RefreshSprint" type="c:RefreshBackLogEvent"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
         <lightning:card>
             <aura:set attribute="title">
@@ -19,7 +20,6 @@
                     </lightning:layoutItem>
                 </lightning:layout>
             </aura:set>
-
             <p class="slds-p-around--medium">
                 <lightning:layout horizontalAlign="spread" verticalAlign="end">
                     <lightning:layoutItem>
@@ -34,16 +34,9 @@
                             <div class="recordView">
                                 <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small"
                                      id="progress-bar-label-id-1">
-                                    <span class="label">8.69% Complete</span>
+                                    <span class="label">{!v.progress}% Complete</span>
                                 </div>
-                                <div class="slds-progress-bar slds-progress-bar--small slds-progress-bar_circular"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100" aria-valuenow="25"
-                                     aria-labelledby="progress-bar-label-id-1" role="progressbar">
-                                    <span class="slds-progress-bar__value" style="width: 8.69%;">
-                                      <span class="slds-assistive-text">Progress: 8.69%</span>
-                                    </span>
-                                </div>
+                                <lightning:progressBar value="{!v.progress}" size="small" variant="circular"/>
                             </div>
                             <div class="recordView">
                                 <span class="label">Estimate</span>
