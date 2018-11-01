@@ -10,12 +10,14 @@
         let newSprintCard = event.getParam("taskCard");
         newSprintCard.Total__c = 0;
         sprintList.push(newSprintCard);
-        backLogList.forEach((element, index) => {
-            if (element.id === newSprintCard.id) {
-                backLogList.splice(index, 1);
+        console.log(JSON.parse(JSON.stringify(backLogList)));
+        let newMass = [];
+        backLogList.forEach((element) => {
+            if (element.Id !== newSprintCard.Id) {
+                newMass.push(element);
             }
         });
         sprintComponent.set('v.taskCardList', sprintList);
-        backLogComponent.set('v.taskCardList', backLogList);
+        backLogComponent.set('v.taskCardList', newMass);
     }
 });

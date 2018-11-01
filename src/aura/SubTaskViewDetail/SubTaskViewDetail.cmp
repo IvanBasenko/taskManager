@@ -10,9 +10,16 @@
             <div class="slds-media__body slds-p-around--medium">
                 <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
                     <lightning:layoutItem>
-                        <span><lightning:outputField fieldName="Description__c"/></span>
-                        <span><lightning:outputField fieldName="Estimate__c"/></span>
-                        <span><lightning:outputField fieldName="TaskCard__c"/></span>
+                        <div class="recordView">
+                            <span class="label">Description</span>
+                            <span class="outputStyle"><lightning:formattedText
+                                    value="{!v.subTask.Description__c}"/> </span>
+                        </div>
+                        <div class="recordView">
+                            <span class="label">Estimate</span>
+                            <span class="outputStyle"><lightning:formattedNumber
+                                    value="{!v.subTask.Estimate__c}"/></span>
+                        </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
                         <lightning:button label="Edit" onclick="{!c.editRecord}"/>
