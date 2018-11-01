@@ -4,9 +4,9 @@
 
 public with sharing class TaskCardController {
     @AuraEnabled
-    public static List<TaskCard__c> getBacklogTaskCard() {
+    public static List<TaskCard__c> getBacklogTaskCard(Id id) {
         Id backlogId = getBacklogTypeId();
-        return [SELECT Id,Name,Task_Name__c, Description__c FROM TaskCard__c WHERE RecordTypeId = :backlogId];
+        return [SELECT Id,Name,Task_Name__c, Description__c,Sprint_Project__c,Estimate__c FROM TaskCard__c WHERE RecordTypeId = :backlogId AND Sprint_Project__c = :id];
     }
     @AuraEnabled
     public static Id getBacklogTypeId() {
@@ -17,12 +17,12 @@ public with sharing class TaskCardController {
         return Schema.SObjectType.TaskCard__c.getRecordTypeInfosByName().get('Sprint').getRecordTypeId();
     }
     @AuraEnabled
-    public static List<TaskCard__c> getSprintTaskCard() {
+    public static List<TaskCard__c> getSprintTaskCard(Id id) {
         Id sprintId = getSprintTypeId();
         return [
-                SELECT Id,Name,Task_Name__c, Description__c,Assignee__c,Estimate__c,Total__c
+                SELECT Id,Name,Task_Name__c, Description__c,Assignee__c,Estimate__c,Total__c,Sprint_Project__c
                 FROM TaskCard__c
-                WHERE RecordTypeId = :sprintId
+                WHERE RecordTypeId = :sprintId AND Sprint_Project__c = :id
         ];
     }
     @AuraEnabled

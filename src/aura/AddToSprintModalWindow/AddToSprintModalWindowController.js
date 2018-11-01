@@ -12,7 +12,6 @@
         component.getEvent("changeRecordType").fire();
     },
     handleSuccess: function (component, event, helper) {
-        // this.closeModel(component,event,helper);
         let toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             title: 'Success',
@@ -22,9 +21,13 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-        // let refreshEvent = component.getEvent("RefreshBackLog");
-        // refreshEvent.fire();
-        $A.get("e.force:refreshView").fire();
+
+        let addToSprintEvt = component.getEvent("addToSprint");
+        addToSprintEvt.setParams({
+            "taskCard": component.get('v.taskCard')
+        });
+        addToSprintEvt.fire();
+        // $A.get("e.force:refreshView").fire();
         // helper.onInit(component);
     },
     showRequiredFields: function (component, event, helper) {

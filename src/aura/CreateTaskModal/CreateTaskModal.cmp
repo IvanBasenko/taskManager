@@ -27,6 +27,7 @@
                                               onload="{!c.showRequiredFields}" onsuccess="{!c.handleSuccess}">
                         <lightning:inputField fieldName="Task_Name__c" value=""/>
                         <lightning:inputField fieldName="Description__c" value=""/>
+                        <lightning:inputField fieldName="Sprint_Project__c" value=""/>
                         <div class="slds-m-top_medium">
                             <lightning:button variant="brand" label="Submit" title="Submit"
                                               type="submit"/>

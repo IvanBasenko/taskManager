@@ -6,6 +6,7 @@
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
     <aura:attribute name="taskCard" type="TaskCard__c"/>
+    <aura:registerEvent name="addToSprint" type="c:AddToSprintEvt"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:registerEvent name="changeRecordType" type="c:ChangeRecordTypeEvent"/>
     <aura:if isTrue="{!v.isOpen}">
@@ -29,7 +30,8 @@
                                               onsuccess="{!c.handleSuccess}">
                         <lightning:inputField fieldName="Task_Name__c" value="{!v.taskCard.Task_Name__c}"/>
                         <lightning:inputField fieldName="Description__c" value="{!v.taskCard.Description__c}"/>
-                        <lightning:inputField fieldName="Assignee__c"/>
+                        <lightning:inputField fieldName="Assignee__c" value=""/>
+                        <lightning:inputField fieldName="Sprint_Project__c" value="{!v.taskCard.Sprint_Project__c}"/>
                         <div class="slds-m-top_medium slds-align_absolute-center">
                             <lightning:buttonGroup>
                                 <lightning:button variant="brand" label="Submit" title="Submit"

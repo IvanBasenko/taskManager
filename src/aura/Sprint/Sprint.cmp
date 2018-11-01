@@ -2,9 +2,10 @@
  - Created by Ivan Basenko on 23.10.2018.
  -->
 
-<aura:component description="Sprint" controller="TaskCardController">
-    <aura:attribute access="private" name="taskCardList" type="TaskCard__c[]"/>
+<aura:component description="Sprint" controller="TaskCardController" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute access="public" name="projectSprint" type="Id"/>
     <aura:handler name="RefreshSprint" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
     <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
         <div>
