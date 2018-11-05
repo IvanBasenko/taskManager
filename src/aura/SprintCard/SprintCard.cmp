@@ -7,52 +7,68 @@
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="progress" type="Decimal" default="0"/>
     <aura:registerEvent name="RefreshSprint" type="c:RefreshBackLogEvent"/>
+    <aura:attribute name="Fields" type="String[]" default="['Task_Name__c','Assignee__c','Description__c']"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <lightning:recordViewForm aura:id="viewForm" recordId="{!v.taskCard.Id}" objectApiName="TaskCard__c">
+    <article>
         <lightning:card>
             <aura:set attribute="title">
                 <lightning:layout horizontalAlign="spread" verticalAlign="center">
                     <lightning:layoutItem>
-                        <h3 class="slds-page-header__title">   {!v.taskCard.Name}</h3>
+                        <div class="recordView">
+                            <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small"
+                                 id="progress-bar-label-id-1">
+                                <span class="label">{!v.taskCard.Name}: {!v.progress}% Complete</span>
+                            </div>
+                            <lightning:progressBar value="{!v.progress}" size="small" variant="circular"/>
+                        </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
-                        <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+                        <lightning:buttonGroup>
+                            <lightning:button label="View Details" variant="brand" onclick="{!c.viewDetails}"/>
+                            <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+                        </lightning:buttonGroup>
                     </lightning:layoutItem>
                 </lightning:layout>
             </aura:set>
-            <p class="slds-p-around--medium">
-                <lightning:layout horizontalAlign="spread" verticalAlign="end">
-                    <lightning:layoutItem>
-                        <div class="slds-p-horizontal--small">
-                            <span class="outputStyle"><lightning:outputField fieldName="Task_Name__c"/></span>
-                            <span class="outputStyle"><lightning:outputField fieldName="Description__c"/></span>
-                            <span class="outputStyle"><lightning:outputField fieldName="Assignee__c"/></span>
-                        </div>
-                    </lightning:layoutItem>
-                    <lightning:layoutItem>
-                        <div class="slds-p-horizontal--small">
-                            <div class="recordView">
-                                <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small"
-                                     id="progress-bar-label-id-1">
-                                    <span class="label">{!v.progress}% Complete</span>
+            <div class="slds-p-around--medium">
+                <div>
+                    <lightning:recordForm
+                            recordId="{!v.taskCard.Id}"
+                            objectApiName="TaskCard__c"
+                            fields="{!v.Fields}"
+                            columns="2"
+                            mode="readonly"/>
+                </div>
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-has-flexi-truncate">
+                        <div class="recordView">
+                            <span class="label slds-form-element__label">Estimate</span>
+                            <div class="slds-form-element__control">
+                                <div class="outputStyle">
+                                    <lightning:formattedNumber
+                                            value="{!v.taskCard.Estimate__c}"/>
+                                    <div style="padding-right: 23px">
+                                        <hr/>
+                                    </div>
                                 </div>
-                                <lightning:progressBar value="{!v.progress}" size="small" variant="circular"/>
                             </div>
-                            <div class="recordView">
-                                <span class="label">Estimate</span>
-                                <span class="outputStyle"><lightning:formattedNumber value="{!v.taskCard.Estimate__c}"/> </span>
-                            </div>
-                            <div class="recordView">
-                                <span class="label">Total</span>
-                                <span class="outputStyle"><lightning:formattedNumber
-                                        value="{!v.taskCard.Total__c}"/></span>
-                            </div>
-                            <lightning:button label="View Details" variant="brand" onclick="{!c.viewDetails}"/>
                         </div>
-                    </lightning:layoutItem>
-                </lightning:layout>
-            </p>
+                    </div>
+                    <div class="slds-col slds-has-flexi-truncate">
+                        <div class="recordView">
+                            <span class="label slds-form-element__label">Total</span>
+                            <span class="outputStyle slds-form-element__control"><lightning:formattedNumber
+                                    value="{!v.taskCard.Total__c}"/></span>
+                            <div style="padding-right: 23px">
+                                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </lightning:card>
-        <c:ViewDetailsModal isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>
-    </lightning:recordViewForm>
+    </article>
+    <c:ViewDetailsModal isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>
 </aura:component>

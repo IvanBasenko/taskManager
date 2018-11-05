@@ -6,7 +6,7 @@ public with sharing class TaskCardController {
     @AuraEnabled
     public static List<TaskCard__c> getBacklogTaskCard(Id id) {
         Id backlogId = getBacklogTypeId();
-        return [SELECT Id,Name,Task_Name__c, Description__c,Sprint_Project__c,Estimate__c FROM TaskCard__c WHERE RecordTypeId = :backlogId AND Sprint_Project__c = :id];
+        return [SELECT Id,Name,Task_Name__c, Description__c,Sprint_Project__c,Estimate__c,RecordTypeId FROM TaskCard__c WHERE RecordTypeId = :backlogId AND Sprint_Project__c = :id];
     }
     @AuraEnabled
     public static Id getBacklogTypeId() {
@@ -20,7 +20,7 @@ public with sharing class TaskCardController {
     public static List<TaskCard__c> getSprintTaskCard(Id id) {
         Id sprintId = getSprintTypeId();
         return [
-                SELECT Id,Name,Task_Name__c, Description__c,Assignee__c,Estimate__c,Total__c,Sprint_Project__c
+                SELECT Id,Name,Task_Name__c, Description__c,Assignee__c,Estimate__c,Total__c,Sprint_Project__c,RecordTypeId
                 FROM TaskCard__c
                 WHERE RecordTypeId = :sprintId AND Sprint_Project__c = :id
         ];
@@ -34,9 +34,8 @@ public with sharing class TaskCardController {
     @AuraEnabled
     public static void setRecordTypeBackLog(String id) {
         System.debug(id);
-        List<TaskCard__c> sds = [SELECT Id,Name,Task_Name__c, Description__c,RecordTypeId FROM TaskCard__c WHERE Id = :id];
+        List<TaskCard__c> sds = [SELECT Id,Name,Task_Name__c, Description__c,RecordTypeId,Sprint_Project__c FROM TaskCard__c WHERE Id = :id];
         sds.get(0).RecordTypeId = getBacklogTypeId();
-        System.debug('rsss' + sds);
         update sds;
     }
     @AuraEnabled

@@ -15,20 +15,15 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-        debugger;
-        let response = event.getParams().response;
-        console.log(JSON.parse(JSON.stringify(response)).fields.Name.value);
-        let addToSprintEvt = component.getEvent("addToBack");
+        let response = component.find("createTask");
+        const recordData = event.getParam("fields");
+        let addToBack = component.getEvent("addToBack");
         let task = component.get('v.taskCard');
-        task.Id = JSON.parse(JSON.stringify(response)).id;
-        task.Name = JSON.parse(JSON.stringify(response)).fields.Name.value;
-        addToSprintEvt.setParams({
+        task.Id = response.get('v.recordId');
+        task.Name = recordData["Name"].value;
+        addToBack.setParams({
             "taskCard": task
         });
-        addToSprintEvt.fire();
-    },
-    showRequiredFields: function (component, event, helper) {
-        component.set('v.showSpinner', false);
-        // $A.util.removeClass(component.find("Input_contract_type__c"), "none");
+        addToBack.fire();
     }
 });

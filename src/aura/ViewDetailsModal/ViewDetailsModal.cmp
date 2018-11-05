@@ -6,6 +6,7 @@
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
     <aura:attribute name="taskCard" type="TaskCard__c"/>
+    <aura:attribute name="Fields" type="List" default="['Task_Name__c','Assignee__c','Description__c']"/>
     <aura:registerEvent name="RefreshSprint" type="c:RefreshBackLogEvent"/>
     <aura:if isTrue="{!v.isOpen}">
         <!--<aura:if isTrue="{!v.showSpinner}">-->
@@ -24,17 +25,13 @@
                         Details: {!v.taskCard.Name}</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordEditForm aura:id="editForm" objectApiName="TaskCard__c"
-                                              onload="{!c.showRequiredFields}" recordId="{!v.taskCard.Id}"
-                                              onsuccess="{!c.handleSuccess}">
-                        <lightning:inputField fieldName="Task_Name__c" value="{!v.taskCard.Task_Name__c}"/>
-                        <lightning:inputField fieldName="Description__c" value="{!v.taskCard.Description__c}"/>
-                        <lightning:inputField fieldName="Assignee__c" value="{!v.taskCard.Assignee__c}"/>
-                        <div class="slds-m-top_medium">
-                            <lightning:button variant="brand" label="Submit" title="Submit"
-                                              type="submit"/>
-                        </div>
-                    </lightning:recordEditForm>
+                    <lightning:recordForm
+                            recordId="{!v.taskCard.Id}"
+                            objectApiName="TaskCard__c"
+                            columns="2"
+                            mode="view"
+                            fields="{!v.Fields}"
+                            onsuccess="{!c.handleSuccess}"/>
                     <c:SubtaskList taskId="{!v.taskCard.Id}"/>
                 </div>
             </div>

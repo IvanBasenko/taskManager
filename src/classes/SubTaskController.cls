@@ -10,7 +10,8 @@ public with sharing class SubTaskController {
                         Description__c,
                         Estimate__c,
                         Id,
-                        Name
+                        Name,
+                        TotalTrack__c
                 FROM SubTask__c
                 WHERE TaskCard__c = :id
         ];

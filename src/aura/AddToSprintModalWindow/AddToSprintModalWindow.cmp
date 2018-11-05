@@ -4,16 +4,17 @@
 
 <aura:component description="AddToSprintModalWindow">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute name="showSpinner" type="Boolean" default="true"/>
-    <aura:attribute name="taskCard" type="TaskCard__c"/>
+    <aura:attribute name="taskCard" type="TaskCard__c" default="{
+        'sobjectType': 'TaskCard__c',
+        'Estimate__c': '',
+        'Total__c': ''
+    }"/>
     <aura:registerEvent name="addToSprint" type="c:AddToSprintEvt"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:attribute name="Fields" type="String[]" default="['Task_Name__c','Description__c','Assignee__c']"/>
+    <aura:attribute name="recordType" type="String" default="0121t000000DREgAAO"/>
+    <aura:attribute name="Fields" type="String[]"
+                    default="['Task_Name__c','Assignee__c','Sprint_Project__c','Name','Estimate__c','Total__c','Description__c']"/>
     <aura:registerEvent name="changeRecordType" type="c:ChangeRecordTypeEvent"/>
     <aura:if isTrue="{!v.isOpen}">
-        <!--<aura:if isTrue="{!v.showSpinner}">-->
-        <!--<lightning:spinner class="slds-spinner_brand slds-align_absolute-center"/>-->
-        <!--</aura:if>-->
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
@@ -29,7 +30,7 @@
                     <lightning:recordForm
                             recordId="{!v.taskCard.Id}"
                             objectApiName="TaskCard__c"
-                            layoutType="Full"
+                            recordTypeId="{!v.recordType}"
                             fields="{!v.Fields}"
                             columns="3"
                             mode="edit"

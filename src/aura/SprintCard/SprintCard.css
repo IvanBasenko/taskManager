@@ -13,13 +13,23 @@
     font-family: "Lato", sans-serif;
 }
 
-.THIS .outputStyle .slds-form-element__static {
+.THIS .slds-form-element__static {
     font-size: 20px;
     font-family: "Lato", sans-serif;
     color: #449ed7;
     font-weight: lighter;
 }
 
+.THIS hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    display: block;
+    border-top: 1px solid rgb(221, 219, 218);
+}
+
+/*.THIS .slds-form-element__static {*/
+/*border-bottom: 2px solid  #001cff;*/
+/*}*/
 .THIS .outputStyle {
     font-size: 20px;
     font-family: "Lato", sans-serif;

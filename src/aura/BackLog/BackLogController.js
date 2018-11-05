@@ -5,14 +5,13 @@
     doInit: function (component, event, helper) {
         helper.onInit(component);
     },
-    onCreateRecord:function(component, event, helper) {
+    onCreateRecord: function (component, event, helper) {
         component.set('v.isOpen', true);
     },
 
     toBack: function (component, event, helper) {
         let backLogList = component.get('v.taskCardList');
         let newSprintCard = event.getParam("taskCard");
-        console.log(JSON.parse(JSON.stringify(newSprintCard)));
         backLogList.push(newSprintCard);
         component.set('v.taskCardList', backLogList);
     },
@@ -24,6 +23,7 @@
         });
         $A.enqueueAction(action);
     },
+
     handleSuccess: function (component, event, helper) {
         let toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({

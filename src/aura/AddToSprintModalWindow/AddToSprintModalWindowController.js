@@ -2,25 +2,9 @@
  * Created by Ivan Basenko on 25.10.2018.
  */
 ({
-    doInit: function (component, event, helper) {
-        $A.getCallback(() => {
-            let changeTypeEvt = component.getEvent("changeRecordType");
-            window.onbeforeunload = function () {
-                debugger;
-                changeTypeEvt.setParams({
-                    "taskCardId": component.get('v.taskCard.Id')
-                });
-                changeTypeEvt.fire();
-            }
-        })
-    },
     closeModel: function (component, event, helper) {
         component.set("v.isOpen", false);
-        let changeTypeEvt = component.getEvent("changeRecordType");
-        changeTypeEvt.setParams({
-            "taskCardId": component.get('v.taskCard.Id')
-        });
-        changeTypeEvt.fire();
+
     },
     handleSuccess: function (component, event, helper) {
         let toastEvent = $A.get("e.force:showToast");
@@ -32,7 +16,10 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-
+        let task = component.get('v.taskCard');
+        const recordData = event.getParam("fields");
+        task.Estimate__c = recordData["Estimate__c"].value;
+        task.Total__c = recordData["Total__c"].value;
         let addToSprintEvt = component.getEvent("addToSprint");
         addToSprintEvt.setParams({
             "taskCard": component.get('v.taskCard')
@@ -40,10 +27,5 @@
         addToSprintEvt.fire();
         // $A.get("e.force:refreshView").fire();
         // helper.onInit(component);
-    },
-    showRequiredFields: function (component, event, helper) {
-
-        component.set('v.showSpinner', false);
-        // $A.util.removeClass(component.find("Input_contract_type__c"), "none");
     }
 });

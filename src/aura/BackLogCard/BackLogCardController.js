@@ -18,9 +18,7 @@
         });
         $A.enqueueAction(action);
     },
-    editRecord : function(component, event, helper) {
-        helper.showHide(component);
-    },
+
     handleSuccess : function(component, event, helper) {
         let toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({

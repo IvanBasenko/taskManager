@@ -5,7 +5,6 @@
 <aura:component description="BackLog" controller="TaskCardController"
                 implements="flexipage:availableForAllPageTypes">
     <aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>
-    <aura:attribute access="private" name="newTaskCard" type="TaskCard__c"/>
     <aura:attribute access="private" name="backlogId" type="Id"/>
     <aura:attribute access="public" name="projectSprint" type="Id"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
@@ -24,18 +23,7 @@
                     <lightning:button label="Add task" variant="success" onclick="{!c.onCreateRecord}"/>
                 </lightning:layoutItem>
             </lightning:layout>
-            <div class="slds-scrollable">
-                <aura:if isTrue="{!not(empty(v.taskCardList))}">
-                    <aura:iteration items="{!v.taskCardList}" var="task">
-                        <div class="slds-p-around--x-small">
-                            <c:BackLogCard taskCard="{!task}"/>
-                        </div>
-                    </aura:iteration>
-                    <aura:set attribute="else">
-                        <div class="slds-align_absolute-center">No tasks found</div>
-                    </aura:set>
-                </aura:if>
-            </div>
+            <c:BackLogWrapper taskCardList="{!v.taskCardList}" aura:id="container"/>
         </div>
     </article>
     <c:CreateTaskModal isOpen="{!v.isOpen}"/>

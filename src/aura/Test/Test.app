@@ -3,7 +3,7 @@
  -->
 
 <aura:application description="Test" extends="force:slds"
-                  implements=" force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,flexipage:availableForRecordHome"
+                  implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,flexipage:availableForRecordHome"
                   access="global">
     <div class="slds-grid slds-gutters">
         <div class="slds-col">
