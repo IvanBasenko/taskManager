@@ -4,9 +4,14 @@
 
 <aura:component description="CreateTaskModal">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>
+    <!--<aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>-->
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
-
+    <aura:attribute name="taskCard" type="TaskCard__c" default="{
+        'sobjectType': 'TaskCard__c',
+        'Id': '',
+        'Name': ''
+    }"/>
+    <aura:registerEvent name="addToBack" type="c:AddToSprintEvt"/>
     <aura:if isTrue="{!v.isOpen}">
         <aura:if isTrue="{!v.showSpinner}">
             <lightning:spinner/>

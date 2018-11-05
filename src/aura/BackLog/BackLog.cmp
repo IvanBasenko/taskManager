@@ -11,6 +11,9 @@
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="RefreshBackLog" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
+    <aura:handler name="addToBack" event="c:AddToSprintEvt" action="{!c.toBack}"/>
+    <aura:handler name="changeRecordType" event="c:ChangeRecordTypeEvent" action="{!c.changeType}"/>
+
     <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
         <div class="slds-media__body ">
             <lightning:layout class="slds-p-around--small" horizontalAlign="spread" verticalAlign="center">

@@ -6,7 +6,6 @@
         component.set("v.isOpen", false);
     },
     handleSuccess: function (component, event, helper) {
-        // this.closeModel(component,event,helper);
         let toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             title: 'Success Message',
@@ -16,9 +15,17 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-        let refreshEvent = component.getEvent("RefreshBackLog");
-        refreshEvent.fire();
-        // helper.onInit(component);
+        debugger;
+        let response = event.getParams().response;
+        console.log(JSON.parse(JSON.stringify(response)).fields.Name.value);
+        let addToSprintEvt = component.getEvent("addToBack");
+        let task = component.get('v.taskCard');
+        task.Id = JSON.parse(JSON.stringify(response)).id;
+        task.Name = JSON.parse(JSON.stringify(response)).fields.Name.value;
+        addToSprintEvt.setParams({
+            "taskCard": task
+        });
+        addToSprintEvt.fire();
     },
     showRequiredFields: function (component, event, helper) {
         component.set('v.showSpinner', false);

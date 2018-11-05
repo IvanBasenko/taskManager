@@ -18,15 +18,6 @@
         });
         $A.enqueueAction(action);
     },
-    changeType: function (component, event, helper) {
-        let recordId = component.get('v.taskCard.Id');
-        let action = component.get('c.setRecordTypeBackLog');
-        action.setParams({
-            "id": recordId
-        });
-
-        $A.enqueueAction(action);
-    },
     editRecord : function(component, event, helper) {
         helper.showHide(component);
     },

@@ -3,4 +3,5 @@
  -->
 
 <aura:event type="COMPONENT" description="ChangeRecordTypeEvent">
+    <aura:attribute name="taskCardId" type="Id"/>
 </aura:event>

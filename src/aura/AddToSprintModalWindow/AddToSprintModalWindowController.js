@@ -3,13 +3,24 @@
  */
 ({
     doInit: function (component, event, helper) {
-        window.onbeforeunload = function () {
-            component.getEvent("changeRecordType").fire();
-        }
+        $A.getCallback(() => {
+            let changeTypeEvt = component.getEvent("changeRecordType");
+            window.onbeforeunload = function () {
+                debugger;
+                changeTypeEvt.setParams({
+                    "taskCardId": component.get('v.taskCard.Id')
+                });
+                changeTypeEvt.fire();
+            }
+        })
     },
     closeModel: function (component, event, helper) {
         component.set("v.isOpen", false);
-        component.getEvent("changeRecordType").fire();
+        let changeTypeEvt = component.getEvent("changeRecordType");
+        changeTypeEvt.setParams({
+            "taskCardId": component.get('v.taskCard.Id')
+        });
+        changeTypeEvt.fire();
     },
     handleSuccess: function (component, event, helper) {
         let toastEvent = $A.get("e.force:showToast");

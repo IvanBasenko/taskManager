@@ -8,11 +8,12 @@
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:registerEvent name="addToSprint" type="c:AddToSprintEvt"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="Fields" type="String[]" default="['Task_Name__c','Description__c','Assignee__c']"/>
     <aura:registerEvent name="changeRecordType" type="c:ChangeRecordTypeEvent"/>
     <aura:if isTrue="{!v.isOpen}">
-        <aura:if isTrue="{!v.showSpinner}">
-            <lightning:spinner class="slds-spinner_brand slds-align_absolute-center"/>
-        </aura:if>
+        <!--<aura:if isTrue="{!v.showSpinner}">-->
+        <!--<lightning:spinner class="slds-spinner_brand slds-align_absolute-center"/>-->
+        <!--</aura:if>-->
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
@@ -25,24 +26,15 @@
                     <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Move to sprint</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordEditForm aura:id="editForm" objectApiName="TaskCard__c"
-                                              onload="{!c.showRequiredFields}" recordId="{!v.taskCard.Id}"
-                                              onsuccess="{!c.handleSuccess}">
-                        <lightning:inputField fieldName="Task_Name__c" value="{!v.taskCard.Task_Name__c}"/>
-                        <lightning:inputField fieldName="Description__c" value="{!v.taskCard.Description__c}"/>
-                        <lightning:inputField fieldName="Assignee__c" value=""/>
-                        <lightning:inputField fieldName="Sprint_Project__c" value="{!v.taskCard.Sprint_Project__c}"/>
-                        <div class="slds-m-top_medium slds-align_absolute-center">
-                            <lightning:buttonGroup>
-                                <lightning:button variant="brand" label="Submit" title="Submit"
-                                                  type="submit"/>
-                                <lightning:button variant="neutral"
-                                                  label="Cancel"
-                                                  title="Cancel"
-                                                  onclick="{! c.closeModel }"/>
-                            </lightning:buttonGroup>
-                        </div>
-                    </lightning:recordEditForm>
+                    <lightning:recordForm
+                            recordId="{!v.taskCard.Id}"
+                            objectApiName="TaskCard__c"
+                            layoutType="Full"
+                            fields="{!v.Fields}"
+                            columns="3"
+                            mode="edit"
+                            oncancel="{!c.closeModel}"
+                            onsuccess="{!c.handleSuccess}"/>
                 </div>
             </div>
         </section>
