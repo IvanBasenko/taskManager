@@ -5,7 +5,8 @@
 <aura:component description="TrackTimeCard" controller="SubTaskController">
     <aura:attribute name="trackTime" type="TrackTime__c"/>
     <aura:registerEvent name="refreshSubTask" type="c:RefreshBackLogEvent"/>
-    <lightning:recordViewForm recordId="{!v.trackTime.Id}" class="slds-border--bottom" objectApiName="TrackTime__c">
+    <aura:attribute name="Fields" type="List" default="['Time__c','Description__c']"/>
+    <div class="slds-border--bottom">
         <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
             <lightning:layoutItem>
                 <h3 class="slds-page-header__title">{!v.trackTime.Name}</h3>
@@ -15,12 +16,12 @@
             </lightning:layoutItem>
         </lightning:layout>
         <p class="slds-p-around--medium">
-            <lightning:layout horizontalAlign="spread" verticalAlign="end">
-                <lightning:layoutItem>
-                    <span><lightning:outputField fieldName="Time__c"/></span>
-                    <span><lightning:outputField fieldName="Description__c"/></span>
-                </lightning:layoutItem>
-            </lightning:layout>
+            <lightning:recordForm
+                    recordId="{!v.trackTime.Id}"
+                    objectApiName="TrackTime__c"
+                    columns="2"
+                    mode="view"
+                    fields="{!v.Fields}"/>
         </p>
-    </lightning:recordViewForm>
+    </div>
 </aura:component>

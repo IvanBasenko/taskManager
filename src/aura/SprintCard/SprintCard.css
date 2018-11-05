@@ -14,10 +14,10 @@
 }
 
 .THIS .slds-form-element__static {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Lato", sans-serif;
-    color: #449ed7;
-    font-weight: lighter;
+    color: #2e57d7;
+    font-weight: bold;
 }
 
 .THIS hr {
@@ -27,14 +27,11 @@
     border-top: 1px solid rgb(221, 219, 218);
 }
 
-/*.THIS .slds-form-element__static {*/
-/*border-bottom: 2px solid  #001cff;*/
-/*}*/
 .THIS .outputStyle {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Lato", sans-serif;
-    color: #449ed7;
-    font-weight: lighter;
+    color: #2e57d7;
+    font-weight: bold;
 }
 
 .THIS .label {

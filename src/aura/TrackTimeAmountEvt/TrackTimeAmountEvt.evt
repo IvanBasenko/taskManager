@@ -1,0 +1,7 @@
+<!--
+ - Created by Ivan Basenko on 05.11.2018.
+ -->
+
+<aura:event type="COMPONENT" description="TrackTimeAmountEvt">
+
+</aura:event>
