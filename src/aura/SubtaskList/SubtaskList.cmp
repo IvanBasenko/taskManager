@@ -30,7 +30,6 @@
                             </aura:set>
                             <aura:set attribute="body">
                                 <c:SubTaskViewDetail subTask="{!subTask}"/>
-                                <c:TrackTimeList subTaskId="{!subTask.Id}"/>
                             </aura:set>
                         </lightning:accordionSection>
                     </aura:iteration>

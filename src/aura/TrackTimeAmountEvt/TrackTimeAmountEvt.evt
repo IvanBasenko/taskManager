@@ -3,5 +3,5 @@
  -->
 
 <aura:event type="COMPONENT" description="TrackTimeAmountEvt">
-
+    <aura:attribute name="time" type="Integer"/>
 </aura:event>

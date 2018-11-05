@@ -18,5 +18,11 @@
         component.set("v.isOpen", false);
         let refreshEvent = component.getEvent("refreshSubTask");
         refreshEvent.fire();
+        let response = event.getParams().response;
+        let addTimeEvt = component.getEvent("addTime");
+        addTimeEvt.setParams({
+            'time': response.fields.Time__c.value
+        });
+        addTimeEvt.fire();
     },
 });

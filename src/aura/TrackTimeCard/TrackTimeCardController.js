@@ -15,5 +15,10 @@
         });
         $A.enqueueAction(action);
         component.getEvent('refreshSubTask').fire();
+        let addTimeEvt = component.getEvent("delTime");
+        addTimeEvt.setParams({
+            'time': component.get('v.trackTime.Time__c')
+        });
+        addTimeEvt.fire();
     },
 });
