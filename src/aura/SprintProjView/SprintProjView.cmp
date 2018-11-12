@@ -1,0 +1,17 @@
+<!--
+ - Created by Ivan Basenko on 07.11.2018.
+ -->
+
+<aura:component>
+    <aura:attribute access="public" name="recordId" type="String"/>
+    <aura:attribute name="Fields" type="List"
+                    default="['Sprint_Start_Date__c','End_Date__c','Status__c','Weeks__c','Hours__c']"/>
+    <p>
+        <lightning:recordForm
+                recordId="{!v.recordId}"
+                objectApiName="Sprint__c"
+                columns="2"
+                mode="readonly"
+                fields="{!v.Fields}"/>
+    </p>
+</aura:component>

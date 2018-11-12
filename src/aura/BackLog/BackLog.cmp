@@ -15,9 +15,10 @@
 
     <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
         <div class="slds-media__body ">
-            <lightning:layout class="slds-p-around--small" horizontalAlign="spread" verticalAlign="center">
+            <lightning:layout class="slds-p-around--small slds-page-header__title" horizontalAlign="spread"
+                              verticalAlign="center">
                 <lightning:layoutItem>
-                    <h1 class="slds-page-header__title">BackLog</h1>
+                    <h1>BackLog</h1>
                 </lightning:layoutItem>
                 <lightning:layoutItem>
                     <lightning:button label="Add task" variant="success" onclick="{!c.onCreateRecord}"/>

@@ -11,8 +11,7 @@
         toastEvent.setParams({
             title: 'Success',
             message: 'Task has been added to sprint',
-            type: 'success',
-            mode: 'pester'
+            type: 'success'
         });
         toastEvent.fire();
         component.set("v.isOpen", false);

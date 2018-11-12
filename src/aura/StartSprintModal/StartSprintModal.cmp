@@ -1,0 +1,40 @@
+<!--
+ - Created by Ivan Basenko on 07.11.2018.
+ -->
+
+<aura:component description="StartSprintModal" controller="SprintProjectController">
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="test" type="boolean" default="false"/>
+    <aura:attribute access="public" name="recordId" type="String"/>
+    <aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>
+    <aura:attribute name="Fields" type="String[]"
+                    default="['Weeks__c']"/>
+    <aura:if isTrue="{!v.isOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Start Sprint</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:recordForm
+                            recordId="{!v.recordId}"
+                            objectApiName="Sprint__c"
+                            fields="{!v.Fields}"
+                            columns="1"
+                            mode="edit"
+                            oncancel="{!c.closeModel}"
+                            onchange="{!c.handleChange}"
+                            onsubmit="{!c.handleSubmit}"
+                            onsuccess="{!c.handleSuccess}"/>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>
