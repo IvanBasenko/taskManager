@@ -22,7 +22,4 @@
             <c:Sprint aura:id="sprintList" projectSprint="{!v.recordId}" sprintStatus="{!v.status}"/>
         </div>
     </div>
-
-
-
 </aura:component>

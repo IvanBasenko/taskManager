@@ -12,7 +12,7 @@
         'Id': '',
         'Task_Name__c': ''
     }"/>
-    <aura:registerEvent name="addToBack" type="c:AddToSprintEvt"/>
+    <aura:registerEvent name="addToBacklog" type="c:AddToSprintEvt"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">

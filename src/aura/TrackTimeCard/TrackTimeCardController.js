@@ -8,17 +8,13 @@
         action.setParams({
             "id": recordId
         });
-        action.setCallback(this, function (response) {
-            if (response.getState() === 'SUCCESS') {
-
-            }
-        });
         $A.enqueueAction(action);
+        //TODO change to js delete
         component.getEvent('refreshSubTask').fire();
-        let addTimeEvt = component.getEvent("delTime");
-        addTimeEvt.setParams({
+        let delTimeEvt = component.getEvent("delTime");
+        delTimeEvt.setParams({
             'time': component.get('v.trackTime.Time__c')
         });
-        addTimeEvt.fire();
-    },
+        delTimeEvt.fire();
+    }
 });
