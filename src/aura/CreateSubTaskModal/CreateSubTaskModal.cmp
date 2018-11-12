@@ -2,9 +2,11 @@
  - Created by Ivan Basenko on 30.10.2018.
  -->
 
-<aura:component description="CreateSubTaskModal">
+<aura:component description="CreateSubTaskModal" controller="SubTaskController">
     <aura:attribute name="createSubTaskOpen" type="boolean" default="false"/>
     <aura:attribute name="taskCardId" type="Id"/>
+    <aura:attribute access="public" name="sprintStatus" type="String"/>
+    <aura:attribute name="factor" type="boolean" default="false"/>
     <aura:registerEvent name="refreshSubTaskList" type="c:RefreshBackLogEvent"/>
     <aura:if isTrue="{!v.createSubTaskOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
@@ -20,9 +22,10 @@
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning:recordEditForm objectApiName="SubTask__c"
-                                              onsuccess="{!c.handleSuccess}">
+                                              onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}"
+                                              onload="{!c.handleLoad}">
                         <lightning:inputField fieldName="Name"/>
-                        <lightning:inputField fieldName="Estimate__c"/>
+                        <lightning:inputField fieldName="Estimate__c" onchange="{!c.handleChange}"/>
                         <lightning:inputField fieldName="Description__c"/>
                         <lightning:inputField fieldName="TaskCard__c" value="{!v.taskCardId}"/>
                         <div class="slds-m-top_medium slds-align_absolute-center">

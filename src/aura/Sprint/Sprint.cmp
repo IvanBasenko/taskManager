@@ -31,13 +31,12 @@
                         </div>
                     </aura:set>
                 </aura:if>
-
             </div>
             <div class="slds-scrollable">
                 <aura:if isTrue="{!not(empty(v.taskCardList))}">
                     <aura:iteration items="{!v.taskCardList}" var="task">
                         <div class="slds-p-around--x-small">
-                            <c:SprintCard taskCard="{!task}"/>
+                            <c:SprintCard taskCard="{!task}" sprintStatus="{!v.sprintStatus}"/>
                         </div>
                     </aura:iteration>
                     <aura:set attribute="else">

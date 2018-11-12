@@ -4,3 +4,7 @@
 .THIS .slds-border_top {
     border-top: 3px solid #285cff;
 }
+
+.THIS .slds-scrollable {
+    height: 30vh;
+}

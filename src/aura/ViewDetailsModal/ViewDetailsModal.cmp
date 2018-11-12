@@ -5,6 +5,7 @@
 <aura:component description="ViewDetailsModal">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
+    <aura:attribute access="public" name="sprintStatus" type="String"/>
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:attribute name="Fields" type="List" default="['Task_Name__c','Assignee__c','Description__c']"/>
     <aura:registerEvent name="RefreshSprint" type="c:RefreshBackLogEvent"/>
@@ -29,7 +30,7 @@
                             mode="view"
                             fields="{!v.Fields}"
                             onsuccess="{!c.handleSuccess}"/>
-                    <c:SubtaskList taskId="{!v.taskCard.Id}"/>
+                    <c:SubtaskList taskId="{!v.taskCard.Id}" sprintStatus="{!v.sprintStatus}"/>
                 </div>
             </div>
         </section>

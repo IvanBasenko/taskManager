@@ -4,27 +4,33 @@
 
 <aura:component description="SubTaskViewDetail">
     <aura:attribute name="subTask" type="SubTask__c"/>
-    <aura:attribute name="Fields" type="List" default="['Name','TaskCard__c','Estimate__c','Description__c']"/>
+    <aura:attribute name="Fields" type="List" default="['TaskCard__c','Estimate__c','Description__c']"/>
     <aura:handler name="addTime" event="c:TrackTimeAmountEvt" action="{!c.addTime}"/>
     <aura:handler name="delTime" event="c:TrackTimeAmountEvt" action="{!c.delTime}"/>
     <div class="slds-media">
         <div class="slds-media__body slds-p-around--medium">
-            <lightning:recordForm
-                    recordId="{!v.subTask.Id}"
-                    objectApiName="SubTask__c"
-                    columns="2"
-                    mode="view"
-                    fields="{!v.Fields}"
-            />
-            <div class="recordView">
-                <span class="label slds-form-element__label">Total Track</span>
-                <span class="outputStyle slds-form-element__control"><lightning:formattedNumber
-                        value="{!v.subTask.TotalTrack__c}"/></span>
-                <div style="padding-right: 20px">
-                    <hr/>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning:recordForm
+                            recordId="{!v.subTask.Id}"
+                            objectApiName="SubTask__c"
+                            columns="1"
+                            mode="view"
+                            fields="{!v.Fields}"
+                    />
+                    <div class="recordView">
+                        <span class="label slds-form-element__label">Total Track</span>
+                        <span class="outputStyle slds-form-element__control"><lightning:formattedNumber
+                                value="{!v.subTask.TotalTrack__c}"/></span>
+                        <div style="padding-right: 20px">
+                            <hr/>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <c:TrackTimeList subTaskId="{!v.subTask.Id}"/>
                 </div>
             </div>
-            <c:TrackTimeList subTaskId="{!v.subTask.Id}"/>
         </div>
     </div>
 </aura:component>
