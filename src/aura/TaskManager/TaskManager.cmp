@@ -10,16 +10,16 @@
     <aura:attribute name="status" type="String"/>
     <aura:attribute name="fields" type="String[]" default="['Status__c']"/>
     <aura:handler name="addToSprint" event="c:AddToSprintEvt" action="{!c.toSprint}"/>
-    <force:recordData fields="{!v.fields}"
-                      recordId="{!v.recordId}"
-                      targetFields="{!v.record}"
-                      recordUpdated="{!c.getStatus}"/>
+    <!--<force:recordData fields="{!v.fields}"-->
+    <!--recordId="{!v.recordId}"-->
+    <!--targetFields="{!v.record}"-->
+    <!--recordUpdated="{!c.getStatus}"/>-->
     <div class="slds-grid slds-gutters">
         <div class="slds-col">
             <c:BackLog aura:id="backLogList" projectSprint="{!v.recordId}"/>
         </div>
         <div class="slds-col">
-            <c:Sprint aura:id="sprintList" projectSprint="{!v.recordId}" sprintStatus="{!v.status}"/>
+            <c:Sprint aura:id="sprintList" projectSprint="{!v.recordId}"/>
         </div>
     </div>
 </aura:component>

@@ -15,7 +15,7 @@
         sprintComponent.set('v.taskCardList', sprintList);
         backLogComponent.set('v.taskCardList', newMass);
     },
-    getStatus: function (component) {
-        component.set('v.status', component.get("v.record").Status__c);
-    }
+    // getStatus: function (component) {
+    //     component.set('v.status', component.get("v.record").Status__c);
+    // }
 });

@@ -6,7 +6,7 @@ public with sharing class TaskCardController {
     @AuraEnabled
     public static List<TaskCard__c> getBacklogTaskCard(Id id) {
         Id backlogId = getBacklogTypeId();
-        return [SELECT Id,Name,Task_Name__c, Description__c,Sprint_Project__c,Estimate__c,RecordTypeId FROM TaskCard__c WHERE RecordTypeId = :backlogId AND Sprint_Project__c = :id];
+        return [SELECT Id,Name,Task_Name__c, Description__c,Sprint_Project__c,Estimate__c,RecordTypeId FROM TaskCard__c WHERE RecordTypeId = :backlogId AND Project__c = :id];
     }
     @AuraEnabled
     public static Id getBacklogTypeId() {

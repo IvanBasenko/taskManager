@@ -6,7 +6,7 @@
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <!--<aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>-->
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
-    <aura:attribute name="Fields" type="List" default="['Task_Name__c','Sprint_Project__c','Description__c']"/>
+    <aura:attribute name="Fields" type="List" default="['Task_Name__c','Project__c','Description__c']"/>
     <aura:attribute name="taskCard" type="TaskCard__c" default="{
         'sobjectType': 'TaskCard__c',
         'Id': '',
