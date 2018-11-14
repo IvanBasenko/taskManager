@@ -20,7 +20,9 @@
                                  id="progress-bar-label-id-1">
                                 <span class="label">{!v.taskCard.Name}: {!v.progress}% Complete</span>
                             </div>
-                            <lightning:progressBar value="{!v.progress}" size="small" variant="circular"/>
+                            <lightning:progressBar class="{!v.progress == 100 ? 'test' : ''}" value="{!v.progress}"
+                                                   size="small"
+                                                   variant="circular"/>
                         </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem>

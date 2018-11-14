@@ -42,3 +42,11 @@
 .THIS .recordView {
     margin-bottom: 3px;
 }
+
+.THIS .slds-progress-bar__value {
+    background-color: black;
+}
+
+.THIS .test .slds-progress-bar__value {
+    background-color: #4bca81;
+}
