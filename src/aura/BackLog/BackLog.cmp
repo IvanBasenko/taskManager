@@ -6,7 +6,7 @@
                 implements="flexipage:availableForAllPageTypes">
     <aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>
     <aura:attribute access="private" name="backlogId" type="Id"/>
-    <aura:attribute access="public" name="projectSprint" type="Id"/>
+    <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="RefreshBackLog" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
@@ -26,5 +26,5 @@
             <c:BackLogWrapper taskCardList="{!v.taskCardList}" aura:id="container"/>
         </div>
     </article>
-    <c:CreateTaskModal isOpen="{!v.isOpen}"/>
+    <c:CreateTaskModal isOpen="{!v.isOpen}" projectId="{!v.projectId}"/>
 </aura:component>

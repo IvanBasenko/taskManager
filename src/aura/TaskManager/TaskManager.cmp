@@ -16,7 +16,7 @@
     <!--recordUpdated="{!c.getStatus}"/>-->
     <div class="slds-grid slds-gutters">
         <div class="slds-col">
-            <c:BackLog aura:id="backLogList" projectSprint="{!v.recordId}"/>
+            <c:BackLog aura:id="backLogList" projectId="{!v.recordId}"/>
         </div>
         <div class="slds-col">
             <c:Sprint aura:id="sprintList" projectSprint="{!v.recordId}"/>

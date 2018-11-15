@@ -10,8 +10,8 @@
     },
     toBacklog: function (component, event) {
         let backLogList = component.get('v.taskCardList');
-        let newSprintCard = event.getParam("taskCard");
-        backLogList.push(newSprintCard);
+        let newTask = event.getParam("taskCard");
+        backLogList.push(newTask);
         component.set('v.taskCardList', backLogList);
     }
 });

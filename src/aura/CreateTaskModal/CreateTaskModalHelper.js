@@ -11,15 +11,20 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-        let response = component.find("createTask");
-        const recordData = event.getParam("fields");
-        let addToBacklog = component.getEvent("addToBacklog");
+        let response = event.getParams().response;
         let task = component.get('v.taskCard');
-        task.Id = response.get('v.recordId');
-        task.Name = recordData["Name"].value;
+        task.Id = response.id;
+        task.Name = response.fields.Name.value;
+        let addToBacklog = component.getEvent("addToBacklog");
         addToBacklog.setParams({
             "taskCard": task
         });
         addToBacklog.fire();
+    },
+    onSubmit: function (component, event) {
+        event.preventDefault();
+        let eventFields = event.getParam("fields");
+        eventFields["Project__c"] = component.get('v.projectId');
+        component.find('editForm').submit(eventFields);
     }
 });

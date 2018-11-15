@@ -7,5 +7,8 @@
     },
     handleSuccess: function (component, event, helper) {
         helper.onSuccess(component, event);
+    },
+    handleSubmit: function (component, event, helper) {
+        helper.onSubmit(component, event);
     }
 });
