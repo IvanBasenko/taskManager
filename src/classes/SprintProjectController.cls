@@ -4,6 +4,33 @@
 
 public with sharing class SprintProjectController {
     @AuraEnabled
+    public static List<Sprint__c> getSprints(Id projectId) {
+        return [
+                SELECT
+                        End_Date__c,
+                        Hours__c,
+                        Id,
+                        Name,
+                        Project__c,
+                        Sprint_Start_Date__c,
+                        Status__c,
+                        SystemModstamp,
+                        Weeks__c, (
+                        SELECT
+                                Id,
+                                Project__c,
+                                Estimate__c,
+                                Assignee__c,
+                                Name,
+                                Description__c,
+                                Total__c
+                        FROM Tasks__r
+                )
+                FROM Sprint__c
+                WHERE Project__c = :projectId
+        ];
+    }
+    @AuraEnabled
     public static void startSprint(Id id) {
         List<Sprint__c> sprints = [
                 SELECT

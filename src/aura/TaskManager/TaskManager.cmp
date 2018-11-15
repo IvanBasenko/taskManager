@@ -19,7 +19,7 @@
             <c:BackLog aura:id="backLogList" projectId="{!v.recordId}"/>
         </div>
         <div class="slds-col">
-            <c:Sprint aura:id="sprintList" projectSprint="{!v.recordId}"/>
+            <c:Sprint aura:id="sprintList" projectId="{!v.recordId}"/>
         </div>
     </div>
 </aura:component>

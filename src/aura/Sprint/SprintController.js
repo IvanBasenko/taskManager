@@ -5,7 +5,7 @@
     doInit: function (component, event, helper) {
         helper.onInit(component);
     },
-    startSprint: function (component) {
-        component.set('v.isOpen', true);
-    }
+    // startSprint: function (component) {
+    //     component.set('v.isOpen', true);
+    // }
 });

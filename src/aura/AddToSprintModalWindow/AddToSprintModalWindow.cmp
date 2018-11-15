@@ -7,7 +7,9 @@
     <aura:attribute name="taskCard" type="TaskCard__c" default="{
         'sobjectType': 'TaskCard__c',
         'Estimate__c': '',
-        'Total__c': ''
+        'Total__c': '',
+        'Sprint_Project__c':'',
+        'Task_Name__c':''
     }"/>
     <aura:registerEvent name="addToSprint" type="c:AddToSprintEvt"/>
     <aura:attribute name="recordType" type="String" default="0121t000000DREgAAO"/>

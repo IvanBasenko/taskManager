@@ -3,14 +3,14 @@
  */
 ({
     onInit: function (component) {
-        let action = component.get('c.getSprintTaskCard');
-        let projectSprintId = component.get('v.projectSprint');
+        let action = component.get('c.getSprints');
+        let projectId = component.get('v.projectId');
         action.setParams({
-            "id": projectSprintId
+            "projectId": projectId
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-                component.set('v.taskCardList', response.getReturnValue());
+                component.set('v.sprintList', response.getReturnValue());
             }
         });
         $A.enqueueAction(action);

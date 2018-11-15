@@ -2,45 +2,33 @@
  - Created by Ivan Basenko on 23.10.2018.
  -->
 
-<aura:component description="Sprint" controller="TaskCardController" implements="flexipage:availableForAllPageTypes">
-    <aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>
-    <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute access="public" name="sprintStatus" type="String"/>
+<aura:component description="Sprint" controller="SprintProjectController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:attribute access="public" name="sprintList" type="Sprint__c[]"/>
+    <!--<aura:attribute name="isOpen" type="boolean" default="false"/>-->
+    <!--<aura:attribute access="public" name="sprintStatus" type="String"/>-->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:attribute access="public" name="projectSprint" type="Id"/>
+    <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:handler name="RefreshSprint" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
     <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
         <div>
             <div class="slds-grid slds-gutters slds-p-around--medium slds-page-header__title">
                 <div class="slds-col">
-                    <h1>Sprint</h1>
+                    <h1>Sprints</h1>
                 </div>
-                <aura:if isTrue="{!and(v.sprintStatus,'In Progress',or(v.sprintStatus,'Closed'))}">
-                    <div class="slds-col">
-                        <c:SprintProjView recordId="{!v.projectSprint}"/>
-                    </div>
-                    <!--<div class="slds-col">-->
-                    <!--<lightning:buttonIcon iconName="utility:close"-->
-                    <!--onclick="{! c.closeModel }"-->
-                    <!--alternativeText="close"-->
-                    <!--/>-->
-                    <!--</div>-->
-                    <aura:set attribute="else">
-                        <div class="slds-col slds-text-align_right">
-                            <lightning:button label="Start Sprint" variant="success" onclick="{!c.startSprint}"/>
-                        </div>
-                    </aura:set>
-                </aura:if>
+                <div class="slds-col slds-text-align_right">
+                    <lightning:button label="Add Sprint" variant="success" onclick="{!c.startSprint}"/>
+                </div>
             </div>
             <div class="slds-scrollable">
-                <aura:if isTrue="{!not(empty(v.taskCardList))}">
-                    <aura:iteration items="{!v.taskCardList}" var="task">
+                <aura:if isTrue="{!not(empty(v.sprintList))}">
+                    <aura:iteration items="{!v.sprintList}" var="sprint">
                         <div class="slds-p-around--x-small">
-                            <c:SprintCard taskCard="{!task}" sprintStatus="{!v.sprintStatus}"/>
+                            <c:SprintItem sprint="{!sprint}"/>
                         </div>
                     </aura:iteration>
                     <aura:set attribute="else">
-                        <div class="slds-align_absolute-center">No tasks found</div>
+                        <div class="slds-align_absolute-center">No sprints found</div>
                     </aura:set>
                     <c:StartSprintModal isOpen="{!v.isOpen}" recordId="{!v.projectSprint}"
                                         taskCardList="{!v.taskCardList}"/>
