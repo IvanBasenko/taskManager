@@ -7,9 +7,11 @@
     <aura:attribute access="public" name="sprintList" type="Sprint__c[]"/>
     <!--<aura:attribute name="isOpen" type="boolean" default="false"/>-->
     <!--<aura:attribute access="public" name="sprintStatus" type="String"/>-->
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:handler name="RefreshSprint" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
+    <aura:handler name="addSprint" event="c:AddSprintEvt" action="{!c.handleAddSprint}"/>
     <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
         <div>
             <div class="slds-grid slds-gutters slds-p-around--medium slds-page-header__title">
@@ -17,7 +19,7 @@
                     <h1>Sprints</h1>
                 </div>
                 <div class="slds-col slds-text-align_right">
-                    <lightning:button label="Add Sprint" variant="success" onclick="{!c.startSprint}"/>
+                    <lightning:button label="Add Sprint" variant="success" onclick="{!c.onAddSprint}"/>
                 </div>
             </div>
             <div class="slds-scrollable">
@@ -30,10 +32,9 @@
                     <aura:set attribute="else">
                         <div class="slds-align_absolute-center">No sprints found</div>
                     </aura:set>
-                    <c:StartSprintModal isOpen="{!v.isOpen}" recordId="{!v.projectSprint}"
-                                        taskCardList="{!v.taskCardList}"/>
                 </aura:if>
             </div>
         </div>
     </article>
+    <c:AddSprintModal isOpen="{!v.isOpen}" projectId="{!v.projectId}"/>
 </aura:component>

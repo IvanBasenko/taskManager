@@ -1,0 +1,7 @@
+<!--
+ - Created by Ivan Basenko on 19.11.2018.
+ -->
+
+<aura:event type="COMPONENT" description="AddSprintEvt">
+    <aura:attribute name="sprint" type="Sprint__c"/>
+</aura:event>

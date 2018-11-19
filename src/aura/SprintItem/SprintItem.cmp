@@ -18,10 +18,18 @@
             <div class="slds-col slds-text-heading--medium">{!v.sprint.Name}</div>
             <aura:if isTrue="{!v.isStarted}">
                 <div class="slds-col slds-text-align_right">
-                    <lightning:buttonGroup>
-                        <lightning:button label="Edit Sprint" variant="neutral" onclick="{!c.startSprint}"/>
-                        <lightning:button label="Complete Sprint" variant="success" onclick="{!c.startSprint}"/>
-                    </lightning:buttonGroup>
+
+                    <button onclick="{!c.startSprint}"
+                            class="slds-button">
+                        <lightning:icon iconName="utility:edit" size="small"
+                                        alternativeText="Show"/>
+                    </button>
+                    <button onclick="{!c.startSprint}"
+                            class="slds-button">
+                        <lightning:icon iconName="utility:check" size="small"
+                                        alternativeText="Show"/>
+                    </button>
+
                 </div>
                 <aura:set attribute="else">
                     <div class="slds-col slds-text-align_right">
@@ -43,7 +51,7 @@
                         <lightning:layout verticalAlign="center" multipleRows="true">
                             <aura:iteration items="{!v.sprint.Tasks__r}" var="task">
                                 <lightning:layoutItem flexibility="auto">
-                                    <c:SprintCard taskCard="{!task}"/>
+                                    <c:SprintCard taskCard="{!task}" sprintStatus="{!v.sprint.Status__c}"/>
                                 </lightning:layoutItem>
                             </aura:iteration>
                         </lightning:layout>
@@ -58,16 +66,16 @@
             <aura:if isTrue="{!!v.isExpanded}">
                 <button onclick="{!c.changeState}"
                         class="slds-button">
-                    <lightning:icon aura:id="articleOne" iconName="utility:chevrondown" size="xx-small"
+                    <lightning:icon aura:id="articleOne" iconName="utility:chevrondown" size="small"
                                     alternativeText="Show"/>
-                    <span class="slds-truncate" title="Section Title">Show</span>
+                    <span class="slds-truncate" title="Section Title">Show {!v.sprint.Tasks__r.length} tasks</span>
                 </button>
                 <aura:set attribute="else">
                     <button onclick="{!c.changeState}"
                             class="slds-button">
-                        <lightning:icon aura:id="articleOne" iconName="utility:chevronup" size="xx-small"
+                        <lightning:icon aura:id="articleOne" iconName="utility:chevronup" size="small"
                                         alternativeText="Hide"/>
-                        <span class="slds-truncate" title="Section Title">Hide</span>
+                        <span class="slds-truncate" title="Section Title">Hide {!v.sprint.Tasks__r.length} tasks</span>
                     </button>
                 </aura:set>
             </aura:if>

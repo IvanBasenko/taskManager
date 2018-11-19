@@ -1,0 +1,44 @@
+<!--
+ - Created by Ivan Basenko on 19.11.2018.
+ -->
+
+<aura:component description="AddSprintModal">
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute access="public" name="projectId" type="Id"/>
+    <aura:attribute name="newSprint" type="Sprint__c" default="{
+        'sobjectType': 'Sprint__c',
+        'Id':'',
+        'Name': ''
+    }"/>
+    <aura:registerEvent name="addSprint" type="c:AddSprintEvt"/>
+    <aura:if isTrue="{!v.isOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create new sprint</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:recordEditForm aura:id="editForm" objectApiName="Sprint__c"
+                                              onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">
+                        <lightning:inputField fieldName="Name" value=""/>
+                        <div class="slds-m-top_medium">
+                            <lightning:button variant="brand" label="Submit" title="Submit"
+                                              type="submit"/>
+                            <lightning:button variant="neutral"
+                                              label="Cancel"
+                                              title="Cancel"
+                                              onclick="{! c.closeModel }"/>
+                        </div>
+                    </lightning:recordEditForm>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

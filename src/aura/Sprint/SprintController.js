@@ -5,7 +5,13 @@
     doInit: function (component, event, helper) {
         helper.onInit(component);
     },
-    // startSprint: function (component) {
-    //     component.set('v.isOpen', true);
-    // }
+    onAddSprint: function (component) {
+        component.set('v.isOpen', true);
+    },
+    handleAddSprint: function (component, event) {
+        let sprintList = component.get('v.sprintList');
+        let newSprint = event.getParam("sprint");
+        sprintList.push(newSprint);
+        component.set('v.sprintList', sprintList);
+    },
 });
