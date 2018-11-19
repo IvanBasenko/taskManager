@@ -23,7 +23,18 @@
                     <lightning:button label="Add task" variant="success" onclick="{!c.onCreateRecord}"/>
                 </lightning:layoutItem>
             </lightning:layout>
-            <c:BackLogWrapper taskCardList="{!v.taskCardList}" aura:id="container"/>
+            <div class="slds-scrollable">
+                <aura:if isTrue="{!not(empty(v.taskCardList))}">
+                    <aura:iteration items="{!v.taskCardList}" var="task">
+                        <div class="slds-p-around--x-small">
+                            <c:BackLogCard taskCard="{!task}"/>
+                        </div>
+                    </aura:iteration>
+                    <aura:set attribute="else">
+                        <div class="slds-align_absolute-center">No tasks found</div>
+                    </aura:set>
+                </aura:if>
+            </div>
         </div>
     </article>
     <c:CreateTaskModal isOpen="{!v.isOpen}" projectId="{!v.projectId}"/>

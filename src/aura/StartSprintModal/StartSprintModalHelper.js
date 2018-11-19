@@ -3,12 +3,12 @@
  */
 ({
     onChange: function (component, event) {
-        let recordId = component.get('v.taskCardList');
+        let tasks = component.get('v.taskCardList');
         let eventFields = event.getParam("value");
         let action = component.get('c.checkEstimateForUser');
 
         action.setParams({
-            "tasks": JSON.stringify(recordId),
+            "tasks": JSON.stringify(tasks),
             "weeks": eventFields
         });
         action.setCallback(this, function (response) {
@@ -74,7 +74,11 @@
         action.setParams({
             "id": recordId
         });
+        action.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                component.getEvent("showInfo").fire();
+            }
+        });
         $A.enqueueAction(action);
-        $A.get("e.force:refreshView").fire();
     }
 });

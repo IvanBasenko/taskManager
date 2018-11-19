@@ -23,7 +23,7 @@
             <div class="slds-scrollable">
                 <aura:if isTrue="{!not(empty(v.sprintList))}">
                     <aura:iteration items="{!v.sprintList}" var="sprint">
-                        <div class="slds-p-around--x-small">
+                        <div class="slds-p-around--small">
                             <c:SprintItem sprint="{!sprint}"/>
                         </div>
                     </aura:iteration>

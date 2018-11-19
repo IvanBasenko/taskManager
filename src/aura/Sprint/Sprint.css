@@ -4,3 +4,7 @@
 .THIS .slds-scrollable {
     height: 100vh;
 }
+
+.THIS.slds-card {
+    background-color: #e7e7e7;
+}

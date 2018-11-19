@@ -1,7 +1,5 @@
 .THIS .slds-card {
-    border-radius: 10px;
-    box-shadow: 0 4px 6px 0 rgba(12, 2, 23, 0.32);
-
+    background-color: #efefef;
 }
 
 /*.THIS .slds-text-heading--medium {*/

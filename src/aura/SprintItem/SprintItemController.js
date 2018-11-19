@@ -13,5 +13,8 @@
     },
     handleDeleteTask: function (component, event, helper) {
         helper.onDeleteTask(component, event);
+    },
+    handleShowInfo: function (component, event, helper) {
+        component.set('v.isStarted', true);
     }
 });

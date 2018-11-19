@@ -4,22 +4,41 @@
 
 .THIS #expand-container {
     overflow: hidden;
+    background-color: #efefef;
 }
 
 .THIS .slds-transition-hide {
     max-height: 0;
-    transition: all 1s;
-    margin-top: -100%;
+    transition: all 2s;
     overflow: hidden;
 }
 
 .THIS .slds-transition-show {
     max-height: 500px;
-    margin-top: 0;
-    transition: all 1s;
+    transition: all 2s;
 }
 
 .THIS .sWrapTest {
     max-height: 500px;
     width: auto;
+}
+
+.THIS.slds-card {
+    border-radius: 7px;
+}
+
+.THIS .slds-border_top {
+    border-top: #e7e7e7 solid 2px;
+}
+
+.THIS .slds-text__title {
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+}
+
+.THIS .slds-form-element__static {
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    color: #456bef;
+    font-weight: bold;
 }

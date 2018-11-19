@@ -7,6 +7,7 @@
     <aura:attribute name="factor" type="boolean" default="false"/>
     <aura:attribute access="public" name="recordId" type="String"/>
     <aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>
+    <aura:registerEvent name="showInfo" type="c:ShowInfoSprintEvt"/>
     <aura:attribute name="Fields" type="String[]"
                     default="['Weeks__c']"/>
     <aura:if isTrue="{!v.isOpen}">
