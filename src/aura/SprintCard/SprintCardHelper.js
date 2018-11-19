@@ -10,7 +10,6 @@
             component.set('v.progress', Math.round(result * 100) / 100);
         }
     },
-    // TODO change to js refresh
     onDeleteRecord: function (component) {
         let recordId = component.get('v.taskCard.Id');
         let action = component.get('c.deleteTask');
@@ -19,7 +18,11 @@
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-                component.getEvent("RefreshSprint").fire();
+                let deleteTask = component.getEvent("deleteTask");
+                deleteTask.setParams({
+                    "recordId": recordId
+                });
+                deleteTask.fire();
             }
         });
         $A.enqueueAction(action);

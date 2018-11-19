@@ -11,5 +11,7 @@
     changeState: function changeState(component) {
         component.set('v.isExpanded', !component.get('v.isExpanded'));
     },
-
+    handleDeleteTask: function (component, event, helper) {
+        helper.onDeleteTask(component, event);
+    },
 });

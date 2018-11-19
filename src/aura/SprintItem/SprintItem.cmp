@@ -5,16 +5,13 @@
 <aura:component description="SprintItem" controller="TaskCardController"
                 implements="flexipage:availableForAllPageTypes">
     <aura:attribute access="public" name="isExpanded" type="Boolean" default="false"/>
-    <aura:attribute access="public" name="sprint" type="Sprint__c" default="{
-        'sobjectType': 'Sprint__c',
-        'Tasks__r':''
-        }"/>
+    <aura:attribute access="public" name="sprint" type="Sprint__c"/>
     <!--<aura:attribute access="public" name="taskCardList" type="TaskCard__c[]"/>-->
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute access="public" name="sprintStatus" type="String"/>
     <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
     <!--<aura:attribute access="public" name="projectSprint" type="Id"/>-->
-    <!--<aura:handler name="RefreshSprint" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>-->
+    <aura:handler name="deleteTask" event="c:DeleteRecordEvt" action="{!c.handleDeleteTask}"/>
 
     <!--<div class="{!v.expand ? 'slds-section slds-is-open' : 'slds-section'}">-->
     <!--<lightning:accordion-->

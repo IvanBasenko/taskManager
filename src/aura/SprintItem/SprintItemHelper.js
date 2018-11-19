@@ -14,5 +14,13 @@
             }
         });
         $A.enqueueAction(action);
+    },
+    onDeleteTask: function (component, event) {
+        let deleteTaskId = event.getParam("recordId");
+        let sprint = component.get('v.sprint');
+        sprint.Tasks__r = sprint.Tasks__r.filter((element) => {
+            return element.Id !== deleteTaskId;
+        });
+        component.set('v.sprint', sprint);
     }
 });

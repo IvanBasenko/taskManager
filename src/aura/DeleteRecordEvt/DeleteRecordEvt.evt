@@ -1,0 +1,7 @@
+<!--
+ - Created by Ivan Basenko on 19.11.2018.
+ -->
+
+<aura:event type="COMPONENT" description="DeleteRecordEvt">
+    <aura:attribute name="recordId" type="Id"/>
+</aura:event>
