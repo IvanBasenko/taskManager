@@ -4,9 +4,8 @@
 
 <aura:component description="BackLogCard" controller="TaskCardController">
     <aura:attribute name="taskCard" type="TaskCard__c"/>
-    <aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>
+    <aura:registerEvent name="deleteTaskFromBacklog" type="c:DeleteRecordEvt"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute name="recordType" type="String" default="0121t000000DREgAAO"/>
     <aura:attribute name="Fields" type="List" default="['Task_Name__c','Project__c','Description__c']"/>
     <article>
         <lightning:card>
@@ -27,7 +26,6 @@
                 <lightning:recordForm
                         recordId="{!v.taskCard.Id}"
                         objectApiName="TaskCard__c"
-                        recordTypeId="{!v.recordType}"
                         columns="2"
                         mode="view"
                         fields="{!v.Fields}"

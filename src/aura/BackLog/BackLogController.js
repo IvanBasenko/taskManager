@@ -13,5 +13,8 @@
         let newTask = event.getParam("taskCard");
         backLogList.push(newTask);
         component.set('v.taskCardList', backLogList);
+    },
+    handleDeleteTask: function (component, event, helper) {
+        helper.onDeleteTask(component, event);
     }
 });

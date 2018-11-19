@@ -17,11 +17,11 @@
             sprint.Tasks__r = [];
             sprint.Tasks__r.push(newSprintCard);
         }
-        let newMass = backLogList.filter((element) => {
+        backLogList = backLogList.filter((element) => {
             return element.Id !== newSprintCard.Id;
         });
         sprintComponent.set('v.sprintList', sprintList);
-        backLogComponent.set('v.taskCardList', newMass);
+        backLogComponent.set('v.taskCardList', backLogList);
     },
     // getStatus: function (component) {
     //     component.set('v.status', component.get("v.record").Status__c);

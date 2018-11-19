@@ -13,5 +13,5 @@
     },
     handleDeleteTask: function (component, event, helper) {
         helper.onDeleteTask(component, event);
-    },
+    }
 });

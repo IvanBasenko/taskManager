@@ -14,5 +14,13 @@
             }
         });
         $A.enqueueAction(action);
+    },
+    onDeleteTask: function (component, event) {
+        let deleteTaskId = event.getParam("recordId");
+        let taskList = component.get('v.taskCardList');
+        taskList = taskList.filter((element) => {
+            return element.Id !== deleteTaskId;
+        });
+        component.set('v.taskCardList', taskList);
     }
 });

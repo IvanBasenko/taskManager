@@ -5,8 +5,7 @@
     toSprint: function (component) {
         component.set('v.isOpen', true);
     },
-    //TODO change to delete js
-    onDelete: function (component) {
+    onDelete: function (component, event) {
         let recordId = component.get('v.taskCard.Id');
         let action = component.get('c.deleteTask');
         action.setParams({
@@ -14,7 +13,11 @@
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-                component.getEvent("RefreshBackLog").fire();
+                let deleteTask = component.getEvent("deleteTaskFromBacklog");
+                deleteTask.setParams({
+                    "recordId": recordId
+                });
+                deleteTask.fire();
             }
         });
         $A.enqueueAction(action);
