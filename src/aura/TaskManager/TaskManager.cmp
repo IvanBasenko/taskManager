@@ -15,11 +15,11 @@
     <!--targetFields="{!v.record}"-->
     <!--recordUpdated="{!c.getStatus}"/>-->
     <div class="slds-grid slds-gutters">
-        <div class="slds-col">
-            <c:BackLog aura:id="backLogList" projectId="{!v.recordId}"/>
-        </div>
-        <div class="slds-col">
+        <div class="slds-col slds-size_2-of-3">
             <c:Sprint aura:id="sprintList" projectId="{!v.recordId}"/>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <c:BackLog aura:id="backLogList" projectId="{!v.recordId}"/>
         </div>
     </div>
 </aura:component>

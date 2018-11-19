@@ -4,6 +4,7 @@
 
 <aura:component description="SprintItem" controller="TaskCardController"
                 implements="flexipage:availableForAllPageTypes">
+    <aura:attribute access="public" name="isExpanded" type="Boolean" default="false"/>
     <aura:attribute access="public" name="sprint" type="Sprint__c" default="{
         'sobjectType': 'Sprint__c',
         'Tasks__r':''
@@ -14,43 +15,61 @@
     <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
     <!--<aura:attribute access="public" name="projectSprint" type="Id"/>-->
     <!--<aura:handler name="RefreshSprint" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>-->
-    <article class="slds-card">
-        <div>
-            <div class="slds-grid slds-gutters slds-p-around--medium slds-page-header__title">
-                <div class="slds-col">
-                    <h1>Sprint {!v.sprint.Name}</h1>
-                </div>
-                <aura:if isTrue="{!and(v.sprintStatus,'In Progress',or(v.sprintStatus,'Closed'))}">
-                    <div class="slds-col">
-                        <c:SprintProjView recordId="{!v.projectSprint}"/>
-                    </div>
-                    <!--<div class="slds-col">-->
-                    <!--<lightning:buttonIcon iconName="utility:close"-->
-                    <!--onclick="{! c.closeModel }"-->
-                    <!--alternativeText="close"-->
-                    <!--/>-->
-                    <!--</div>-->
-                    <aura:set attribute="else">
-                        <div class="slds-col slds-text-align_right">
-                            <lightning:button label="Start Sprint" variant="success" onclick="{!c.startSprint}"/>
-                        </div>
-                    </aura:set>
-                </aura:if>
-            </div>
-            <div>
-                <aura:if isTrue="{!not(empty(v.sprint.Tasks__r))}">
-                    <aura:iteration items="{!v.sprint.Tasks__r}" var="task">
-                        <div class="slds-p-around--x-small">
-                            <c:SprintCard taskCard="{!task}"/>
-                        </div>
-                    </aura:iteration>
-                    <aura:set attribute="else">
-                        <div class="slds-align_absolute-center">No tasks found</div>
-                    </aura:set>
-                    <c:StartSprintModal isOpen="{!v.isOpen}" recordId="{!v.projectSprint}"
-                                        taskCardList="{!v.taskCardList}"/>
-                </aura:if>
+
+    <!--<div class="{!v.expand ? 'slds-section slds-is-open' : 'slds-section'}">-->
+    <!--<lightning:accordion-->
+    <!--allowMultipleSectionsOpen="true">-->
+    <!--<lightning:accordionSection name="{!v.sprint.Name}" label="{!v.sprint.Name}">-->
+    <!--<aura:set attribute="actions">-->
+    <div>
+        <h3 class="slds-theme_shade">
+            <button onclick="{!c.changeState}"
+                    class="slds-button">
+                <lightning:icon aura:id="articleOne" iconName="utility:switch" size="xx-small"
+                                alternativeText="switch"/>
+                <span class="slds-truncate" title="Section Title">Ponto de Venda</span>
+            </button>
+        </h3>
+        <!--<div class="slds-grid slds-gutters slds-p-around&#45;&#45;medium slds-page-header__title">-->
+        <!--<aura:if isTrue="{!and(v.sprintStatus,'In Progress',or(v.sprintStatus,'Closed'))}">-->
+        <!--<div class="slds-col">-->
+        <!--<c:SprintProjView recordId="{!v.projectSprint}"/>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="slds-col">&ndash;&gt;-->
+        <!--&lt;!&ndash;<lightning:buttonIcon iconName="utility:close"&ndash;&gt;-->
+        <!--&lt;!&ndash;onclick="{! c.closeModel }"&ndash;&gt;-->
+        <!--&lt;!&ndash;alternativeText="close"&ndash;&gt;-->
+        <!--&lt;!&ndash;/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<aura:set attribute="else">-->
+        <!--<div class="slds-col slds-text-align_right">-->
+        <!--<lightning:button label="Start Sprint" variant="success" onclick="{!c.startSprint}"/>-->
+        <!--</div>-->
+        <!--</aura:set>-->
+        <!--</aura:if>-->
+        <!--</div>-->
+        <!--</aura:set>-->
+        <!--<aura:set attribute="body">-->
+
+        <div id="expand-container">
+            <div id="content" class="{!v.isExpanded ? 'slds-transition-show':'slds-transition-hide'}">
+                <ui:scrollerWrapper class="sWrapTest slds-m-top--small">
+                    <aura:if isTrue="{!not(empty(v.sprint.Tasks__r))}">
+                        <lightning:layout verticalAlign="center" multipleRows="true">
+                            <aura:iteration items="{!v.sprint.Tasks__r}" var="task">
+                                <lightning:layoutItem flexibility="auto">
+                                    <c:SprintCard taskCard="{!task}"/>
+                                </lightning:layoutItem>
+                            </aura:iteration>
+                        </lightning:layout>
+                        <aura:set attribute="else">
+                            <div class="slds-align_absolute-center slds-text-heading--large">No tasks found</div>
+                        </aura:set>
+                    </aura:if>
+                </ui:scrollerWrapper>
             </div>
         </div>
-    </article>
+    </div>
+    <c:StartSprintModal isOpen="{!v.isOpen}" recordId="{!v.projectSprint}"
+                        taskCardList="{!v.taskCardList}"/>
 </aura:component>

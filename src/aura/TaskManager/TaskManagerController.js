@@ -8,29 +8,19 @@
         let sprintList = sprintComponent.get('v.sprintList');
         let backLogList = backLogComponent.get('v.taskCardList');
         let newSprintCard = event.getParam("taskCard");
-        let index = 0;
-        let sprint = sprintList.find((element, i) => {
-            index = i;
+        let sprint = sprintList.find((element) => {
             return element.Id === newSprintCard.Sprint_Project__c;
         });
-        try {
+        if (sprint.Tasks__r !== undefined) {
             sprint.Tasks__r.push(newSprintCard);
-        } catch (e) {
-            sprintList.splice(index, 1);
-            let sprintWithTasks = {
-                Id: sprint.Id,
-                Name: sprint.Name,
-                Project__c: sprint.Project__c,
-                Tasks__r: []
-            };
-            sprintWithTasks.Tasks__r.push(newSprintCard);
-            sprintList.splice(index, 0, sprintWithTasks);
+        } else {
+            sprint.Tasks__r = [];
+            sprint.Tasks__r.push(newSprintCard);
         }
         let newMass = backLogList.filter((element) => {
             return element.Id !== newSprintCard.Id;
         });
         sprintComponent.set('v.sprintList', sprintList);
-        console.log(JSON.parse(JSON.stringify(sprintList)));
         backLogComponent.set('v.taskCardList', newMass);
     },
     // getStatus: function (component) {

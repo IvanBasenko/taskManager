@@ -7,5 +7,9 @@
     },
     startSprint: function (component) {
         component.set('v.isOpen', true);
-    }
+    },
+    changeState: function changeState(component) {
+        component.set('v.isExpanded', !component.get('v.isExpanded'));
+    },
+
 });

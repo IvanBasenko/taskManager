@@ -1,0 +1,22 @@
+/**
+ * Created by Basenko on 17.11.2018.
+ */
+.THIS ::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+.THIS ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.THIS ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 7px;
+}
+
+/* Handle on hover */
+.THIS ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

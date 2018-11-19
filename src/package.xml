@@ -18,6 +18,7 @@
         <members>RefreshBackLogEvent</members>
         <members>Sprint</members>
         <members>SprintCard</members>
+        <members>SprintItem</members>
         <members>SprintProjView</members>
         <members>StartSprintModal</members>
         <members>SubTaskViewDetail</members>
