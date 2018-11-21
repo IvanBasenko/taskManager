@@ -14,7 +14,11 @@
     handleDeleteTask: function (component, event, helper) {
         helper.onDeleteTask(component, event);
     },
-    handleShowInfo: function (component, event, helper) {
+    handleShowInfo: function (component, event) {
         component.set('v.isStarted', true);
+        let sprint = component.get('v.sprint');
+        sprint.Status__c = event.getParam('sprintStatus');
+        sprint.Sprint_Start_Date__c = event.getParam('startDate');
+        component.set('v.sprint', sprint);
     }
 });

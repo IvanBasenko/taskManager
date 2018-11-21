@@ -12,6 +12,6 @@
         helper.onSubmit(component, event);
     },
     handleSuccess: function (component, event, helper) {
-        helper.onSuccess(component);
+        helper.onSuccess(component, event);
     }
 });

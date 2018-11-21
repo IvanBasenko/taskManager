@@ -9,13 +9,13 @@
 
 .THIS .slds-transition-hide {
     max-height: 0;
-    transition: all 2s;
+    transition: all 1s;
     overflow: hidden;
 }
 
 .THIS .slds-transition-show {
     max-height: 500px;
-    transition: all 2s;
+    transition: all 1s;
 }
 
 .THIS .sWrapTest {

@@ -8,25 +8,27 @@
     <aura:attribute access="public" name="isStarted" type="Boolean" default="false"/>
     <aura:attribute access="public" name="sprint" type="Sprint__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute access="public" name="sprintStatus" type="String"/>
+    <aura:attribute access="public" name="sprintStatus" type="String" default="{
+        'sobjectType': 'Sprint__c',
+        'Status__c': '',
+        'Sprint_Start_Date__c': ''}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="deleteTask" event="c:DeleteRecordEvt" action="{!c.handleDeleteTask}"/>
     <aura:handler name="showInfo" event="c:ShowInfoSprintEvt" action="{!c.handleShowInfo}"/>
 
     <div class="slds-card">
-        <div class="slds-grid slds-gutters slds-p-around--medium slds-page-header__title">
-            <div class="slds-col slds-text-heading--medium">{!v.sprint.Name}</div>
+        <div class="slds-grid slds-gutters slds-p-around--medium">
+            <div class="slds-col slds-text-heading--large">{!v.sprint.Name}</div>
             <aura:if isTrue="{!v.isStarted}">
                 <div class="slds-col slds-text-align_right">
-
                     <button onclick="{!c.startSprint}"
                             class="slds-button">
-                        <lightning:icon iconName="utility:edit" size="small"
+                        <lightning:icon iconName="utility:edit" size="medium"
                                         alternativeText="Show"/>
                     </button>
                     <button onclick="{!c.startSprint}"
                             class="slds-button">
-                        <lightning:icon iconName="utility:check" size="small"
+                        <lightning:icon iconName="utility:check" size="medium"
                                         alternativeText="Show"/>
                     </button>
 
@@ -62,25 +64,24 @@
                 </ui:scrollerWrapper>
             </div>
         </div>
-        <div class="slds-border_top">
+        <div class="slds-border_top slds-page-header__title slds-p-around--xx-small">
             <aura:if isTrue="{!!v.isExpanded}">
                 <button onclick="{!c.changeState}"
                         class="slds-button">
-                    <lightning:icon aura:id="articleOne" iconName="utility:chevrondown" size="small"
+                    <lightning:icon aura:id="articleOne" iconName="utility:chevrondown" size="x-small"
                                     alternativeText="Show"/>
-                    <span class="slds-truncate" title="Section Title">Show {!v.sprint.Tasks__r.length} tasks</span>
+                    <span class="slds-truncate" title="Section Title"> Show {!v.sprint.Tasks__r.length} tasks</span>
                 </button>
                 <aura:set attribute="else">
                     <button onclick="{!c.changeState}"
                             class="slds-button">
-                        <lightning:icon aura:id="articleOne" iconName="utility:chevronup" size="small"
+                        <lightning:icon aura:id="articleOne" iconName="utility:chevronup" size="x-small"
                                         alternativeText="Hide"/>
-                        <span class="slds-truncate" title="Section Title">Hide {!v.sprint.Tasks__r.length} tasks</span>
+                        <span class="slds-truncate" title="Section Title"> Hide {!v.sprint.Tasks__r.length} tasks</span>
                     </button>
                 </aura:set>
             </aura:if>
         </div>
     </div>
-    <c:StartSprintModal isOpen="{!v.isOpen}" recordId="{!v.sprint.Id}"
-                        taskCardList="{!v.sprint.Tasks__r}"/>
+    <c:StartSprintModal isOpen="{!v.isOpen}" sprint="{!v.sprint}"/>
 </aura:component>

@@ -58,9 +58,28 @@
                 "type": "error"
             });
             toastEvent.fire();
+        } else {
+            event.preventDefault();
+            let eventFields = event.getParam("fields");
+            let weeks = eventFields['Weeks__c'];
+            let startDate = component.get('v.sprint.Sprint_Start_Date__c');
+            if (startDate === undefined) {
+                let result = new Date();
+                result.setDate(result.getDate() + (7 * weeks));
+                eventFields["Sprint_Start_Date__c"] = $A.localizationService.formatDate(new Date(), "yyyy-MM-dd");
+                eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
+            }
+            else {
+                let result = new Date(startDate);
+                result.setDate(result.getDate() + (7 * weeks));
+                eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
+            }
+            eventFields["Hours__c"] = weeks * 40;
+            eventFields["Status__c"] = 'In Progress';
+            component.find('editForm').submit(eventFields);
         }
     },
-    onSuccess: function (component) {
+    onSuccess: function (component, event) {
         let toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             title: 'Success',
@@ -69,16 +88,13 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-        let recordId = component.get('v.recordId');
-        let action = component.get('c.startSprint');
-        action.setParams({
-            "id": recordId
+        let response = event.getParams('Vn');
+        let showInfoEvt = component.getEvent("showInfo");
+        showInfoEvt.setParams({
+            "sprintStatus": response.fields.Status__c.value,
+            "startDate": response.fields.Sprint_Start_Date__c.value
         });
-        action.setCallback(this, function (response) {
-            if (response.getState() === 'SUCCESS') {
-                component.getEvent("showInfo").fire();
-            }
-        });
-        $A.enqueueAction(action);
+        showInfoEvt.fire();
+
     }
 });

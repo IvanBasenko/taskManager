@@ -3,5 +3,6 @@
  -->
 
 <aura:event type="COMPONENT" description="ShowInfoSprintEvt">
-
+    <aura:attribute name="sprintStatus" type="String"/>
+    <aura:attribute name="startDate" type="Date"/>
 </aura:event>
