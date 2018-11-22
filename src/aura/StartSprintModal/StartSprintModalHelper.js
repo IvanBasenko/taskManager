@@ -3,7 +3,7 @@
  */
 ({
     onChange: function (component, event) {
-        let tasks = component.get('v.taskCardList');
+        let tasks = component.get('v.sprint.Tasks__r');
         let eventFields = event.getParam("value");
         let action = component.get('c.checkEstimateForUser');
 
