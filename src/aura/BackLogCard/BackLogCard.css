@@ -2,19 +2,12 @@
  * Created by Ivan Basenko on 23.10.2018.
  */
 .THIS .slds-card {
-    border-radius: 10px;
-    box-shadow: 0 4px 6px 0 rgba(12, 2, 23, 0.32);
-
+    border-radius: 7px;
+    box-shadow: 0 2px 3px 0 rgba(12, 2, 23, 0.32);
 }
 
-.THIS .slds-text__title {
-    font-weight: bold;
-    font-family: "Lato", sans-serif;
-}
 
 .THIS .slds-form-element__static {
-    font-size: 16px;
-    font-family: "Lato", sans-serif;
+    /*font-size: 16px;*/
     color: #2e57d7;
-    font-weight: bold;
 }

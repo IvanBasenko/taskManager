@@ -16,7 +16,7 @@
     <aura:handler name="deleteTask" event="c:DeleteRecordEvt" action="{!c.handleDeleteTask}"/>
     <aura:handler name="showInfo" event="c:ShowInfoSprintEvt" action="{!c.handleShowInfo}"/>
 
-    <div class="slds-card">
+    <div class="slds-card slds-m-horizontal--small slds-card_boundary">
         <div class="slds-grid slds-gutters slds-p-around--medium">
             <div class="slds-col slds-text-heading--large">{!v.sprint.Name}</div>
             <aura:if isTrue="{!v.isStarted}">
@@ -24,9 +24,9 @@
                     <button onclick="{!c.startSprint}"
                             class="slds-button">
                         <lightning:icon iconName="utility:edit" size="medium"
-                                        alternativeText="Show"/>
+                                        alternativeText="Show" title="Rofl"/>
                     </button>
-                    <button onclick="{!c.startSprint}"
+                    <button disabled="disabled" onclick="{!c.startSprint}"
                             class="slds-button">
                         <lightning:icon iconName="utility:check" size="medium"
                                         alternativeText="Show"/>
@@ -34,7 +34,7 @@
 
                 </div>
                 <aura:set attribute="else">
-                    <div class="slds-col slds-text-align_right">
+                    <div class="slds-col slds-text-align_right slds-page-header__title">
                         <lightning:button label="Start Sprint" variant="success" onclick="{!c.startSprint}"/>
                     </div>
                 </aura:set>
@@ -42,7 +42,7 @@
 
         </div>
         <aura:if isTrue="{!v.isStarted}">
-            <div class="slds-p-around--medium">
+            <div class="slds-p-horizontal--medium slds-p-vertical--small">
                 <c:SprintProjView recordId="{!v.sprint.Id}"/>
             </div>
         </aura:if>

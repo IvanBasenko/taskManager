@@ -15,11 +15,11 @@
         let sprint = component.get('v.newSprint');
         sprint.Id = response.id;
         sprint.Name = response.fields.Name.value;
-        let addToBacklog = component.getEvent("addSprint");
-        addToBacklog.setParams({
+        let addToSprint = component.getEvent("addSprint");
+        addToSprint.setParams({
             "sprint": sprint
         });
-        addToBacklog.fire();
+        addToSprint.fire();
     },
     onSubmit: function (component, event) {
         event.preventDefault();

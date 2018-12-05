@@ -12,8 +12,8 @@
     <aura:handler name="deleteTaskFromBacklog" event="c:DeleteRecordEvt" action="{!c.handleDeleteTask}"/>
     <aura:handler name="addToBacklog" event="c:AddToSprintEvt" action="{!c.toBacklog}"/>
 
-    <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
-        <div class="slds-media__body ">
+    <article class="slds-card slds-card_boundary slds-m-around--xx-small">
+        <div class="slds-media__body">
             <lightning:layout class="slds-p-around--small slds-page-header__title" horizontalAlign="spread"
                               verticalAlign="center">
                 <lightning:layoutItem>
@@ -31,7 +31,7 @@
                         </div>
                     </aura:iteration>
                     <aura:set attribute="else">
-                        <div class="slds-align_absolute-center">No tasks found</div>
+                        <div class="slds-align_absolute-center slds-text-heading--large">No tasks found</div>
                     </aura:set>
                 </aura:if>
             </div>

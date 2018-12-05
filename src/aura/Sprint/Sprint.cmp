@@ -12,29 +12,29 @@
     <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:handler name="RefreshSprint" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
     <aura:handler name="addSprint" event="c:AddSprintEvt" action="{!c.handleAddSprint}"/>
-    <article class="slds-card slds-m-bottom_medium slds-p-bottom--medium">
-        <div>
-            <div class="slds-grid slds-gutters slds-p-around--medium slds-page-header__title">
-                <div class="slds-col">
-                    <h1>Sprints</h1>
-                </div>
-                <div class="slds-col slds-text-align_right">
-                    <lightning:button label="Add Sprint" variant="success" onclick="{!c.onAddSprint}"/>
-                </div>
-            </div>
+    <article class="slds-card slds-card_boundary slds-m-around--xx-small">
+        <lightning:layout class="slds-p-around--small slds-page-header__title" horizontalAlign="spread"
+                          verticalAlign="center">
+            <lightning:layoutItem>
+                <h1>Sprints</h1>
+            </lightning:layoutItem>
+            <lightning:layoutItem>
+                <lightning:button label="Add Sprint" variant="success" onclick="{!c.onAddSprint}"/>
+            </lightning:layoutItem>
+        </lightning:layout>
             <div class="slds-scrollable">
                 <aura:if isTrue="{!not(empty(v.sprintList))}">
                     <aura:iteration items="{!v.sprintList}" var="sprint">
-                        <div class="slds-p-around--small">
+                        <div class="slds-p-around--x-small">
                             <c:SprintItem sprint="{!sprint}"/>
                         </div>
                     </aura:iteration>
                     <aura:set attribute="else">
-                        <div class="slds-align_absolute-center">No sprints found</div>
+                        <div class="slds-align_absolute-center slds-text-heading--large">No sprints found</div>
                     </aura:set>
                 </aura:if>
             </div>
-        </div>
+
     </article>
     <c:AddSprintModal isOpen="{!v.isOpen}" projectId="{!v.projectId}"/>
 </aura:component>

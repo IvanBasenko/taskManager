@@ -4,7 +4,14 @@
 /*.THIS {*/
 /*background-color: #f3f3f3;*/
 /*}*/
+@media screen {
+    .THIS .slds-scrollable {
+        height: calc(100vh - 300px);
+    }
+}
 
-.THIS .slds-scrollable {
-    height: 100vh;
+@media only screen and (max-device-width: 1100px) {
+    .THIS .slds-scrollable {
+        height: 35vh;
+    }
 }

@@ -8,7 +8,7 @@
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="Fields" type="List" default="['Task_Name__c','Project__c','Description__c']"/>
     <article>
-        <lightning:card>
+        <lightning:card variant="narrow" iconName="standard:task" class="slds-m-horizontal--small slds-card_boundary">
             <aura:set attribute="title">
                 <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
                     <lightning:layoutItem>
@@ -22,15 +22,17 @@
                     </lightning:layoutItem>
                 </lightning:layout>
             </aura:set>
-            <p class="slds-p-around--medium">
-                <lightning:recordForm
-                        recordId="{!v.taskCard.Id}"
-                        objectApiName="TaskCard__c"
-                        columns="2"
-                        mode="view"
-                        fields="{!v.Fields}"
-                />
-            </p>
+            <div class="slds-tile slds-p-horizontal--large">
+                <div class="slds-tile__detail slds-text-body--small">
+                    <lightning:recordForm
+                            recordId="{!v.taskCard.Id}"
+                            objectApiName="TaskCard__c"
+                            columns="2"
+                            mode="view"
+                            fields="{!v.Fields}"
+                    />
+                </div>
+            </div>
         </lightning:card>
     </article>
     <c:AddToSprintModalWindow isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>

@@ -29,6 +29,7 @@
                     <lightning:recordEditForm aura:id="editForm" objectApiName="TaskCard__c"
                                               onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">
                         <lightning:inputField fieldName="Task_Name__c" value=""/>
+                        <lightning:inputField fieldName="Type__c" value=""/>
                         <lightning:inputField fieldName="Description__c" value=""/>
                         <div class="slds-m-top_medium">
                             <lightning:button variant="brand" label="Submit" title="Submit"

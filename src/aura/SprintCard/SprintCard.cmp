@@ -11,7 +11,7 @@
     <aura:attribute name="Fields" type="String[]" default="['Task_Name__c','Assignee__c','Description__c']"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <article>
-        <lightning:card>
+        <lightning:card iconName="standard:task">
             <aura:set attribute="title">
                 <lightning:layout horizontalAlign="spread" verticalAlign="center">
                     <lightning:layoutItem>
@@ -33,8 +33,8 @@
                     </lightning:layoutItem>
                 </lightning:layout>
             </aura:set>
-            <div class="slds-p-around--medium">
-                <div>
+            <div class="slds-tile slds-p-horizontal--large">
+                <div class="slds-tile__detail slds-text-body--small">
                     <lightning:recordForm
                             recordId="{!v.taskCard.Id}"
                             objectApiName="TaskCard__c"
