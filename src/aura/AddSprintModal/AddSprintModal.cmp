@@ -27,6 +27,7 @@
                     <lightning:recordEditForm aura:id="editForm" objectApiName="Sprint__c"
                                               onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">
                         <lightning:inputField fieldName="Name" value=""/>
+                        <lightning:inputField fieldName="Sprint_Start_Date__c" value=""/>
                         <div class="slds-m-top_medium">
                             <lightning:button variant="brand" label="Submit" title="Submit"
                                               type="submit"/>

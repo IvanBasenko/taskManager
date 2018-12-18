@@ -8,6 +8,8 @@
         if (estimate !== 0 && total !== 0) {
             let result = (total * 100) / estimate;
             component.set('v.progress', Math.round(result * 100) / 100);
+        } else if (estimate !== 0 && total === 0 || estimate === 0) {
+            component.set('v.progress', 0);
         }
     },
     onDeleteRecord: function (component) {

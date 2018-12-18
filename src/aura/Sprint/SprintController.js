@@ -14,4 +14,25 @@
         sprintList.push(newSprint);
         component.set('v.sprintList', sprintList);
     },
+    test: function (component, event, helper) {
+        debugger;
+        let action = component.get('c.getSprintById');
+        let sprintId = event.getParam("sprintId");
+        action.setParams({
+            "id": sprintId
+        });
+        action.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                let list = component.get('v.sprintList');
+                let sprint = list.find((element) => {
+                    return element.Id === sprintId;
+                });
+                sprint.Tasks__r = [];
+                sprint.Tasks__r = sprint.Tasks__r.concat(response.getReturnValue());
+                component.set('v.sprintList', list);
+            }
+        });
+        $A.enqueueAction(action);
+
+    }
 });

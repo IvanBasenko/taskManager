@@ -1,0 +1,7 @@
+<!--
+ - Created by Ivan Basenko on 05.12.2018.
+ -->
+
+<aura:event type="COMPONENT" description="UpdateTaskOnSprint">
+    <aura:attribute name="task" type="TaskCard__c"/>
+</aura:event>

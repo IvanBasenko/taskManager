@@ -62,4 +62,25 @@ public with sharing class SprintProjectController {
                 WHERE Id IN :userIdsWhereEstimateBiggestThenSprintHours
         ];
     }
+
+    @AuraEnabled
+    public static List<TaskCard__c> getSprintById(Id id) {
+        return [
+                SELECT
+                        Assignee__c,
+                        Description__c,
+                        Estimate__c,
+                        Id,
+                        IsDeleted,
+                        Name,
+                        Project__c,
+                        Sprint_Project__c,
+                        Stage__c,
+                        Task_Name__c,
+                        Total__c,
+                        Type__c
+                FROM TaskCard__c
+                WHERE Sprint_Project__c = :id
+        ];
+    }
 }

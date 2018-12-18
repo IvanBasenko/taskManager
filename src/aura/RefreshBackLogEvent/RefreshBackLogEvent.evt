@@ -3,4 +3,5 @@
  -->
 
 <aura:event type="COMPONENT" description="RefreshBackLogEvent">
+    <aura:attribute type="Id" name="sprintId"/>
 </aura:event>

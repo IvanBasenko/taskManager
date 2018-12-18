@@ -3,7 +3,12 @@
  */
 ({
     closeModel: function (component) {
-        component.getEvent("RefreshSprint").fire();
+        let task = component.get('v.taskCard');
+        let r = component.getEvent("RefreshSprint");
+        r.setParams({
+            sprintId: task.Sprint_Project__c
+        });
+        r.fire();
         component.set("v.isOpen", false);
     },
     handleSuccess: function () {

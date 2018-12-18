@@ -25,6 +25,7 @@ public with sharing class TaskCardController {
                 WHERE RecordTypeId = :sprintId AND Sprint_Project__c = :id
         ];
     }
+
     @AuraEnabled
     public static void deleteTask(Id id) {
         Database.delete(id);
