@@ -5,10 +5,13 @@
 <aura:component description="AddSprintModal">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute access="public" name="projectId" type="Id"/>
+    <aura:attribute name="Fields" type="String[]"
+                    default="['Name','Sprint_Start_Date__c','Weeks__c']"/>
     <aura:attribute name="newSprint" type="Sprint__c" default="{
         'sobjectType': 'Sprint__c',
         'Id':'',
-        'Name': ''
+        'Name': '',
+        'Sprint_Start_Date__c': ''
     }"/>
     <aura:registerEvent name="addSprint" type="c:AddSprintEvt"/>
     <aura:if isTrue="{!v.isOpen}">
@@ -24,19 +27,14 @@
                     <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create new sprint</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordEditForm aura:id="editForm" objectApiName="Sprint__c"
-                                              onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">
-                        <lightning:inputField fieldName="Name" value=""/>
-                        <lightning:inputField fieldName="Sprint_Start_Date__c" value=""/>
-                        <div class="slds-m-top_medium">
-                            <lightning:button variant="brand" label="Submit" title="Submit"
-                                              type="submit"/>
-                            <lightning:button variant="neutral"
-                                              label="Cancel"
-                                              title="Cancel"
-                                              onclick="{! c.closeModel }"/>
-                        </div>
-                    </lightning:recordEditForm>
+                    <lightning:recordForm aura:id="editForm"
+                                          objectApiName="Sprint__c"
+                                          fields="{!v.Fields}"
+                                          columns="1"
+                                          mode="edit"
+                                          oncancel="{!c.closeModel}"
+                                          onsubmit="{!c.handleSubmit}"
+                                          onsuccess="{!c.handleSuccess}"/>
                 </div>
             </div>
         </section>
