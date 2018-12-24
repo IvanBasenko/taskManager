@@ -7,22 +7,13 @@
     <aura:registerEvent name="refreshSubTask" type="c:RefreshBackLogEvent"/>
     <aura:registerEvent name="delTime" type="c:TrackTimeAmountEvt"/>
     <aura:attribute name="Fields" type="List" default="['Time__c','Description__c']"/>
-    <div class="slds-border--bottom">
-        <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
-            <lightning:layoutItem>
-                <h3 class="slds-page-header__title">{!v.trackTime.Name}</h3>
-            </lightning:layoutItem>
-            <lightning:layoutItem>
-                <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
-            </lightning:layoutItem>
-        </lightning:layout>
-        <p class="slds-p-around--medium">
-            <lightning:recordForm
-                    recordId="{!v.trackTime.Id}"
-                    objectApiName="TrackTime__c"
-                    columns="2"
-                    mode="readonly"
-                    fields="{!v.Fields}"/>
-        </p>
+    <div class="slds-grid slds-has-flexi-truncate">
+        <lightning:pill class="slds-truncate"
+                        label="{!v.trackTime.Time__c +' h. '+v.trackTime.Description__c}"
+                        onremove="{! c.deleteRecord }">
+            <aura:set attribute="media">
+                <lightning:icon iconName="standard:today" alternativeText="Track Time"/>
+            </aura:set>
+        </lightning:pill>
     </div>
 </aura:component>

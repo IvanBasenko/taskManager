@@ -10,7 +10,7 @@
     <div class="slds-media">
         <div class="slds-media__body slds-p-around--medium">
             <div class="slds-grid slds-gutters">
-                <div class="slds-col">
+                <div class="slds-col slds-size_1-of-3">
                     <lightning:recordForm
                             recordId="{!v.subTask.Id}"
                             objectApiName="SubTask__c"
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slds-col">
+                <div class="slds-col slds-size_2-of-3">
                     <c:TrackTimeList subTaskId="{!v.subTask.Id}"/>
                 </div>
             </div>

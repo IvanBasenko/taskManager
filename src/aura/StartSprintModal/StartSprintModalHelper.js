@@ -75,7 +75,6 @@
                 eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
             }
             eventFields["Hours__c"] = weeks * 40;
-            eventFields["Status__c"] = 'In Progress';
             component.find('editForm').submit(eventFields);
         }
     },

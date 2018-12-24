@@ -1,0 +1,7 @@
+/**
+ * Created by Ivan Basenko on 20.12.2018.
+ */
+.THIS .slds-truncate {
+    width: max-content;
+    max-width: 150px;
+}

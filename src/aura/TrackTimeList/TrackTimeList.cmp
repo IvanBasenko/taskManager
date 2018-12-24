@@ -17,18 +17,21 @@
                 <lightning:button label="Track Time" variant="brand" onclick="{!c.createTrackTime}"/>
             </lightning:layoutItem>
         </lightning:layout>
-        <div class="slds-scrollable slds-border_top">
-            <aura:if isTrue="{!not(empty(v.trackTimeList))}">
-                <aura:iteration items="{!v.trackTimeList}" var="trackTime">
-                    <div class="slds-p-around--x-small ">
-                        <c:TrackTimeCard trackTime="{!trackTime}"/>
-                    </div>
-                </aura:iteration>
-                <aura:set attribute="else">
-                    <div class="slds-align_absolute-center">No sub tasks found</div>
-                </aura:set>
-            </aura:if>
-        </div>
+        <aura:if isTrue="{!not(empty(v.trackTimeList))}">
+            <div class="slds-pill_container slds-border_top">
+                <ul class="slds-listbox slds-listbox_horizontal" role="listbox" aria-label="Selected Options:"
+                    aria-orientation="horizontal">
+                    <aura:iteration items="{!v.trackTimeList}" var="trackTime">
+                        <li class="slds-listbox-item" role="presentation">
+                            <c:TrackTimeCard trackTime="{!trackTime}"/>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div>
+            <aura:set attribute="else">
+                <div class="slds-align_absolute-center">No track time found</div>
+            </aura:set>
+        </aura:if>
     </article>
     <c:TrackTimeModal subTaskId="{!v.subTaskId}" isOpen="{!v.isOpen}"/>
 </aura:component>

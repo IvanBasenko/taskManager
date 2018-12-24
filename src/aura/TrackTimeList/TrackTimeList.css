@@ -8,3 +8,11 @@
 .THIS .slds-scrollable {
     height: 30vh;
 }
+
+.THIS .slds-pill_container {
+    max-width: 360px;
+}
+
+.THIS li:first-child {
+    padding-left: .125rem;
+}
