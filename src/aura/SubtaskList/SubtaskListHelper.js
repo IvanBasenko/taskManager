@@ -22,7 +22,11 @@
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-                this.onInit(component);
+                let subTaskList = component.get('v.subTaskList');
+                subTaskList = subTaskList.filter((element) => {
+                    return element.Id !== recordId;
+                });
+                component.set('v.subTaskList', subTaskList);
             }
         });
         $A.enqueueAction(action);
