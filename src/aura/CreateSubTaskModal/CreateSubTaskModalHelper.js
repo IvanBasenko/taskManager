@@ -20,7 +20,7 @@
         });
         $A.enqueueAction(action);
     },
-    onSuccess: function (component) {
+    onSuccess: function (component, event) {
         let toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             title: 'Success Message',
@@ -29,9 +29,16 @@
         });
         toastEvent.fire();
         component.set("v.createSubTaskOpen", false);
-        //TODO change to refresh on js
-        let refreshEvent = component.getEvent("refreshSubTaskList");
-        refreshEvent.fire();
+        let response = event.getParams().response;
+        let subTask = component.get('v.subTask');
+        subTask.Id = response.id;
+        subTask.Name = response.fields.Name.value;
+        let createEvt = component.getEvent("createSubTask");
+        console.log(JSON.parse(JSON.stringify(subTask)));
+        createEvt.setParams({
+            "item": subTask
+        });
+        createEvt.fire();
     },
     onSubmit: function (component, event) {
         if (!component.get('v.factor')) {
@@ -43,6 +50,11 @@
                 "type": "error"
             });
             toastEvent.fire();
+        } else {
+            event.preventDefault();
+            let eventFields = event.getParam("fields");
+            eventFields["TaskCard__c"] = component.get('v.taskCardId');
+            component.find('editForm').submit(eventFields);
         }
     },
     onChange: function (component, event) {

@@ -14,4 +14,10 @@
     onCreateRecord: function (component) {
         component.set('v.createSubTaskOpen', true);
     },
+    addSubTask: function (component, event) {
+        let subTaskList = component.get('v.subTaskList');
+        let subTask = event.getParam("item");
+        subTaskList.push(subTask);
+        component.set('v.subTaskList', subTaskList);
+    },
 });

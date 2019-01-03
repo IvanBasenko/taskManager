@@ -7,7 +7,13 @@
     <aura:attribute name="taskCardId" type="Id"/>
     <aura:attribute access="public" name="sprintStatus" type="String"/>
     <aura:attribute name="factor" type="boolean" default="false"/>
-    <aura:registerEvent name="refreshSubTaskList" type="c:RefreshBackLogEvent"/>
+    <aura:registerEvent name="createSubTask" type="c:CreateEvent"/>
+    <aura:attribute name="subTask" type="SubTask__c" default="{
+        'sobjectType': 'SubTask__c',
+        'Id':'',
+        'Name':'',
+        'TotalTrack__c':'0'
+    }"/>
     <aura:if isTrue="{!v.createSubTaskOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -21,14 +27,13 @@
                     <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create SubTask</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordEditForm objectApiName="SubTask__c"
+                    <lightning:recordEditForm aura:id='editForm' objectApiName="SubTask__c"
                                               onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}"
                                               onload="{!c.handleLoad}">
-                        <lightning:inputField fieldName="Name"/>
-                        <lightning:inputField fieldName="Estimate__c" onchange="{!c.handleChange}"/>
-                        <lightning:inputField fieldName="Description__c"/>
-                        <lightning:inputField fieldName="Status__c"/>
-                        <lightning:inputField fieldName="TaskCard__c" value="{!v.taskCardId}"/>
+                        <lightning:inputField fieldName="Name" value=""/>
+                        <lightning:inputField fieldName="Estimate__c" value="" onchange="{!c.handleChange}"/>
+                        <lightning:inputField fieldName="Description__c" value=""/>
+                        <lightning:inputField fieldName="Status__c" value=""/>
                         <div class="slds-m-top_medium slds-align_absolute-center">
                             <lightning:buttonGroup>
                                 <lightning:button variant="brand" label="Submit" title="Submit"

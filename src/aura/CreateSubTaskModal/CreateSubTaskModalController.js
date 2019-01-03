@@ -6,21 +6,15 @@
         component.set("v.createSubTaskOpen", false);
     },
     handleSuccess: function (component, event, helper) {
-        helper.onSuccess(component);
+        helper.onSuccess(component, event);
     },
     handleSubmit: function (component, event, helper) {
-        if (component.get('v.sprintStatus') === 'In Progress') {
-            helper.onSubmit(component, event);
-        }
+        helper.onSubmit(component, event);
     },
     handleChange: function (component, event, helper) {
-        if (component.get('v.sprintStatus') === 'In Progress') {
-            helper.onChange(component, event);
-        }
+        helper.onChange(component, event);
     },
     handleLoad: function (component, event, helper) {
-        if (component.get('v.sprintStatus') === 'In Progress') {
-            helper.onLoad(component, event);
-        }
+        helper.onLoad(component, event);
     },
 });

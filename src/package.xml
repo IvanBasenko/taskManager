@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>AccountTriggerHandler</members>
+        <members>DeserializeDistanceMatrix</members>
+        <members>GoogleMapsCallout</members>
+        <members>LocationService</members>
+        <members>Request</members>
+        <members>RouteMapController</members>
         <members>SprintProjectController</members>
         <members>SubTaskController</members>
         <members>TaskCardController</members>
         <name>ApexClass</name>
     </types>
     <types>
+        <members>T</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>AccountTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>AddSprintEvt</members>
+        <members>AddSprintModal</members>
         <members>AddToSprintEvt</members>
         <members>AddToSprintModalWindow</members>
         <members>BackLog</members>
         <members>BackLogCard</members>
         <members>BackLogWrapper</members>
-        <members>ChangeRecordTypeEvent</members>
         <members>CreateSubTaskModal</members>
         <members>CreateTaskModal</members>
+        <members>DeleteRecordEvt</members>
         <members>RefreshBackLogEvent</members>
+        <members>ShowInfoSprintEvt</members>
         <members>Sprint</members>
         <members>SprintCard</members>
         <members>SprintItem</members>
@@ -29,8 +46,9 @@
         <members>TrackTimeCard</members>
         <members>TrackTimeList</members>
         <members>TrackTimeModal</members>
+        <members>UpdateTaskOnSprint</members>
         <members>ViewDetailsModal</members>
         <name>AuraDefinitionBundle</name>
     </types>
-    <version>43.0</version>
+    <version>44.0</version>
 </Package>

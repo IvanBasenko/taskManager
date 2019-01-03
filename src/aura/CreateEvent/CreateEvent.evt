@@ -1,0 +1,7 @@
+<!--
+ - Created by Ivan Basenko on 03.01.2019.
+ -->
+
+<aura:event type="COMPONENT" description="CreateEvent">
+    <aura:attribute name="item" type="Object"/>
+</aura:event>
