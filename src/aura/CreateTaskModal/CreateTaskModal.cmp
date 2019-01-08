@@ -4,7 +4,6 @@
 
 <aura:component description="CreateTaskModal">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <!--<aura:registerEvent name="RefreshBackLog" type="c:RefreshBackLogEvent"/>-->
     <aura:attribute name="showSpinner" type="Boolean" default="true"/>
     <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:attribute name="taskCard" type="TaskCard__c" default="{

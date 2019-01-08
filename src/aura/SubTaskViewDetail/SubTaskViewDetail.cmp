@@ -5,8 +5,8 @@
 <aura:component description="SubTaskViewDetail">
     <aura:attribute name="subTask" type="SubTask__c"/>
     <aura:attribute name="Fields" type="List" default="['TaskCard__c','Estimate__c','Description__c']"/>
-    <aura:handler name="addTime" event="c:TrackTimeAmountEvt" action="{!c.addTime}"/>
-    <aura:handler name="delTime" event="c:TrackTimeAmountEvt" action="{!c.delTime}"/>
+    <aura:handler name="addTrackTimeCard" event="c:TrackTimeAmountEvt" action="{!c.addTime}"/>
+    <aura:handler name="deleteTrackTimeCard" event="c:TrackTimeAmountEvt" action="{!c.delTime}"/>
     <div class="slds-media">
         <div class="slds-media__body slds-p-around--medium">
             <div class="slds-grid slds-gutters">

@@ -4,11 +4,11 @@
 ({
     closeModel: function (component) {
         let task = component.get('v.taskCard');
-        let r = component.getEvent("RefreshSprint");
-        r.setParams({
+        let sprintUpdateEvent = component.getEvent("SprintUpdate");
+        sprintUpdateEvent.setParams({
             sprintId: task.Sprint_Project__c
         });
-        r.fire();
+        sprintUpdateEvent.fire();
         component.set("v.isOpen", false);
     },
     handleSuccess: function () {

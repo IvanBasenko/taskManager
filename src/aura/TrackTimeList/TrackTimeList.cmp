@@ -7,7 +7,8 @@
     <aura:attribute access="public" name="subTaskId" type="Id"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:handler name="refreshSubTask" event="c:RefreshBackLogEvent" action="{!c.doInit}"/>
+    <aura:handler name="deleteTrackTimeCard" event="c:TrackTimeAmountEvt" action="{!c.deleteTrackTimeCard}"/>
+    <aura:handler name="addTrackTimeCard" event="c:TrackTimeAmountEvt" action="{!c.addTrackTimeCard}"/>
     <article class="slds-m-bottom_medium slds-p-bottom--medium">
         <lightning:layout class="slds-p-bottom--medium" horizontalAlign="spread" verticalAlign="center">
             <lightning:layoutItem>

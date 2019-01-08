@@ -11,13 +11,15 @@
         });
         toastEvent.fire();
         component.set("v.isOpen", false);
-        let refreshEvent = component.getEvent("refreshSubTask");
-        refreshEvent.fire();
         let response = event.getParams().response;
-        let addTimeEvt = component.getEvent("addTime");
-        addTimeEvt.setParams({
-            'time': response.fields.Time__c.value
+        let trackTimeCard = component.get('v.newTrackCard');
+        trackTimeCard.Id = response.id;
+        trackTimeCard.Time__c = response.fields.Time__c.value;
+        trackTimeCard.Description__c = response.fields.Description__c.value;
+        let addTrackTimeCard = component.getEvent("addTrackTimeCard");
+        addTrackTimeCard.setParams({
+            'trackCard': trackTimeCard
         });
-        addTimeEvt.fire();
+        addTrackTimeCard.fire();
     }
 });

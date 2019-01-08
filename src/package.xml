@@ -31,7 +31,7 @@
         <members>CreateSubTaskModal</members>
         <members>CreateTaskModal</members>
         <members>DeleteRecordEvt</members>
-        <members>RefreshBackLogEvent</members>
+        <members>SprintUpdateEvent</members>
         <members>ShowInfoSprintEvt</members>
         <members>Sprint</members>
         <members>SprintCard</members>

@@ -8,10 +8,10 @@
     <aura:attribute access="public" name="sprintStatus" type="String"/>
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:attribute name="Fields" type="List" default="['Task_Name__c','Assignee__c','Description__c']"/>
-    <aura:registerEvent name="RefreshSprint" type="c:RefreshBackLogEvent"/>
+    <aura:registerEvent name="SprintUpdate" type="c:SprintUpdateEvent"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
-                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal--large">
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal--medium">
             <div class="slds-modal__container">
                 <header class="slds-modal__header">
                     <lightning:buttonIcon iconName="utility:close"

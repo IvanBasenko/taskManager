@@ -14,8 +14,7 @@
         sprintList.push(newSprint);
         component.set('v.sprintList', sprintList);
     },
-    test: function (component, event, helper) {
-        debugger;
+    updateSprint: function (component, event) {
         let action = component.get('c.getSprintById');
         let sprintId = event.getParam("sprintId");
         action.setParams({

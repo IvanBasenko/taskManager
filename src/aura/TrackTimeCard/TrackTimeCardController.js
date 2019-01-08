@@ -2,20 +2,23 @@
  * Created by Ivan Basenko on 30.10.2018.
  */
 ({
-    deleteRecord: function (component) {
-        let recordId = component.get('v.trackTime.Id');
+    deleteTrackTimeCard: function (component, event) {
+        event.preventDefault();
+        let trackCard = component.get('v.trackTime');
         let action = component.get('c.deleteById');
         action.setParams({
-            "id": recordId
+            "id": trackCard.Id
+        });
+        action.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                let deleteTrackTimeCardEvt = component.getEvent("deleteTrackTimeCard");
+                deleteTrackTimeCardEvt.setParams({
+                    'trackCard': trackCard
+                });
+                deleteTrackTimeCardEvt.fire();
+            }
         });
         $A.enqueueAction(action);
-        //TODO change to js delete
-        component.getEvent('refreshSubTask').fire();
-        let delTimeEvt = component.getEvent("delTime");
-        delTimeEvt.setParams({
-            'time': component.get('v.trackTime.Time__c')
-        });
-        delTimeEvt.fire();
     },
     openDetails: function (component) {
         component.set('v.isOpen', true);

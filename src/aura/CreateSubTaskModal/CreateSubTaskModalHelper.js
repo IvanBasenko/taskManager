@@ -34,7 +34,6 @@
         subTask.Id = response.id;
         subTask.Name = response.fields.Name.value;
         let createEvt = component.getEvent("createSubTask");
-        console.log(JSON.parse(JSON.stringify(subTask)));
         createEvt.setParams({
             "item": subTask
         });

@@ -4,14 +4,13 @@
 
 <aura:component description="TrackTimeCard" controller="SubTaskController">
     <aura:attribute name="trackTime" type="TrackTime__c"/>
-    <aura:registerEvent name="refreshSubTask" type="c:RefreshBackLogEvent"/>
-    <aura:registerEvent name="delTime" type="c:TrackTimeAmountEvt"/>
+    <aura:registerEvent name="deleteTrackTimeCard" type="c:TrackTimeAmountEvt"/>
     <aura:attribute name="Fields" type="List" default="['Time__c','Description__c']"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <div class="slds-grid slds-has-flexi-truncate">
         <lightning:pill class="slds-truncate"
                         label="{!v.trackTime.Time__c +' h. '+v.trackTime.Description__c}"
-                        onremove="{! c.deleteRecord }" onclick="{!c.openDetails}">
+                        onremove="{! c.deleteTrackTimeCard }" onclick="{!c.openDetails}">
             <aura:set attribute="media">
                 <lightning:icon iconName="standard:today" alternativeText="Track Time"/>
             </aura:set>
