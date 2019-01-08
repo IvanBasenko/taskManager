@@ -16,5 +16,8 @@
             'time': component.get('v.trackTime.Time__c')
         });
         delTimeEvt.fire();
-    }
+    },
+    openDetails: function (component) {
+        component.set('v.isOpen', true);
+    },
 });

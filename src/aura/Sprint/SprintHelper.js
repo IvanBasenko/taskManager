@@ -10,7 +10,13 @@
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-                component.set('v.sprintList', response.getReturnValue());
+                let sprintList = response.getReturnValue();
+                component.set('v.sprintList', sprintList);
+                sprintList.forEach(function (sprint) {
+                    if (sprint.Status__c !== 'Closed') {
+                        component.set('v.allSprintCompleted', false);
+                    }
+                });
             }
         });
         $A.enqueueAction(action);
