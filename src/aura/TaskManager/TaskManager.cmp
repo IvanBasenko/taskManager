@@ -4,17 +4,10 @@
 
 <aura:component description="TaskManager"
                 implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
-                access="global">
+                access="global" controller="SprintProjectController">
     <aura:attribute name="recordId" type="Id"/>
-    <aura:attribute name="record" type="Sprint__c"/>
-    <aura:attribute name="status" type="String"/>
-    <aura:attribute name="fields" type="String[]" default="['Status__c']"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="addToSprint" event="c:AddToSprintEvt" action="{!c.toSprint}"/>
-    <!--<force:recordData fields="{!v.fields}"-->
-    <!--recordId="{!v.recordId}"-->
-    <!--targetFields="{!v.record}"-->
-    <!--recordUpdated="{!c.getStatus}"/>-->
-    <!--<div style="{!'width: ' + v.width + '; height: ' + v.height + '; border:none; overflow-y:hidden;'}">-->
     <lightning:card>
         <lightning:layout multipleRows="true">
             <lightning:layoutItem size="6" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="8">
@@ -25,6 +18,5 @@
             </lightning:layoutItem>
         </lightning:layout>
     </lightning:card>
-    <!--</div>-->
 
 </aura:component>

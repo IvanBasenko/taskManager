@@ -23,7 +23,28 @@
         sprintComponent.set('v.sprintList', sprintList);
         backLogComponent.set('v.taskCardList', backLogList);
     },
-    // getStatus: function (component) {
-    //     component.set('v.status', component.get("v.record").Status__c);
-    // }
+    doInit: function (component) {
+        let BreakException = {};
+        let backLogComponent = component.find('backLogList');
+        let sprintComponent = component.find('sprintList');
+        let action = component.get('c.getSprints');
+        let projectId = component.get('v.recordId');
+        action.setParams({
+            "projectId": projectId
+        });
+        action.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                let sprintList = response.getReturnValue();
+                sprintComponent.set('v.sprintList', sprintList);
+                sprintList.forEach(function (sprint) {
+                    if (sprint.Status__c !== 'Closed') {
+                        backLogComponent.set('v.currentSprintId', sprint.Id);
+                        sprintComponent.set('v.allSprintCompleted', false);
+                        throw BreakException;
+                    }
+                });
+            }
+        });
+        $A.enqueueAction(action);
+    },
 });

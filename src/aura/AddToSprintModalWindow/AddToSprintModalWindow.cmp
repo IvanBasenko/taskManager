@@ -4,6 +4,7 @@
 
 <aura:component description="AddToSprintModalWindow">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute access="public" name="currentSprintId" type="Id"/>
     <aura:attribute name="taskCard" type="TaskCard__c" default="{
         'sobjectType': 'TaskCard__c',
         'Estimate__c': '',
@@ -14,7 +15,7 @@
     <aura:registerEvent name="addToSprint" type="c:AddToSprintEvt"/>
     <aura:attribute name="recordType" type="String" default="0121t000000DREgAAO"/>
     <aura:attribute name="Fields" type="String[]"
-                    default="['Task_Name__c','Assignee__c','Sprint_Project__c','Name','Estimate__c','Total__c','Description__c']"/>
+                    default="['Task_Name__c','Assignee__c','Estimate__c','Total__c','Description__c']"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -28,15 +29,16 @@
                     <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Move to sprint</h2>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordForm
-                            recordId="{!v.taskCard.Id}"
-                            objectApiName="TaskCard__c"
-                            recordTypeId="{!v.recordType}"
-                            fields="{!v.Fields}"
-                            columns="3"
-                            mode="edit"
-                            oncancel="{!c.closeModel}"
-                            onsuccess="{!c.handleSuccess}"/>
+                    <lightning:recordForm aura:id="editForm"
+                                          recordId="{!v.taskCard.Id}"
+                                          objectApiName="TaskCard__c"
+                                          recordTypeId="{!v.recordType}"
+                                          fields="{!v.Fields}"
+                                          columns="2"
+                                          mode="edit"
+                                          oncancel="{!c.closeModel}"
+                                          onsubmit="{!c.handleSubmit}"
+                                          onsuccess="{!c.handleSuccess}"/>
                 </div>
             </div>
         </section>
