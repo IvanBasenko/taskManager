@@ -5,11 +5,11 @@
     addTime: function (component, event) {
         let trackCard = event.getParam("trackCard");
         let totalTrack = component.get('v.subTask.TotalTrack__c');
-        component.set('v.subTask.TotalTrack__c', totalTrack + trackCard.Time__c)
+        component.set('v.subTask.TotalTrack__c', parseInt(totalTrack) + parseInt(trackCard.Time__c));
     },
     delTime: function (component, event) {
         let trackCard = event.getParam("trackCard");
         let totalTrack = component.get('v.subTask.TotalTrack__c');
-        component.set('v.subTask.TotalTrack__c', totalTrack - trackCard.Time__c)
+        component.set('v.subTask.TotalTrack__c', parseInt(totalTrack) - parseInt(trackCard.Time__c));
     }
 });

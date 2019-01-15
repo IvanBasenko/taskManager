@@ -39,12 +39,14 @@
             let weeks = eventFields['Weeks__c'];
             let startDate = eventFields['Sprint_Start_Date__c'];
             let result = new Date(startDate);
-            result.setDate(result.getDate() + (7 * weeks));
-            eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
-            eventFields["Hours__c"] = weeks * 40;
-            eventFields["Status__c"] = 'Open';
-            eventFields["Project__c"] = component.get('v.projectId');
-            component.find('editForm').submit(eventFields);
+            if (result >= new Date().getTime()) {
+                result.setDate(result.getDate() + (7 * weeks));
+                eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
+                eventFields["Hours__c"] = weeks * 40;
+                eventFields["Status__c"] = 'Open';
+                eventFields["Project__c"] = component.get('v.projectId');
+                component.find('editForm').submit(eventFields);
+            }
         }
     }
 });

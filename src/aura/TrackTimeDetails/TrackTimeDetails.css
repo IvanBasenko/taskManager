@@ -1,10 +1,6 @@
 /**
- * Created by Ivan Basenko on 30.10.2018.
+ * Created by Ivan Basenko on 15.01.2019.
  */
-.THIS .slds-modal__container {
-    width: min-content;
-}
-
 .THIS.slds-backdrop {
     width: 100vw;
     height: 100vh;

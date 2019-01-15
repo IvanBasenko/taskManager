@@ -27,7 +27,7 @@
             <div class="slds-scrollable">
                 <aura:if isTrue="{!not(empty(v.taskCardList))}">
                     <aura:iteration items="{!v.taskCardList}" var="task">
-                        <div class="slds-p-around--x-small">
+                        <div class="slds-p-around--x-small backlog-card">
                             <c:BackLogCard currentSprintId="{!v.currentSprintId}" taskCard="{!task}"/>
                         </div>
                     </aura:iteration>

@@ -18,23 +18,25 @@
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
-                <header class="slds-modal__header">
-                    <lightning:buttonIcon iconName="utility:close"
-                                          onclick="{! c.closeModel }"
-                                          alternativeText="close"
-                                          variant="bare-inverse"
-                                          class="slds-modal__close"/>
-                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create new sprint</h2>
-                </header>
-                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordForm aura:id="editForm"
-                                          objectApiName="Sprint__c"
-                                          fields="{!v.Fields}"
-                                          columns="1"
-                                          mode="edit"
-                                          oncancel="{!c.closeModel}"
-                                          onsubmit="{!c.handleSubmit}"
-                                          onsuccess="{!c.handleSuccess}"/>
+                <div class="shadow">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create new sprint</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:recordForm aura:id="editForm"
+                                              objectApiName="Sprint__c"
+                                              fields="{!v.Fields}"
+                                              columns="1"
+                                              mode="edit"
+                                              oncancel="{!c.closeModel}"
+                                              onsubmit="{!c.handleSubmit}"
+                                              onsuccess="{!c.handleSuccess}"/>
+                    </div>
                 </div>
             </div>
         </section>

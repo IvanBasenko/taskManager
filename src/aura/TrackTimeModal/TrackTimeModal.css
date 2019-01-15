@@ -5,3 +5,11 @@
 .THIS .slds-modal__container {
     width: min-content;
 }
+
+.THIS.slds-backdrop {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+}

@@ -22,12 +22,14 @@ public with sharing class SprintProjectController {
                                 Estimate__c,
                                 Assignee__c,
                                 Name,
+                                Task_Name__c,
                                 Description__c,
                                 Total__c
                         FROM Tasks__r
                 )
                 FROM Sprint__c
                 WHERE Project__c = :projectId
+                ORDER BY CreatedDate DESC
         ];
     }
 

@@ -39,6 +39,7 @@
                 sprintList.forEach(function (sprint) {
                     if (sprint.Status__c !== 'Closed') {
                         backLogComponent.set('v.currentSprintId', sprint.Id);
+                        sprintComponent.set('v.currentSprintId', sprint.Id);
                         sprintComponent.set('v.allSprintCompleted', false);
                         throw BreakException;
                     }
@@ -46,5 +47,12 @@
             }
         });
         $A.enqueueAction(action);
+    },
+    handleAddSprint: function (component, event) {
+        let newSprint = event.getParam("sprint");
+        let backLogComponent = component.find('backLogList');
+        let sprintComponent = component.find('sprintList');
+        backLogComponent.set('v.currentSprintId', newSprint.Id);
+        sprintComponent.set('v.currentSprintId', newSprint.Id);
     },
 });

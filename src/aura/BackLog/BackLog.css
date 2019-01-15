@@ -15,3 +15,7 @@
         height: 35vh;
     }
 }
+
+.THIS .backlog-card:first-child {
+    padding-top: 0;
+}

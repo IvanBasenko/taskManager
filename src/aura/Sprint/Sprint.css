@@ -16,3 +16,7 @@
 .THIS.slds-card {
     background-color: #e7e7e7;
 }
+
+.THIS .sprint-card:first-child {
+    padding-top: 0;
+}

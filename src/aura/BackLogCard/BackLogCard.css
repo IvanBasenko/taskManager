@@ -4,10 +4,24 @@
 .THIS .slds-card {
     border-radius: 7px;
     box-shadow: 0 2px 3px 0 rgba(12, 2, 23, 0.32);
+    animation-name: fade;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
 }
 
 
 .THIS .slds-form-element__static {
     /*font-size: 16px;*/
     color: #2e57d7;
+}
+
+@keyframes fade {
+    0% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+    }
+    100% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
 }
