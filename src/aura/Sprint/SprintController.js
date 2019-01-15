@@ -11,8 +11,9 @@
     handleAddSprint: function (component, event) {
         let sprintList = component.get('v.sprintList');
         let newSprint = event.getParam("sprint");
-        sprintList.push(newSprint);
+        sprintList.unshift(newSprint);
         component.set('v.sprintList', sprintList);
+        component.set('v.allSprintCompleted', false);
     },
     updateSprint: function (component, event) {
         let action = component.get('c.getSprintById');
@@ -32,6 +33,5 @@
             }
         });
         $A.enqueueAction(action);
-
     }
 });

@@ -8,6 +8,9 @@
     <aura:attribute access="public" name="isStarted" type="Boolean" default="false"/>
     <aura:attribute access="public" name="sprint" type="Sprint__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute access="public" name="currentSprintId" type="Id"/>
+    <aura:attribute name="options" type="List" default="[]"/>
+    <aura:attribute name="sprintCompleted" type="boolean" default="false"/>
     <aura:attribute access="public" name="sprintStatus" type="String" default="{
         'sobjectType': 'Sprint__c',
         'Status__c': '',
@@ -25,7 +28,7 @@
                     <lightning:icon iconName="utility:edit" size="medium"
                                     alternativeText="Show" title="Rofl"/>
                 </button>
-                <button disabled="disabled" onclick="{!c.startSprint}"
+                <button onclick="{!c.completeSprint}"
                         class="slds-button">
                     <lightning:icon iconName="utility:check" size="medium"
                                     alternativeText="Show"/>
@@ -74,4 +77,6 @@
         </div>
     </div>
     <c:StartSprintModal isOpen="{!v.isOpen}" sprint="{!v.sprint}"/>
+    <c:CompleteSprintWindow currentSprintId="{!v.currentSprintId}" isOpen="{!v.sprintCompleted}"
+                            options="{!v.options}"/>
 </aura:component>

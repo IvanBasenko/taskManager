@@ -20,5 +20,18 @@
         sprint.Status__c = event.getParam('sprintStatus');
         sprint.Sprint_Start_Date__c = event.getParam('startDate');
         component.set('v.sprint', sprint);
+    },
+    completeSprint: function (component) {
+        component.set('v.sprintCompleted', true);
+        let tasks = component.get('v.sprint.Tasks__r');
+        let items = [];
+        tasks.forEach(function (task) {
+            let item = {
+                "label": task.Name + ": " + task.Task_Name__c,
+                "value": task.Id
+            };
+            items.push(item);
+        });
+        component.set("v.options", items);
     }
 });
