@@ -33,7 +33,6 @@
                     <lightning:icon iconName="utility:check" size="medium"
                                     alternativeText="Show"/>
                 </button>
-
             </div>
         </div>
         <div class="slds-p-horizontal--medium slds-p-vertical--small">

@@ -6,9 +6,10 @@
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="progress" type="Decimal" default="0"/>
+    <aura:attribute name="maskProgress" type="Decimal" default="100"/>
     <aura:attribute access="public" name="sprintStatus" type="String"/>
     <aura:registerEvent name="deleteTask" type="c:DeleteRecordEvt"/>
-    <aura:attribute name="Fields" type="String[]" default="['Task_Name__c','Assignee__c','Description__c']"/>
+    <aura:attribute name="Fields" type="String[]" default="['Task_Name__c','Assignee__c','Stage__c','Description__c']"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <article>
         <lightning:card iconName="standard:task">
@@ -20,9 +21,14 @@
                                  id="progress-bar-label-id-1">
                                 <span class="label">{!v.taskCard.Name}: {!v.progress}% Complete</span>
                             </div>
-                            <lightning:progressBar class="{!v.progress == 100 ? 'test' : ''}" value="{!v.progress}"
-                                                   size="small"
-                                                   variant="circular"/>
+                            <div class="border-background">
+                                <div style="{!'clip-path: inset(0 '+ v.maskProgress+'% 0 0);'}">
+                                    <lightning:progressBar value="100"
+                                                           size="small"
+                                                           variant="circular">
+                                    </lightning:progressBar>
+                                </div>
+                            </div>
                         </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
@@ -39,7 +45,7 @@
                             recordId="{!v.taskCard.Id}"
                             objectApiName="TaskCard__c"
                             fields="{!v.Fields}"
-                            columns="2"
+                            columns="3"
                             mode="readonly"/>
                 </div>
 
@@ -62,7 +68,7 @@
                         <div class="recordView">
                             <span class="label slds-form-element__label">Total</span>
                             <span class="outputStyle slds-form-element__control"><lightning:formattedNumber
-                                    value="{!v.taskCard.Total__c}"/></span>
+                                        value="{!v.taskCard.Total__c}"/></span>
                             <div style="padding-right: 23px">
                                 <hr/>
                             </div>

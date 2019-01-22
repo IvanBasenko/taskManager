@@ -22,6 +22,7 @@ public with sharing class SprintProjectController {
                                 Estimate__c,
                                 Assignee__c,
                                 Name,
+                                Stage__c,
                                 Task_Name__c,
                                 Description__c,
                                 Total__c

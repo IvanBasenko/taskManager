@@ -4,7 +4,7 @@
 .THIS .slds-card {
     border-radius: 7px;
     box-shadow: 0 2px 3px 0 rgba(12, 2, 23, 0.32);
-    animation-name: fade;
+    animation-name: backlog;
     animation-duration: 0.5s;
     animation-direction: alternate;
 }
@@ -15,7 +15,7 @@
     color: #2e57d7;
 }
 
-@keyframes fade {
+@keyframes backlog {
     0% {
         transform: scale(0.5);
         -webkit-transform: scale(0.5);

@@ -24,7 +24,6 @@
         backLogComponent.set('v.taskCardList', backLogList);
     },
     doInit: function (component) {
-        let BreakException = {};
         let backLogComponent = component.find('backLogList');
         let sprintComponent = component.find('sprintList');
         let action = component.get('c.getSprints');
@@ -41,7 +40,7 @@
                         backLogComponent.set('v.currentSprintId', sprint.Id);
                         sprintComponent.set('v.currentSprintId', sprint.Id);
                         sprintComponent.set('v.allSprintCompleted', false);
-                        throw BreakException;
+                        component.set('v.currentSprintId', sprint.Id);
                     }
                 });
             }
@@ -54,5 +53,28 @@
         let sprintComponent = component.find('sprintList');
         backLogComponent.set('v.currentSprintId', newSprint.Id);
         sprintComponent.set('v.currentSprintId', newSprint.Id);
+        component.set('v.currentSprintId', newSprint.Id);
+    },
+    createCloneTask: function (component, event) {
+        let clones = event.getParam("item");
+        let backLogComponent = component.find('backLogList');
+        let sprintComponent = component.find('sprintList');
+        let sprintList = sprintComponent.get('v.sprintList');
+        let backLogList = backLogComponent.get('v.taskCardList');
+        let sprint = sprintList.find((element) => {
+            return element.Id === component.get('v.currentSprintId');
+        });
+        let taskToNewSprint = clones.taskToNewSprint;
+
+        taskToNewSprint.forEach(function (task) {
+            if (sprint.Tasks__r !== undefined) {
+                sprint.Tasks__r.push(task);
+            } else {
+                sprint.Tasks__r = [];
+                sprint.Tasks__r.push(task);
+            }
+        });
+        sprintComponent.set('v.sprintList', sprintList);
+        backLogComponent.set('v.taskCardList', backLogList.concat(clones.taskToBacklog));
     },
 });

@@ -23,4 +23,12 @@
     openDetails: function (component) {
         component.set('v.isOpen', true);
     },
+    doInit: function (component) {
+        let regex = /(&nbsp;|<([^>]+)>)/ig;
+        let trackTime = component.get('v.trackTime');
+        if (trackTime.Description__c !== null) {
+            trackTime.Description__c = trackTime.Description__c.replace(regex, '');
+            component.set('v.trackTime', trackTime)
+        }
+    },
 });

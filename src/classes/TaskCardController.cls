@@ -16,15 +16,6 @@ public with sharing class TaskCardController {
     public static Id getSprintTypeId() {
         return Schema.SObjectType.TaskCard__c.getRecordTypeInfosByName().get('Sprint').getRecordTypeId();
     }
-    @AuraEnabled
-    public static List<TaskCard__c> getSprintTaskCard(Id id) {
-        Id sprintId = getSprintTypeId();
-        return [
-                SELECT Id,Name,Task_Name__c, Description__c,Assignee__c,Estimate__c,Total__c,Sprint_Project__c,RecordTypeId
-                FROM TaskCard__c
-                WHERE RecordTypeId = :sprintId AND Sprint_Project__c = :id
-        ];
-    }
 
     @AuraEnabled
     public static void deleteTask(Id id) {
@@ -64,6 +55,8 @@ public with sharing class TaskCardController {
                 FROM TaskCard__c
                 WHERE Id IN :allUnCompletedTaskIds
         ];
+        List<TaskCard__c> tasksToBacklog = new List<TaskCard__c>();
+        List<TaskCard__c> tasksToNewSprint = new List<TaskCard__c>();
         List<TaskCard__c> tasksToInsert = new List<TaskCard__c>();
         for (TaskCard__c taskCard : originalTasks) {
             TaskCard__c cloneTaskCard = taskCard.clone(false, true, true, false);
@@ -77,8 +70,62 @@ public with sharing class TaskCardController {
             cloneTaskCard.Stage__c = 'New';
             tasksToInsert.add(cloneTaskCard);
         }
-        System.debug(tasksToInsert);
         insert tasksToInsert;
-        return null;
+        List<SubTask__c> subTasksToInsert = new List<SubTask__c>();
+        for (TaskCard__c taskCard : tasksToInsert) {
+            for (SubTask__c subTask : taskCard.SubTask__r) {
+                SubTask__c cloneSubTask = subTask.clone(false, true, true, false);
+                cloneSubTask.TaskCard__c = taskCard.Id;
+                cloneSubTask.Estimate__c = cloneSubTask.Estimate__c - cloneSubTask.TotalTrack__c;
+                cloneSubTask.Status__c = 'To Do';
+                subTasksToInsert.add(cloneSubTask);
+            }
+        }
+        insert subTasksToInsert;
+
+        Set<Id> insertedTaskIds = (new Map<Id, SObject>(tasksToInsert)).keySet();
+        List<TaskCard__c> cloneTask = [
+                SELECT
+                        Assignee__c,
+                        Description__c,
+                        Estimate__c,
+                        Id,
+                        Name,
+                        OwnerId,
+                        Project__c,
+                        RecordTypeId,
+                        Sprint_Project__c,
+                        Stage__c,
+                        Task_Name__c,
+                        Total__c,
+                        Type__c, (
+                        SELECT
+                                Description__c,
+                                Estimate__c,
+                                Id,
+                                Name,
+                                Status__c,
+                                TaskCard__c,
+                                TotalTrack__c
+                        FROM SubTask__r
+                )
+                FROM TaskCard__c
+                WHERE Id IN :insertedTaskIds
+        ];
+
+        for (TaskCard__c taskCard : cloneTask) {
+            if (taskCard.Sprint_Project__c == null) {
+                tasksToBacklog.add(taskCard);
+            } else {
+                tasksToNewSprint.add(taskCard);
+            }
+        }
+
+        JSONGenerator jsonGen = JSON.createGenerator(true);
+        jsonGen.writeStartObject();
+        jsonGen.writeObjectField('taskToNewSprint', tasksToNewSprint);
+        jsonGen.writeObjectField('taskToBacklog', tasksToBacklog);
+        jsonGen.writeEndObject();
+        return jsonGen.getAsString();
     }
 }

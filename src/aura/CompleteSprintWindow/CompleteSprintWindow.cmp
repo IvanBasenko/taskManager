@@ -7,13 +7,14 @@
     <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:attribute name="options" type="List" default="[]"/>
     <aura:attribute type="List" name="SelectedValues"/>
+    <aura:registerEvent name="createCloneTasks" type="c:CreateEvent"/>
     <aura:attribute access="public" name="currentSprintId" type="Id"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
                 <div class="shadow">
-                    <header class="slds-modal__header">
+                    <header class="slds-modal__header slds-theme--inverse">
                         <lightning:buttonIcon iconName="utility:close"
                                               onclick="{! c.closeModel }"
                                               alternativeText="close"

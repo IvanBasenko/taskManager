@@ -26,11 +26,13 @@
         let tasks = component.get('v.sprint.Tasks__r');
         let items = [];
         tasks.forEach(function (task) {
-            let item = {
-                "label": task.Name + ": " + task.Task_Name__c,
-                "value": task.Id
-            };
-            items.push(item);
+            if (task.Stage__c !== 'Complete') {
+                let item = {
+                    "label": task.Name + ": " + task.Task_Name__c,
+                    "value": task.Id
+                };
+                items.push(item);
+            }
         });
         component.set("v.options", items);
     }

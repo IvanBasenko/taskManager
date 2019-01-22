@@ -18,8 +18,9 @@
                 tasksToNewSprint.push(sprint.value)
             }
         });
+        console.log(JSON.parse(JSON.stringify(tasksToNewSprint)));
+        console.log(JSON.parse(JSON.stringify(tasksToBacklog)));
         let action = component.get('c.cloneTask');
-        console.log(component.get('v.currentSprintId'));
         action.setParams({
             "sprintTaskIds": tasksToNewSprint,
             "backlogTaskIds": tasksToBacklog,
@@ -27,7 +28,14 @@
         });
         action.setCallback(this, function (response) {
             if (response.getState() === 'SUCCESS') {
-
+                let createEvt = component.getEvent("createCloneTasks");
+                createEvt.setParams({
+                    "item": JSON.parse(response.getReturnValue())
+                });
+                createEvt.fire();
+                component.set("v.isOpen", false);
+                component.set('v.options', []);
+                component.set('v.SelectedValues', []);
             }
         });
         $A.enqueueAction(action);

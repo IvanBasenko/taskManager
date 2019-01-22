@@ -6,6 +6,7 @@
     <aura:attribute name="trackTime" type="TrackTime__c"/>
     <aura:registerEvent name="deleteTrackTimeCard" type="c:TrackTimeAmountEvt"/>
     <aura:attribute name="Fields" type="List" default="['Time__c','Description__c']"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <div class="slds-grid slds-has-flexi-truncate">
         <lightning:pill class="slds-truncate"

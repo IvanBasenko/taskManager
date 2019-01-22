@@ -10,7 +10,7 @@
         <lightning:recordForm
                 recordId="{!v.recordId}"
                 objectApiName="Sprint__c"
-                columns="2"
+                columns="5"
                 mode="readonly"
                 fields="{!v.Fields}"/>
     </p>

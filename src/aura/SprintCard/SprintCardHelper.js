@@ -7,9 +7,12 @@
         let total = component.get('v.taskCard.Total__c');
         if (estimate !== 0 && total !== 0) {
             let result = (total * 100) / estimate;
-            component.set('v.progress', Math.round(result * 100) / 100);
+            let progress = Math.round(result * 100) / 100;
+            component.set('v.progress', progress);
+            component.set('v.maskProgress', 100 - progress);
         } else if (estimate !== 0 && total === 0 || estimate === 0) {
             component.set('v.progress', 0);
+            component.set('v.maskProgress', 100);
         }
     },
     onDeleteRecord: function (component) {
