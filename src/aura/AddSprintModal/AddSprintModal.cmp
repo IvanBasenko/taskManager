@@ -4,6 +4,7 @@
 
 <aura:component description="AddSprintModal">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute access="public" name="sprintList" type="Sprint__c[]"/>
     <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:attribute name="Fields" type="String[]"
                     default="['Name','Sprint_Start_Date__c','Weeks__c']"/>
@@ -11,7 +12,8 @@
         'sobjectType': 'Sprint__c',
         'Id':'',
         'Name': '',
-        'Sprint_Start_Date__c': ''
+        'Sprint_Start_Date__c': '',
+        'End_Date__c': ''
     }"/>
     <aura:registerEvent name="addSprint" type="c:AddSprintEvt"/>
     <aura:if isTrue="{!v.isOpen}">

@@ -21,7 +21,7 @@
                 <h1>Sprints</h1>
             </lightning:layoutItem>
             <lightning:layoutItem>
-                <lightning:button class="{!v.allSprintCompleted ? 'slds-show':'slds-hidden'}" label="Add Sprint"
+                <lightning:button label="Add Sprint"
                                   variant="success" onclick="{!c.onAddSprint}"/>
             </lightning:layoutItem>
         </lightning:layout>
@@ -39,5 +39,5 @@
         </div>
 
     </article>
-    <c:AddSprintModal isOpen="{!v.isOpen}" projectId="{!v.projectId}"/>
+    <c:AddSprintModal isOpen="{!v.isOpen}" sprintList="{!v.sprintList}" projectId="{!v.projectId}"/>
 </aura:component>
