@@ -3,24 +3,28 @@
  */
 ({
     onSuccess: function (component, event) {
-        let toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            title: 'Success Message',
-            message: 'Sprint has created',
-            type: 'success'
-        });
-        toastEvent.fire();
-        component.set("v.isOpen", false);
-        const response = event.getParam("fields");
-        let sprint = component.get('v.newSprint');
-        sprint.Id = event.getParam("id");
-        sprint.Name = response['Name'].value;
-        sprint.Sprint_Start_Date__c = response['Sprint_Start_Date__c'].value;
-        let addToSprint = component.getEvent("addSprint");
-        addToSprint.setParams({
-            "sprint": sprint
-        });
-        addToSprint.fire();
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            let toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                title: 'Success Message',
+                message: 'Sprint has created',
+                type: 'success'
+            });
+            toastEvent.fire();
+            component.set("v.isOpen", false);
+            const response = event.getParam("fields");
+            let sprint = component.get('v.newSprint');
+            sprint.Id = event.getParam("id");
+            sprint.Name = response['Name'].value;
+            sprint.Sprint_Start_Date__c = response['Sprint_Start_Date__c'].value;
+            let addToSprint = component.getEvent("addSprint");
+            addToSprint.setParams({
+                "sprint": sprint
+            });
+            addToSprint.fire();
+        }, 250);
     },
     onSubmit: function (component, event) {
         let eventFields = event.getParam("fields");

@@ -68,8 +68,7 @@
                 result.setDate(result.getDate() + (7 * weeks));
                 eventFields["Sprint_Start_Date__c"] = $A.localizationService.formatDate(new Date(), "yyyy-MM-dd");
                 eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
-            }
-            else {
+            } else {
                 let result = new Date(startDate);
                 result.setDate(result.getDate() + (7 * weeks));
                 eventFields["End_Date__c"] = $A.localizationService.formatDate(result, "yyyy-MM-dd");
@@ -79,21 +78,24 @@
         }
     },
     onSuccess: function (component, event) {
-        let toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            title: 'Success',
-            message: 'Sprint has been started',
-            type: 'success'
-        });
-        toastEvent.fire();
-        component.set("v.isOpen", false);
-        let response = event.getParams('Vn');
-        let showInfoEvt = component.getEvent("showInfo");
-        showInfoEvt.setParams({
-            "sprintStatus": response.fields.Status__c.value,
-            "startDate": response.fields.Sprint_Start_Date__c.value
-        });
-        showInfoEvt.fire();
-
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            let toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                title: 'Success',
+                message: 'Sprint has been started',
+                type: 'success'
+            });
+            toastEvent.fire();
+            component.set("v.isOpen", false);
+            let response = event.getParams('Vn');
+            let showInfoEvt = component.getEvent("showInfo");
+            showInfoEvt.setParams({
+                "sprintStatus": response.fields.Status__c.value,
+                "startDate": response.fields.Sprint_Start_Date__c.value
+            });
+            showInfoEvt.fire();
+        }, 250);
     }
 });

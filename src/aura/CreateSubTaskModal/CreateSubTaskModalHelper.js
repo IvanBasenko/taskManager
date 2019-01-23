@@ -21,23 +21,27 @@
         $A.enqueueAction(action);
     },
     onSuccess: function (component, event) {
-        let toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            title: 'Success Message',
-            message: 'SubTask was created',
-            type: 'success'
-        });
-        toastEvent.fire();
-        component.set("v.createSubTaskOpen", false);
-        let response = event.getParams().response;
-        let subTask = component.get('v.subTask');
-        subTask.Id = response.id;
-        subTask.Name = response.fields.Name.value;
-        let createEvt = component.getEvent("createSubTask");
-        createEvt.setParams({
-            "item": subTask
-        });
-        createEvt.fire();
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            let toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                title: 'Success Message',
+                message: 'SubTask was created',
+                type: 'success'
+            });
+            toastEvent.fire();
+            component.set("v.createSubTaskOpen", false);
+            let response = event.getParams().response;
+            let subTask = component.get('v.subTask');
+            subTask.Id = response.id;
+            subTask.Name = response.fields.Name.value;
+            let createEvt = component.getEvent("createSubTask");
+            createEvt.setParams({
+                "item": subTask
+            });
+            createEvt.fire();
+        }, 250);
     },
     onSubmit: function (component, event) {
         if (!component.get('v.factor')) {

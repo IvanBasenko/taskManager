@@ -3,23 +3,27 @@
  */
 ({
     onSuccess: function (component, event) {
-        let toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            title: 'Success Message',
-            message: 'Mode is pester ,duration is 5sec and this is normal Message',
-            type: 'success'
-        });
-        toastEvent.fire();
-        component.set("v.isOpen", false);
-        let response = event.getParams().response;
-        let trackTimeCard = component.get('v.newTrackCard');
-        trackTimeCard.Id = response.id;
-        trackTimeCard.Time__c = response.fields.Time__c.value;
-        trackTimeCard.Description__c = response.fields.Description__c.value;
-        let addTrackTimeCard = component.getEvent("addTrackTimeCard");
-        addTrackTimeCard.setParams({
-            'trackCard': trackTimeCard
-        });
-        addTrackTimeCard.fire();
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            let toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                title: 'Success Message',
+                message: 'Mode is pester ,duration is 5sec and this is normal Message',
+                type: 'success'
+            });
+            toastEvent.fire();
+            component.set("v.isOpen", false);
+            let response = event.getParams().response;
+            let trackTimeCard = component.get('v.newTrackCard');
+            trackTimeCard.Id = response.id;
+            trackTimeCard.Time__c = response.fields.Time__c.value;
+            trackTimeCard.Description__c = response.fields.Description__c.value;
+            let addTrackTimeCard = component.getEvent("addTrackTimeCard");
+            addTrackTimeCard.setParams({
+                'trackCard': trackTimeCard
+            });
+            addTrackTimeCard.fire();
+        }, 250);
     }
 });

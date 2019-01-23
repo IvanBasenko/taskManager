@@ -2,8 +2,12 @@
  * Created by Ivan Basenko on 07.11.2018.
  */
 ({
-    closeModel: function (component, event, helper) {
-        component.set("v.isOpen", false);
+    closeModal: function (component) {
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            component.set("v.isOpen", false);
+        }, 250);
     },
     handleChange: function (component, event, helper) {
         helper.onChange(component, event);

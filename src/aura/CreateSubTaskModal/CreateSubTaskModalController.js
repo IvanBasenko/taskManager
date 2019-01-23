@@ -2,8 +2,12 @@
  * Created by Ivan Basenko on 30.10.2018.
  */
 ({
-    closeModel: function (component) {
-        component.set("v.createSubTaskOpen", false);
+    closeModal: function (component) {
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            component.set("v.createSubTaskOpen", false);
+        }, 250);
     },
     handleSuccess: function (component, event, helper) {
         helper.onSuccess(component, event);

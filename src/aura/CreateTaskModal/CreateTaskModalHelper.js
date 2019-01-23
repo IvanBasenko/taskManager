@@ -3,23 +3,27 @@
  */
 ({
     onSuccess: function (component, event) {
-        let toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            title: 'Success Message',
-            message: 'Task has been created',
-            type: 'success'
-        });
-        toastEvent.fire();
-        component.set("v.isOpen", false);
-        let response = event.getParams().response;
-        let task = component.get('v.taskCard');
-        task.Id = response.id;
-        task.Name = response.fields.Name.value;
-        let addToBacklog = component.getEvent("addToBacklog");
-        addToBacklog.setParams({
-            "taskCard": task
-        });
-        addToBacklog.fire();
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            let toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                title: 'Success Message',
+                message: 'Task has been created',
+                type: 'success'
+            });
+            toastEvent.fire();
+            component.set("v.isOpen", false);
+            let response = event.getParams().response;
+            let task = component.get('v.taskCard');
+            task.Id = response.id;
+            task.Name = response.fields.Name.value;
+            let addToBacklog = component.getEvent("addToBacklog");
+            addToBacklog.setParams({
+                "taskCard": task
+            });
+            addToBacklog.fire();
+        }, 250);
     },
     onSubmit: function (component, event) {
         event.preventDefault();

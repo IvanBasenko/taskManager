@@ -15,7 +15,7 @@
                             recordId="{!v.subTask.Id}"
                             objectApiName="SubTask__c"
                             columns="1"
-                            mode="view"
+                            mode="readonly"
                             fields="{!v.Fields}"
                     />
                     <div class="recordView">

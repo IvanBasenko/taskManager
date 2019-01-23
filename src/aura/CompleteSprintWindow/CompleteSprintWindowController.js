@@ -2,8 +2,12 @@
  * Created by Ivan Basenko on 14.01.2019.
  */
 ({
-    closeModel: function (component) {
-        component.set("v.isOpen", false);
+    closeModal: function (component) {
+        let modal = component.find('modal');
+        $A.util.addClass(modal, 'hide-modal');
+        setTimeout(function () {
+            component.set("v.isOpen", false);
+        }, 250);
     },
     handleChange: function (component, event) {
         let selectedOptionValue = event.getParam("value");
@@ -18,8 +22,6 @@
                 tasksToNewSprint.push(sprint.value)
             }
         });
-        console.log(JSON.parse(JSON.stringify(tasksToNewSprint)));
-        console.log(JSON.parse(JSON.stringify(tasksToBacklog)));
         let action = component.get('c.cloneTask');
         action.setParams({
             "sprintTaskIds": tasksToNewSprint,
@@ -33,9 +35,13 @@
                     "item": JSON.parse(response.getReturnValue())
                 });
                 createEvt.fire();
-                component.set("v.isOpen", false);
-                component.set('v.options', []);
-                component.set('v.SelectedValues', []);
+                let modal = component.find('modal');
+                $A.util.addClass(modal, 'hide-modal');
+                setTimeout(function () {
+                    component.set("v.isOpen", false);
+                    component.set('v.options', []);
+                    component.set('v.SelectedValues', []);
+                }, 250);
             }
         });
         $A.enqueueAction(action);
