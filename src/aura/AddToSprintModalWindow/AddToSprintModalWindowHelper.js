@@ -29,31 +29,17 @@
     },
     onSubmit: function (component, event) {
         let eventFields = event.getParam("fields");
-        if (!eventFields.Assignee__c) {
+        if (!eventFields.Assignee__c || !eventFields.Sprint_Project__c) {
             event.preventDefault();
             let toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title": "Error!!!",
-                "message": "Please fill Assignee field",
+                "message": "Please fill all fields",
                 "type": "error"
             });
             toastEvent.fire();
         } else {
-            event.preventDefault();
-            let eventFields = event.getParam("fields");
-            let currentSprintId = component.get('v.currentSprintId');
-            if (currentSprintId !== null) {
-                eventFields["Sprint_Project__c"] = currentSprintId;
-                component.find('editForm').submit(eventFields);
-            } else {
-                let toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "Error!!!",
-                    "message": "Open sprints are not created",
-                    "type": "error"
-                });
-                toastEvent.fire();
-            }
+            component.find('editForm').submit();
         }
     }
 });

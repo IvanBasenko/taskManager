@@ -2,10 +2,6 @@
     background-color: #efefef;
 }
 
-/*.THIS .slds-text-heading--medium {*/
-/*color: #1ed760;*/
-/*font-family: "Lato", sans-serif ;*/
-/*}*/
 .THIS .slds-text__title {
     font-weight: bold;
     font-family: "Lato", sans-serif;
@@ -14,7 +10,6 @@
 .THIS .slds-form-element__static {
     font-size: 16px;
     font-family: "Lato", sans-serif;
-    color: #2e57d7;
     font-weight: bold;
 }
 
@@ -28,7 +23,6 @@
 .THIS .outputStyle {
     font-size: 16px;
     font-family: "Lato", sans-serif;
-    color: #2e57d7;
     font-weight: bold;
 }
 
@@ -47,7 +41,7 @@
 }
 
 .THIS .slds-progress-bar__value {
-    background: #12c2e9; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #12c2e9;
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
 }

@@ -13,7 +13,8 @@
         'Id':'',
         'Name': '',
         'Sprint_Start_Date__c': '',
-        'End_Date__c': ''
+        'End_Date__c': '',
+        'Status__c':''
     }"/>
     <aura:registerEvent name="addSprint" type="c:AddSprintEvt"/>
     <aura:if isTrue="{!v.isOpen}">

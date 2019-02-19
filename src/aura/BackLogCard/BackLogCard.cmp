@@ -6,12 +6,11 @@
     <aura:attribute name="taskCard" type="TaskCard__c"/>
     <aura:registerEvent name="deleteTaskFromBacklog" type="c:DeleteRecordEvt"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute access="public" name="currentSprintId" type="Id"/>
     <aura:attribute name="Fields" type="List" default="['Task_Name__c','Type__c','Description__c']"/>
-    <article>
-        <lightning:card variant="narrow" iconName="standard:task" class="slds-m-horizontal--small slds-card_boundary">
+    <article class="border">
+        <lightning:card variant="narrow" iconName="standard:task" class="slds-m-horizontal--small slds-card_boundary ">
             <aura:set attribute="title">
-                <lightning:layout class="slds-p-around--xxx-small" horizontalAlign="spread" verticalAlign="start">
+                <lightning:layout class="slds-p-around--xxx-small center" horizontalAlign="spread" verticalAlign="start">
                     <lightning:layoutItem>
                         <h3 class="slds-page-header__title"> {!v.taskCard.Name}</h3>
                     </lightning:layoutItem>
@@ -36,5 +35,5 @@
             </div>
         </lightning:card>
     </article>
-    <c:AddToSprintModalWindow currentSprintId="{!v.currentSprintId}" isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>
+    <c:AddToSprintModalWindow isOpen="{!v.isOpen}" taskCard="{!v.taskCard}"/>
 </aura:component>

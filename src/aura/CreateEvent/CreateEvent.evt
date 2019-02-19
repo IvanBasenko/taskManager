@@ -4,4 +4,5 @@
 
 <aura:event type="COMPONENT" description="CreateEvent">
     <aura:attribute name="item" type="Object"/>
+    <aura:attribute name="sprintId" type="Id"/>
 </aura:event>

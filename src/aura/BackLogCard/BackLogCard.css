@@ -2,17 +2,37 @@
  * Created by Ivan Basenko on 23.10.2018.
  */
 .THIS .slds-card {
+    border-top: solid 3px #12c2e9;
     border-radius: 7px;
-    box-shadow: 0 2px 3px 0 rgba(12, 2, 23, 0.32);
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.27);
     animation-name: backlog;
     animation-duration: 0.5s;
     animation-direction: alternate;
 }
 
+.THIS .slds-card:before {
+    background: -moz-linear-gradient(left, #12c2e9 0%,#c471ed 50% , #12c2e9 100%);
+    background: -webkit-linear-gradient(left, #12c2e9 0%,#c471ed 50% , #12c2e9 100%);
+    background: -o-linear-gradient(left, #12c2e9 0%,#c471ed 50% , #12c2e9 100%);
+    background: -ms-linear-gradient(left, #12c2e9 0%,#c471ed 50% , #12c2e9 100%);
+    content: "";
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+}
+
+.THIS .center {
+    display: flex;
+    align-items: center;
+}
 
 .THIS .slds-form-element__static {
-    /*font-size: 16px;*/
-    color: #2e57d7;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
 }
 
 @keyframes backlog {

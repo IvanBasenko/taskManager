@@ -4,6 +4,10 @@
 
 public with sharing class SprintProjectController {
     @AuraEnabled
+    public static Project__c getProjectName(Id projectId) {
+        return [SELECT Name FROM Project__c WHERE Id = :projectId LIMIT 1];
+    }
+    @AuraEnabled
     public static List<Sprint__c> getSprints(Id projectId) {
         return [
                 SELECT

@@ -24,10 +24,20 @@
         backLogComponent.set('v.taskCardList', backLogList);
     },
     doInit: function (component) {
-        let backLogComponent = component.find('backLogList');
         let sprintComponent = component.find('sprintList');
         let action = component.get('c.getSprints');
+        let getProjectName = component.get('c.getProjectName');
         let projectId = component.get('v.recordId');
+        getProjectName.setParams({
+            "projectId": projectId
+        });
+        getProjectName.setCallback(this, function (response) {
+            if (response.getState() === 'SUCCESS') {
+                let project = response.getReturnValue();
+                component.set('v.projectName',project.Name)
+            }
+        });
+        $A.enqueueAction(getProjectName);
         action.setParams({
             "projectId": projectId
         });
@@ -35,34 +45,23 @@
             if (response.getState() === 'SUCCESS') {
                 let sprintList = response.getReturnValue();
                 sprintComponent.set('v.sprintList', sprintList);
-                sprintList.forEach(function (sprint) {
-                    if (sprint.Status__c !== 'Closed') {
-                        backLogComponent.set('v.currentSprintId', sprint.Id);
-                        sprintComponent.set('v.currentSprintId', sprint.Id);
-                        sprintComponent.set('v.allSprintCompleted', false);
-                        component.set('v.currentSprintId', sprint.Id);
-                    }
+                let filteredSprintList = sprintList.filter((element) => {
+                    return element.Status__c === 'Open';
                 });
+                sprintComponent.set('v.filteredSprintList', filteredSprintList);
             }
         });
         $A.enqueueAction(action);
     },
-    handleAddSprint: function (component, event) {
-        let newSprint = event.getParam("sprint");
-        let backLogComponent = component.find('backLogList');
-        let sprintComponent = component.find('sprintList');
-        backLogComponent.set('v.currentSprintId', newSprint.Id);
-        sprintComponent.set('v.currentSprintId', newSprint.Id);
-        component.set('v.currentSprintId', newSprint.Id);
-    },
     createCloneTask: function (component, event) {
         let clones = event.getParam("item");
+        let sprintId = event.getParam("sprintId");
         let backLogComponent = component.find('backLogList');
         let sprintComponent = component.find('sprintList');
         let sprintList = sprintComponent.get('v.sprintList');
         let backLogList = backLogComponent.get('v.taskCardList');
         let sprint = sprintList.find((element) => {
-            return element.Id === component.get('v.currentSprintId');
+            return element.Id === sprintId;
         });
         let taskToNewSprint = clones.taskToNewSprint;
 
@@ -76,5 +75,5 @@
         });
         sprintComponent.set('v.sprintList', sprintList);
         backLogComponent.set('v.taskCardList', backLogList.concat(clones.taskToBacklog));
-    },
+    }
 });

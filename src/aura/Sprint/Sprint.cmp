@@ -5,31 +5,26 @@
 <aura:component description="Sprint" controller="SprintProjectController"
                 implements="flexipage:availableForAllPageTypes">
     <aura:attribute access="public" name="sprintList" type="Sprint__c[]"/>
-    <!--<aura:attribute name="isOpen" type="boolean" default="false"/>-->
-    <!--<aura:attribute access="public" name="sprintStatus" type="String"/>-->
+    <aura:attribute access="public" name="filteredSprintList" type="Sprint__c[]"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute name="allSprintCompleted" type="boolean" default="true"/>
-    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
-    <aura:attribute access="public" name="currentSprintId" type="Id"/>
     <aura:attribute access="public" name="projectId" type="Id"/>
     <aura:handler name="SprintUpdate" event="c:SprintUpdateEvent" action="{!c.updateSprint}"/>
     <aura:handler name="addSprint" event="c:AddSprintEvt" action="{!c.handleAddSprint}"/>
-    <article class="slds-card slds-card_boundary slds-m-around--xx-small">
-        <lightning:layout class="slds-p-around--small slds-page-header__title" horizontalAlign="spread"
-                          verticalAlign="center">
+    <article class="slds-border--right">
+        <lightning:layout class="slds-p-horizontal--large  slds-p-vertical--small slds-page-header__title"
+                          horizontalAlign="spread" verticalAlign="center">
             <lightning:layoutItem>
                 <h1>Sprints</h1>
             </lightning:layoutItem>
             <lightning:layoutItem>
-                <lightning:button label="Add Sprint"
-                                  variant="success" onclick="{!c.onAddSprint}"/>
+                <lightning:button label="Add Sprint" variant="base" onclick="{!c.onAddSprint}"/>
             </lightning:layoutItem>
         </lightning:layout>
         <div class="slds-scrollable">
             <aura:if isTrue="{!not(empty(v.sprintList))}">
                 <aura:iteration items="{!v.sprintList}" var="sprint">
                     <div class="slds-p-around--x-small sprint-card">
-                        <c:SprintItem currentSprintId="{!v.currentSprintId}" sprint="{!sprint}"/>
+                        <c:SprintItem sprintList="{!v.filteredSprintList}" sprint="{!sprint}"/>
                     </div>
                 </aura:iteration>
                 <aura:set attribute="else">
@@ -37,7 +32,6 @@
                 </aura:set>
             </aura:if>
         </div>
-
     </article>
     <c:AddSprintModal isOpen="{!v.isOpen}" sprintList="{!v.sprintList}" projectId="{!v.projectId}"/>
 </aura:component>

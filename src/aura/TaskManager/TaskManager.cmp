@@ -6,12 +6,23 @@
                 implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
                 access="global" controller="SprintProjectController">
     <aura:attribute name="recordId" type="Id"/>
-    <aura:attribute name="currentSprintId" type="Id"/>
+    <aura:attribute name="projectName" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="addToSprint" event="c:AddToSprintEvt" action="{!c.toSprint}"/>
     <aura:handler name="addSprint" event="c:AddSprintEvt" action="{!c.handleAddSprint}"/>
     <aura:handler name="createCloneTasks" event="c:CreateEvent" action="{!c.createCloneTask}"/>
-    <lightning:card>
+    <article class="slds-m-around--xx-small">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="standard:task"/>
+            </div>
+            <div class="slds-media__body">
+                <h2 class="slds-page-header__title">
+                    <span>{!v.projectName}</span>
+                </h2>
+            </div>
+        </header>
+        <div class="slds-border--bottom slds-p-around_x-small"></div>
         <lightning:layout multipleRows="true">
             <lightning:layoutItem size="6" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="8">
                 <c:Sprint aura:id="sprintList" projectId="{!v.recordId}"/>
@@ -20,6 +31,5 @@
                 <c:BackLog aura:id="backLogList" projectId="{!v.recordId}"/>
             </lightning:layoutItem>
         </lightning:layout>
-    </lightning:card>
-
+    </article>
 </aura:component>

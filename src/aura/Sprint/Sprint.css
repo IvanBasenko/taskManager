@@ -4,7 +4,7 @@
 
 @media screen {
     .THIS .slds-scrollable {
-        height: calc(100vh - 300px);
+        height: calc(100vh - 230px);
     }
 }
 
@@ -12,9 +12,6 @@
     .THIS .slds-scrollable {
         height: 35vh;
     }
-}
-.THIS.slds-card {
-    background-color: #e7e7e7;
 }
 
 .THIS .sprint-card:first-child {

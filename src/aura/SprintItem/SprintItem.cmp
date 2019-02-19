@@ -8,8 +8,8 @@
     <aura:attribute access="public" name="isStarted" type="Boolean" default="false"/>
     <aura:attribute access="public" name="sprint" type="Sprint__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
-    <aura:attribute access="public" name="currentSprintId" type="Id"/>
     <aura:attribute name="options" type="List" default="[]"/>
+    <aura:attribute name="sprintList" type="Sprint__c[]" default="[]"/>
     <aura:attribute name="sprintCompleted" type="boolean" default="false"/>
     <aura:attribute access="public" name="sprintStatus" type="String" default="{
         'sobjectType': 'Sprint__c',
@@ -76,6 +76,6 @@
         </div>
     </div>
     <c:StartSprintModal isOpen="{!v.isOpen}" sprint="{!v.sprint}"/>
-    <c:CompleteSprintWindow currentSprintId="{!v.currentSprintId}" isOpen="{!v.sprintCompleted}"
+    <c:CompleteSprintWindow sprintList="{!v.sprintList}" isOpen="{!v.sprintCompleted}"
                             options="{!v.options}"/>
 </aura:component>

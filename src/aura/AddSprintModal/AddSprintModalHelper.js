@@ -20,6 +20,7 @@
             sprint.Name = response['Name'].value;
             sprint.Sprint_Start_Date__c = response['Sprint_Start_Date__c'].value;
             sprint.End_Date__c = response['End_Date__c'].value;
+            sprint.Status__c = response['Status__c'].value;
             let addSprint = component.getEvent("addSprint");
             addSprint.setParams({
                 "sprint": sprint

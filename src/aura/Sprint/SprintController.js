@@ -13,7 +13,10 @@
         let newSprint = event.getParam("sprint");
         sprintList.unshift(newSprint);
         component.set('v.sprintList', sprintList);
-        component.set('v.allSprintCompleted', false);
+        let filteredSprintList = sprintList.filter((element) => {
+            return element.Status__c === 'Open';
+        });
+        component.set('v.filteredSprintList', filteredSprintList);
     },
     updateSprint: function (component, event) {
         let action = component.get('c.getSprintById');
@@ -27,9 +30,13 @@
                 let sprint = list.find((element) => {
                     return element.Id === sprintId;
                 });
+                let filteredSprintList = list.filter((element) => {
+                    return element.Status__c === 'Open';
+                });
                 sprint.Tasks__r = [];
                 sprint.Tasks__r = sprint.Tasks__r.concat(response.getReturnValue());
                 component.set('v.sprintList', list);
+                component.set('v.filteredSprintList', filteredSprintList);
             }
         });
         $A.enqueueAction(action);

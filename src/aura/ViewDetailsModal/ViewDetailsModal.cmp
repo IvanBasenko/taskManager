@@ -11,7 +11,7 @@
     <aura:registerEvent name="SprintUpdate" type="c:SprintUpdateEvent"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
-                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal--medium">
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container" aura:id="modal">
                 <div class="shadow">
                     <header class="slds-modal__header slds-theme--inverse">
