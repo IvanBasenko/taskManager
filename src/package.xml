@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>AccountTriggerHandler</members>
@@ -48,7 +48,73 @@
         <members>TrackTimeModal</members>
         <members>UpdateTaskOnSprint</members>
         <members>ViewDetailsModal</members>
+        <members>CompleteSprintWindow</members>
+        <members>CreateEvent</members>
+        <members>DualListboxTest</members>
+        <members>TrackTimeDetails</members>
         <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>ScrumWise</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Opportunity</members>
+        <members>Project__c</members>
+        <members>Sprint__c</members>
+        <members>SubTask__c</members>
+        <members>TaskCard__c</members>
+        <members>TrackTime__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Project__c-en_US</members>
+        <members>Sprint__c-en_US</members>
+        <members>SubTask__c-en_US</members>
+        <members>TaskCard__c-en_US</members>
+        <members>TrackTime__c-en_US</members>
+        <name>CustomObjectTranslation</name>
+    </types>
+    <types>
+        <members>Project__c</members>
+        <members>Sprint__c</members>
+        <members>SubTask__c</members>
+        <members>TaskCard__c</members>
+        <members>TrackTime__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Project_Page</members>
+        <members>Sprint</members>
+        <members>Sprint_Proj</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Project__c-Project Layout</members>
+        <members>Sprint__c-Sprint Layout</members>
+        <members>TaskCard__c-BackLog</members>
+        <members>TaskCard__c-Sprint</members>
+        <members>TrackTime__c-TrackTime Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>test</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Project__c</members>
+        <members>Sprint__c</members>
+        <members>TaskCard__c</members>
+        <name>SharingRules</name>
+    </types>
+    <types>
+        <members>Scrum Master.Customer_Members</members>
+        <members>Scrum Master.Members_without_contribution</members>
+        <members>Scrum Master.Partner_and_Customer_members</members>
+        <members>Scrum.Customer_Members</members>
+        <members>Scrum.Members_without_contribution</members>
+        <members>Scrum.Partner_and_Customer_members</members>
+        <name>UserCriteria</name>
     </types>
     <version>44.0</version>
 </Package>

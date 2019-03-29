@@ -5,9 +5,10 @@
 <aura:component description="CompleteSprintWindow" controller="TaskCardController">
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute access="public" name="projectId" type="Id"/>
-    <aura:attribute name="options" type="List" default="[]"/>
-    <aura:attribute name="sprintList" type="Sprint__c[]" default="[]"/>
+    <aura:attribute name="sprintList" type="List" default="[]"/>
     <aura:attribute type="List" name="SelectedValues"/>
+    <aura:attribute type="Id" name="SelectedSprint"/>
+    <aura:attribute name="options" type="List" default="[]"/>
     <aura:registerEvent name="createCloneTasks" type="c:CreateEvent"/>
     <aura:if isTrue="{!v.isOpen}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
@@ -16,18 +17,16 @@
                 <div class="shadow">
                     <header class="slds-modal__header slds-theme--inverse">
                         <lightning:buttonIcon iconName="utility:close"
-                                              onclick="{! c.closeModal }"
+                                              onclick="{!c.closeModal}"
                                               alternativeText="close"
                                               variant="bare-inverse"
                                               class="slds-modal__close"/>
                         <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Task Manager</h2>
                     </header>
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                        <lightning:select aura:id="selectSprint" name="select" label="Select a Sprint" required="true">
-                            <aura:iteration items="{!v.sprintList}" var="sprint">
-                                <option text="{!sprint.Name}" value="{!sprint.Id}"></option>
-                            </aura:iteration>
-                        </lightning:select>
+                        <lightning:combobox label="Sprint"
+                                            placeholder="Select Sprint" options="{! v.sprintList }"
+                                            onchange="{!c.handleChangeSprint}"/>
                         <lightning:dualListbox name="languages"
                                                label="Select tasks"
                                                sourceLabel="To New Sprint"

@@ -9,34 +9,69 @@
     <aura:attribute access="public" name="sprint" type="Sprint__c"/>
     <aura:attribute name="isOpen" type="boolean" default="false"/>
     <aura:attribute name="options" type="List" default="[]"/>
+    <aura:attribute name="progress" type="Decimal" default="0"/>
+    <aura:attribute name="maskProgress" type="Decimal" default="100"/>
+    <aura:attribute name="timeProgress" type="Decimal" default="0"/>
+    <aura:attribute name="maskTimeProgress" type="Decimal" default="100"/>
     <aura:attribute name="sprintList" type="Sprint__c[]" default="[]"/>
+    <aura:attribute name="optionsForSprint" type="List" default="[]"/>
     <aura:attribute name="sprintCompleted" type="boolean" default="false"/>
     <aura:attribute access="public" name="sprintStatus" type="String" default="{
         'sobjectType': 'Sprint__c',
         'Status__c': '',
         'Sprint_Start_Date__c': ''}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.sprint.Tasks__r}" action="{!c.doInit}"/>
     <aura:handler name="deleteTask" event="c:DeleteRecordEvt" action="{!c.handleDeleteTask}"/>
     <aura:handler name="showInfo" event="c:ShowInfoSprintEvt" action="{!c.handleShowInfo}"/>
 
     <div class="slds-card slds-m-horizontal--small slds-card_boundary">
-        <div class="slds-grid slds-gutters slds-p-around--medium">
+        <div class="slds-grid slds-gutters slds-p-top--medium slds-p-horizontal--medium">
             <div class="slds-col slds-text-heading--large">{!v.sprint.Name}</div>
             <div class="slds-col slds-text-align_right">
-                <button onclick="{!c.startSprint}"
-                        class="slds-button">
-                    <lightning:icon iconName="utility:edit" size="medium"
-                                    alternativeText="Show" title="Rofl"/>
-                </button>
-                <button onclick="{!c.completeSprint}"
-                        class="slds-button">
-                    <lightning:icon iconName="utility:check" size="medium"
-                                    alternativeText="Show"/>
-                </button>
+                <lightning:buttonGroup class="buttons">
+                <button class="pure-material-button-text" type="button" onclick="{!c.startSprint}"><span>Edit</span></button>
+                <button class="pure-material-button-text" type="button" onclick="{!c.completeSprint}"><span>Complete Sprint</span></button>
+                    <!--<lightning:button iconName="utility:edit" class="slds-button_outline-brand"  label="Edit"-->
+                                      <!--onclick="{!c.startSprint}"/>-->
+                    <!--<lightning:button iconName="utility:check"  class="slds-button_outline-brand" label="Complete Sprint"-->
+                                      <!--onclick="{!c.completeSprint}"/>-->
+                </lightning:buttonGroup>
             </div>
         </div>
         <div class="slds-p-horizontal--medium slds-p-vertical--small">
             <c:SprintProjView recordId="{!v.sprint.Id}"/>
+            <lightning:layout class="slds-p-top--medium" multipleRows="true" horizontalAlign="spread"
+                              verticalAlign="center">
+                <lightning:layoutItem flexibility="grow" size="12" smallDeviceSize="12" largeDeviceSize="5">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small"
+                         id="progress-bar-label-id-1">
+                        <span class="slds-form-element__static">Tasks Status: {!v.progress}% Complete</span>
+                    </div>
+                    <div class="border-background">
+                        <div style="{!'clip-path: inset(0 '+ v.maskProgress+'% 0 0);'}">
+                            <lightning:progressBar value="100"
+                                                   size="small"
+                                                   variant="circular"/>
+                        </div>
+                    </div>
+
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="grow" size="12" smallDeviceSize="12" largeDeviceSize="5">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small"
+                         id="progress-bar-label-id-1">
+                        <span class="slds-form-element__static">Spend Time: {!v.timeProgress}% Complete</span>
+                    </div>
+                    <div class="border-background">
+                        <div style="{!'clip-path: inset(0 '+ v.maskTimeProgress+'% 0 0);'}">
+                            <lightning:progressBar value="100"
+                                                   size="small"
+                                                   variant="circular"/>
+                        </div>
+                    </div>
+
+                </lightning:layoutItem>
+            </lightning:layout>
         </div>
         <div id="expand-container">
             <div id="content" class="{!v.isExpanded ? 'slds-transition-show':'slds-transition-hide'}">
@@ -76,6 +111,6 @@
         </div>
     </div>
     <c:StartSprintModal isOpen="{!v.isOpen}" sprint="{!v.sprint}"/>
-    <c:CompleteSprintWindow sprintList="{!v.sprintList}" isOpen="{!v.sprintCompleted}"
+    <c:CompleteSprintWindow sprintList="{!v.optionsForSprint}" isOpen="{!v.sprintCompleted}"
                             options="{!v.options}"/>
 </aura:component>

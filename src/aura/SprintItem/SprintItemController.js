@@ -24,8 +24,10 @@
     completeSprint: function (component) {
         component.set('v.sprintCompleted', true);
         let tasks = component.get('v.sprint.Tasks__r');
+        let sprints = component.get('v.sprintList');
         let items = [];
-        tasks.forEach(function (task) {
+        let sprintItems = [];
+        tasks.forEach((task) => {
             if (task.Stage__c !== 'Complete') {
                 let item = {
                     "label": task.Name + ": " + task.Task_Name__c,
@@ -34,6 +36,14 @@
                 items.push(item);
             }
         });
+        sprints.forEach((sprint) => {
+            let item = {
+                "label": sprint.Name,
+                "value": sprint.Id
+            };
+            sprintItems.push(item);
+        });
         component.set("v.options", items);
+        component.set("v.optionsForSprint", sprintItems);
     }
 });

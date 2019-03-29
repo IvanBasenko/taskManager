@@ -34,14 +34,3 @@
 .THIS .recordView {
     margin-bottom: 3px;
 }
-
-.THIS .border-background {
-    background: rgb(221, 219, 218);
-    border-radius: .5rem;
-}
-
-.THIS .slds-progress-bar__value {
-    background: #12c2e9;
-    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
-    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
-}

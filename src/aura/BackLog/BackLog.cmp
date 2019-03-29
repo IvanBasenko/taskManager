@@ -20,7 +20,7 @@
                     <h1>BackLog</h1>
                 </lightning:layoutItem>
                 <lightning:layoutItem>
-                    <lightning:button label="Add task" variant="base" onclick="{!c.onCreateRecord}"/>
+                    <lightning:button label="Add task" iconName="utility:add" variant="base" onclick="{!c.onCreateRecord}"/>
                 </lightning:layoutItem>
             </lightning:layout>
             <div class="slds-scrollable">

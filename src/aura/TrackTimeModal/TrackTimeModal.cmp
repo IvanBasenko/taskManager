@@ -27,11 +27,11 @@
                         <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Track time</h2>
                     </header>
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                        <lightning:recordEditForm objectApiName="TrackTime__c"
-                                                  onsuccess="{!c.handleSuccess}">
+                        <lightning:recordEditForm aura:id="editForm" objectApiName="TrackTime__c"
+                                                  onsuccess="{!c.handleSuccess}"
+                                                  onsubmit="{!c.handleSubmit}">
                             <lightning:inputField fieldName="Time__c"/>
                             <lightning:inputField fieldName="Description__c"/>
-                            <lightning:inputField fieldName="SubTask__c" value="{!v.subTaskId}"/>
                             <div class="slds-m-top_medium slds-align_absolute-center">
                                 <lightning:buttonGroup>
                                     <lightning:button variant="brand" label="Submit" title="Submit"

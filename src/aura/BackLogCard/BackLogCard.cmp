@@ -16,8 +16,10 @@
                     </lightning:layoutItem>
                     <lightning:layoutItem>
                         <lightning:buttonGroup>
-                            <lightning:button label="Add to sprint" variant="brand" onclick="{!c.addToSprint}"/>
-                            <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+                            <button class="pure-material-button-text" type="button" onclick="{!c.addToSprint}"><span>To Sprint</span></button>
+                            <button class="pure-material-button-text" type="button" onclick="{!c.deleteRecord}"><span>Delete</span></button>
+                            <!--<lightning:button label="To sprint" variant="brand" onclick="{!c.addToSprint}"/>-->
+                            <!--<lightning:button label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>-->
                         </lightning:buttonGroup>
                     </lightning:layoutItem>
                 </lightning:layout>

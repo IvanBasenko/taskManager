@@ -24,7 +24,7 @@
         let options = component.get('v.options');
         let tasksToBacklog = component.get('v.SelectedValues');
         let tasksToNewSprint = [];
-        let selectedSprint = component.find('selectSprint').get('v.value');
+        let selectedSprint = component.get('v.SelectedSprint');
         options.forEach(function (sprint) {
             if (!tasksToBacklog.includes(sprint.value)) {
                 tasksToNewSprint.push(sprint.value)
@@ -55,5 +55,8 @@
             }
         });
         $A.enqueueAction(action);
+    },
+    handleChangeSprint: function (component, event) {
+        component.set("v.SelectedSprint", event.getParam("value"));
     }
 });

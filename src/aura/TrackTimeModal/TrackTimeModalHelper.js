@@ -25,5 +25,11 @@
             });
             addTrackTimeCard.fire();
         }, 250);
+    },
+    onSubmit: function (component, event) {
+        event.preventDefault();
+        let eventFields = event.getParam("fields");
+        eventFields["SubTask__c"] = component.get('v.subTaskId');
+        component.find('editForm').submit(eventFields);
     }
 });

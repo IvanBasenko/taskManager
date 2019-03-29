@@ -8,6 +8,7 @@
     <aura:attribute name="recordId" type="Id"/>
     <aura:attribute name="projectName" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event=":onChangeViewMode" action="{!c.doInit}"/>
     <aura:handler name="addToSprint" event="c:AddToSprintEvt" action="{!c.toSprint}"/>
     <aura:handler name="addSprint" event="c:AddSprintEvt" action="{!c.handleAddSprint}"/>
     <aura:handler name="createCloneTasks" event="c:CreateEvent" action="{!c.createCloneTask}"/>
@@ -24,10 +25,10 @@
         </header>
         <div class="slds-border--bottom slds-p-around_x-small"></div>
         <lightning:layout multipleRows="true">
-            <lightning:layoutItem size="6" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="8">
+            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="8">
                 <c:Sprint aura:id="sprintList" projectId="{!v.recordId}"/>
             </lightning:layoutItem>
-            <lightning:layoutItem size="6" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="4">
+            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="4">
                 <c:BackLog aura:id="backLogList" projectId="{!v.recordId}"/>
             </lightning:layoutItem>
         </lightning:layout>
